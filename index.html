@@ -1625,7 +1625,7 @@
             const targetId = document.getElementById('adminCoinUserId').value.trim();
             const coinAmount = parseFloat(document.getElementById('adminCoinAmount').value);
             const action = document.getElementById('adminCoinAction').value;
-            if (!targetId || !coinAmount || coinAmount <= 0) { showToast('सही आईडी/ईमेल और मान्य कॉइन संख्या भरें。',
+            if (!targetId || !coinAmount || coinAmount <= 0) { showToast('सही आईडी/ईमेल और मान्य कॉइन संख्या भरें।',
                 'error'); return; }
             setButtonLoading(btn, true);
             const idx = users.findIndex(u => u.$id === targetId || u.email === targetId);
@@ -2390,7 +2390,7 @@
         }
 
         function selectPurchaseSlab(usd, coins) {
-            if (currentUser?.pendingDeposit) { showToast('एक डिपॉजिट पहले से पेंडिंग है。', 'error'); return; }
+            if (currentUser?.pendingDeposit) { showToast('एक डिपॉजिट पहले से पेंडिंग है।', 'error'); return; }
             selectedPurchaseUsd = usd;
             selectedPurchaseCoins = coins;
             document.getElementById('paymentUSDVal').innerHTML = `$${usd}.00 USDT (${coins} CX Coins)`;
@@ -2727,10 +2727,10 @@
             if (!currentUser) { showToast('लॉगिन करें।', 'error'); return; }
             const address = document.getElementById('userWithdrawAddress').value.trim();
             const amount = parseFloat(document.getElementById('withdrawAmountInput').value);
-            if (!address) { showToast('USDT एड्रेस पेस्ट करें。', 'error'); return; }
+            if (!address) { showToast('USDT एड्रेस पेस्ट करें।', 'error'); return; }
             if (!amount || amount < 100) { showToast('न्यूनतम 100 CX', 'error'); return; }
             if (amount > parseFloat(currentUser.coins || 0)) { showToast('पर्याप्त नहीं!', 'error'); return; }
-            if (currentUser.pendingWithdrawal) { showToast('पहले से पेंडिंग。', 'error'); return; }
+            if (currentUser.pendingWithdrawal) { showToast('पहले से पेंडिंग।', 'error'); return; }
             setButtonLoading(btn, true);
             try {
                 const newWithdrawal = { coinsAmount: amount, dateTime: new Date().toLocaleString('hi-IN'),
