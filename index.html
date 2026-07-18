@@ -9,12 +9,10 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    
-    <!-- ✅ सही Appwrite SDK - ब्राउज़र के लिए -->
     <script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2">
     </script>
-    
     <style>
+        /* ... (सारा CSS पहले जैसा ही है, मैंने कुछ नहीं बदला) ... */
         * {
             margin: 0;
             padding: 0;
@@ -36,6 +34,10 @@
         .gold-border {
             border: 1px solid rgba(212, 175, 55, 0.35);
         }
+        .gold-border-glow {
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+        }
         .gold-bg-gradient {
             background: linear-gradient(145deg, #d4af37, #c9a030, #b8962a);
         }
@@ -56,6 +58,14 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(212, 175, 55, 0.12);
+        }
+        .card-3d {
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-3d:hover {
+            transform: perspective(1000px) rotateX(1.5deg) rotateY(2deg) translateY(-4px);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15);
         }
         .btn-gold {
             background: linear-gradient(145deg, #d4af37, #c9a030, #b8962a);
@@ -84,6 +94,10 @@
             border-color: #d4af37;
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
         }
+        .neon-gold {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4), inset 0 0 30px rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+        }
         ::-webkit-scrollbar {
             width: 5px;
         }
@@ -94,8 +108,6 @@
             background: #d4af37;
             border-radius: 20px;
         }
-        
-        /* ===== BUTTERFLIES ===== */
         .butterfly-bg {
             position: fixed;
             top: 0;
@@ -136,8 +148,6 @@
                 opacity: 0.1;
             }
         }
-        
-        /* ===== CONFETTI ===== */
         @keyframes confetti-fall {
             0% {
                 transform: translateY(-100px) rotate(0deg);
@@ -156,8 +166,6 @@
             z-index: 999;
             animation: confetti-fall linear forwards;
         }
-        
-        /* ===== ADMIN ===== */
         .admin-badge {
             background: linear-gradient(135deg, #d4af37, #c9a030);
             color: #0a0712;
@@ -177,8 +185,6 @@
         .hidden {
             display: none !important;
         }
-        
-        /* ===== CREDENTIAL BOX ===== */
         .credential-box {
             background: rgba(18, 12, 28, 0.7);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -246,8 +252,6 @@
         .id-box-email .id-value {
             color: #34d399;
         }
-        
-        /* ===== BOTTOM NAV ===== */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -318,8 +322,6 @@
         .admin-sec.hidden {
             display: none !important;
         }
-        
-        /* ===== HISTORY ===== */
         .history-item {
             background: rgba(18, 12, 28, 0.6);
             border: 1px solid rgba(212, 175, 55, 0.12);
@@ -332,24 +334,21 @@
             border-color: rgba(212, 175, 55, 0.3);
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.05);
         }
-        .staking-history-item {
-            background: rgba(18, 12, 28, 0.5);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 10px;
-            padding: 10px 12px;
-            transition: all 0.3s;
+        .history-item .type-transfer {
+            color: #a78bfa;
         }
-        .staking-history-item:hover {
-            border-color: rgba(212, 175, 55, 0.25);
+        .history-item .type-deposit {
+            color: #60a5fa;
         }
-        .staking-history-item .locked {
+        .history-item .type-withdrawal {
             color: #d4af37;
         }
-        .staking-history-item .unlocked {
-            color: #34d399;
+        .history-item .type-trade {
+            color: #c084fc;
         }
-        
-        /* ===== SLIDER ===== */
+        .history-item .type-admin {
+            color: #d4af37;
+        }
         .slider-container {
             position: relative;
             width: 100%;
@@ -423,57 +422,209 @@
             backdrop-filter: blur(4px);
         }
         @keyframes slide {
-            0%,1% { transform: translateX(0); }
-            2%,3% { transform: translateX(-3.33%); }
-            4%,5% { transform: translateX(-6.66%); }
-            6%,7% { transform: translateX(-10%); }
-            8%,9% { transform: translateX(-13.33%); }
-            10%,11% { transform: translateX(-16.66%); }
-            12%,13% { transform: translateX(-20%); }
-            14%,15% { transform: translateX(-23.33%); }
-            16%,17% { transform: translateX(-26.66%); }
-            18%,19% { transform: translateX(-30%); }
-            20%,21% { transform: translateX(-33.33%); }
-            22%,23% { transform: translateX(-36.66%); }
-            24%,25% { transform: translateX(-40%); }
-            26%,27% { transform: translateX(-43.33%); }
-            28%,29% { transform: translateX(-46.66%); }
-            30%,31% { transform: translateX(-50%); }
-            32%,33% { transform: translateX(-53.33%); }
-            34%,35% { transform: translateX(-56.66%); }
-            36%,37% { transform: translateX(-60%); }
-            38%,39% { transform: translateX(-63.33%); }
-            40%,41% { transform: translateX(-66.66%); }
-            42%,43% { transform: translateX(-70%); }
-            44%,45% { transform: translateX(-73.33%); }
-            46%,47% { transform: translateX(-76.66%); }
-            48%,49% { transform: translateX(-80%); }
-            50%,51% { transform: translateX(-83.33%); }
-            52%,53% { transform: translateX(-86.66%); }
-            54%,55% { transform: translateX(-90%); }
-            56%,57% { transform: translateX(-93.33%); }
-            58%,59% { transform: translateX(-96.66%); }
-            60%,61% { transform: translateX(-100%); }
-            62%,63% { transform: translateX(-103.33%); }
-            64%,65% { transform: translateX(-106.66%); }
-            66%,67% { transform: translateX(-110%); }
-            68%,69% { transform: translateX(-113.33%); }
-            70%,71% { transform: translateX(-116.66%); }
-            72%,73% { transform: translateX(-120%); }
-            74%,75% { transform: translateX(-123.33%); }
-            76%,77% { transform: translateX(-126.66%); }
-            78%,79% { transform: translateX(-130%); }
-            80%,81% { transform: translateX(-133.33%); }
-            82%,83% { transform: translateX(-136.66%); }
-            84%,85% { transform: translateX(-140%); }
-            86%,87% { transform: translateX(-143.33%); }
-            88%,89% { transform: translateX(-146.66%); }
-            90%,91% { transform: translateX(-150%); }
-            92%,93% { transform: translateX(-153.33%); }
-            94%,95% { transform: translateX(-156.66%); }
-            96%,97% { transform: translateX(-160%); }
-            98%,99% { transform: translateX(-163.33%); }
-            100% { transform: translateX(-166.66%); }
+            0%,
+            1% {
+                transform: translateX(0);
+            }
+            2%,
+            3% {
+                transform: translateX(-3.33%);
+            }
+            4%,
+            5% {
+                transform: translateX(-6.66%);
+            }
+            6%,
+            7% {
+                transform: translateX(-10%);
+            }
+            8%,
+            9% {
+                transform: translateX(-13.33%);
+            }
+            10%,
+            11% {
+                transform: translateX(-16.66%);
+            }
+            12%,
+            13% {
+                transform: translateX(-20%);
+            }
+            14%,
+            15% {
+                transform: translateX(-23.33%);
+            }
+            16%,
+            17% {
+                transform: translateX(-26.66%);
+            }
+            18%,
+            19% {
+                transform: translateX(-30%);
+            }
+            20%,
+            21% {
+                transform: translateX(-33.33%);
+            }
+            22%,
+            23% {
+                transform: translateX(-36.66%);
+            }
+            24%,
+            25% {
+                transform: translateX(-40%);
+            }
+            26%,
+            27% {
+                transform: translateX(-43.33%);
+            }
+            28%,
+            29% {
+                transform: translateX(-46.66%);
+            }
+            30%,
+            31% {
+                transform: translateX(-50%);
+            }
+            32%,
+            33% {
+                transform: translateX(-53.33%);
+            }
+            34%,
+            35% {
+                transform: translateX(-56.66%);
+            }
+            36%,
+            37% {
+                transform: translateX(-60%);
+            }
+            38%,
+            39% {
+                transform: translateX(-63.33%);
+            }
+            40%,
+            41% {
+                transform: translateX(-66.66%);
+            }
+            42%,
+            43% {
+                transform: translateX(-70%);
+            }
+            44%,
+            45% {
+                transform: translateX(-73.33%);
+            }
+            46%,
+            47% {
+                transform: translateX(-76.66%);
+            }
+            48%,
+            49% {
+                transform: translateX(-80%);
+            }
+            50%,
+            51% {
+                transform: translateX(-83.33%);
+            }
+            52%,
+            53% {
+                transform: translateX(-86.66%);
+            }
+            54%,
+            55% {
+                transform: translateX(-90%);
+            }
+            56%,
+            57% {
+                transform: translateX(-93.33%);
+            }
+            58%,
+            59% {
+                transform: translateX(-96.66%);
+            }
+            60%,
+            61% {
+                transform: translateX(-100%);
+            }
+            62%,
+            63% {
+                transform: translateX(-103.33%);
+            }
+            64%,
+            65% {
+                transform: translateX(-106.66%);
+            }
+            66%,
+            67% {
+                transform: translateX(-110%);
+            }
+            68%,
+            69% {
+                transform: translateX(-113.33%);
+            }
+            70%,
+            71% {
+                transform: translateX(-116.66%);
+            }
+            72%,
+            73% {
+                transform: translateX(-120%);
+            }
+            74%,
+            75% {
+                transform: translateX(-123.33%);
+            }
+            76%,
+            77% {
+                transform: translateX(-126.66%);
+            }
+            78%,
+            79% {
+                transform: translateX(-130%);
+            }
+            80%,
+            81% {
+                transform: translateX(-133.33%);
+            }
+            82%,
+            83% {
+                transform: translateX(-136.66%);
+            }
+            84%,
+            85% {
+                transform: translateX(-140%);
+            }
+            86%,
+            87% {
+                transform: translateX(-143.33%);
+            }
+            88%,
+            89% {
+                transform: translateX(-146.66%);
+            }
+            90%,
+            91% {
+                transform: translateX(-150%);
+            }
+            92%,
+            93% {
+                transform: translateX(-153.33%);
+            }
+            94%,
+            95% {
+                transform: translateX(-156.66%);
+            }
+            96%,
+            97% {
+                transform: translateX(-160%);
+            }
+            98%,
+            99% {
+                transform: translateX(-163.33%);
+            }
+            100% {
+                transform: translateX(-166.66%);
+            }
         }
         .slider-dots {
             position: absolute;
@@ -498,8 +649,6 @@
             border-radius: 10px;
             box-shadow: 0 0 16px rgba(212, 175, 55, 0.4);
         }
-        
-        /* ===== FILTER TABS ===== */
         .filter-tabs {
             display: flex;
             gap: 3px;
@@ -530,8 +679,6 @@
         .filter-tabs button:hover:not(.active) {
             color: #d4b0e0;
         }
-        
-        /* ===== SC ADDRESS ===== */
         .sc-address-box {
             background: rgba(18, 12, 28, 0.7);
             border: 1px solid rgba(212, 175, 55, 0.25);
@@ -560,8 +707,6 @@
             letter-spacing: 0.5px;
             word-break: break-all;
         }
-        
-        /* ===== TOAST ===== */
         #toastNotification {
             position: fixed;
             top: 20px;
@@ -590,8 +735,7 @@
             pointer-events: auto;
             transform: translateX(-50%) translateY(0);
         }
-        
-        /* ===== RECEIPT MODAL ===== */
+        /* Receipt Modal Styles */
         .receipt-modal {
             position: fixed;
             inset: 0;
@@ -780,68 +924,6 @@
                 transform: scale(1) translateY(0);
             }
         }
-        
-        /* ===== STAR PULSE ===== */
-        @keyframes starPulse {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
-            }
-            50% {
-                transform: scale(1.08);
-                filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.9));
-            }
-        }
-        .animate-star {
-            animation: starPulse 2.5s infinite ease-in-out;
-        }
-        .btn-animate {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .btn-animate:active {
-            transform: scale(0.95);
-        }
-        
-        /* ===== STAKING PLAN ===== */
-        .staking-plan-btn {
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        .staking-plan-btn.active {
-            background: rgba(212, 175, 55, 0.2);
-            border-color: #d4af37;
-            color: #d4af37;
-        }
-        .staking-plan-btn:hover:not(.active) {
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-        
-        /* ===== COPY BUTTON ===== */
-        .copy-btn-admin {
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            color: #d4af37;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .copy-btn-admin:hover {
-            background: rgba(212, 175, 55, 0.3);
-        }
-        .admin-search-input {
-            background: rgba(10, 6, 18, 0.8);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: #f5e6d3;
-        }
-        .admin-search-input:focus {
-            border-color: #d4af37;
-            outline: none;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
-        }
-        
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 440px) {
             .bottom-nav button i {
                 font-size: 17px;
@@ -872,17 +954,95 @@
                 min-width: 70px;
             }
         }
+        /* Staking History Table */
+        .staking-history-item {
+            background: rgba(18, 12, 28, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            padding: 10px 12px;
+            transition: all 0.3s;
+        }
+        .staking-history-item:hover {
+            border-color: rgba(212, 175, 55, 0.25);
+        }
+        .staking-history-item .locked {
+            color: #d4af37;
+        }
+        .staking-history-item .unlocked {
+            color: #34d399;
+        }
+        .staking-history-item .pending {
+            color: #fbbf24;
+        }
+        /* Admin copy button */
+        .copy-btn-admin {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .copy-btn-admin:hover {
+            background: rgba(212, 175, 55, 0.3);
+        }
+        /* Star pulse animation */
+        @keyframes starPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+            }
+            50% {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.9));
+            }
+        }
+        .animate-star {
+            animation: starPulse 2.5s infinite ease-in-out;
+        }
+        .btn-animate {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-animate:active {
+            transform: scale(0.95);
+        }
+        /* Search admin code input */
+        .admin-search-input {
+            background: rgba(10, 6, 18, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #f5e6d3;
+        }
+        .admin-search-input:focus {
+            border-color: #d4af37;
+            outline: none;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+        .staking-plan-btn {
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .staking-plan-btn.active {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+        .staking-plan-btn:hover:not(.active) {
+            border-color: rgba(212, 175, 55, 0.4);
+        }
     </style>
 </head>
 <body>
 
-    <!-- ===== BUTTERFLIES BACKGROUND ===== -->
+    <!-- Butterflies Background -->
     <div class="butterfly-bg" id="butterflyContainer"></div>
 
-    <!-- ===== MAIN CONTAINER ===== -->
+    <!-- MAIN CONTAINER -->
     <div id="appContainer" class="w-full max-w-md mx-auto relative z-10">
 
-        <!-- ===== HEADER ===== -->
+        <!-- HEADER -->
         <header id="mainHeader" class="w-full glass-gold-dark py-3 px-4 flex items-center justify-between sticky top-0 z-40 shadow-2xl user-header backdrop-blur-2xl border-b border-gold-500/20">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full gold-bg-gradient flex items-center justify-center text-[#0a0712] font-extrabold text-lg shadow-lg gold-glow-sm border border-gold-400/50">CX</div>
@@ -899,7 +1059,7 @@
             </div>
         </header>
 
-        <!-- ===== ADMIN SEARCH BOX ===== -->
+        <!-- Admin Search Box -->
         <div id="adminSearchBox" class="hidden w-full glass-gold p-3 rounded-xl border-amber-500/20 my-2 px-4">
             <div class="flex gap-2">
                 <input type="text" id="adminSecretInput" placeholder="एडमिन कोड दर्ज करें" class="flex-1 bg-black/40 border border-amber-500/20 rounded-xl py-2 px-3 text-xs focus:outline-none focus:border-amber-400 text-white">
@@ -908,13 +1068,13 @@
             <p class="text-[8px] text-amber-300/30 mt-1">सुरक्षित कोड: admin2025</p>
         </div>
 
-        <!-- ===== MAIN CONTENT ===== -->
+        <!-- MAIN CONTENT -->
         <main class="w-full px-4 pt-4 pb-28 flex-1 flex flex-col justify-start z-10">
 
-            <!-- ===== USER PANEL ===== -->
+            <!-- ======================== USER PANEL ======================== -->
             <div id="userPanelContainer">
 
-                <!-- ===== REGISTRATION ===== -->
+                <!-- REGISTRATION -->
                 <section id="registrationPage" class="app-page w-full space-y-6">
                     <div class="text-center space-y-2 py-6">
                         <div class="w-20 h-20 rounded-full gold-bg-gradient flex items-center justify-center text-[#0a0712] font-extrabold text-3xl mx-auto gold-glow border-2 border-amber-400/50 shadow-2xl">CX</div>
@@ -947,7 +1107,7 @@
                     </div>
                 </section>
 
-                <!-- ===== REG SUCCESS ===== -->
+                <!-- REG SUCCESS -->
                 <section id="regSuccessPage" class="app-page w-full hidden space-y-6 text-center py-4">
                     <div class="glass-gold p-6 rounded-3xl border-amber-500/40 space-y-6 shadow-2xl relative overflow-hidden">
                         <div id="confettiContainer" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
@@ -993,7 +1153,7 @@
                     </div>
                 </section>
 
-                <!-- ===== LOGIN ===== -->
+                <!-- LOGIN -->
                 <section id="loginPage" class="app-page w-full hidden space-y-6">
                     <div class="text-center space-y-2 py-6">
                         <div class="w-20 h-20 rounded-full gold-bg-gradient flex items-center justify-center text-[#0a0712] font-extrabold text-3xl mx-auto gold-glow border-2 border-amber-400/50 shadow-2xl">CX</div>
@@ -1024,16 +1184,18 @@
                     </div>
                 </section>
 
-                <!-- ===== DASHBOARD ===== -->
+                <!-- DASHBOARD -->
                 <section id="dashboardPage" class="app-page w-full hidden space-y-4">
 
                     <!-- Slider -->
                     <div class="slider-container">
-                        <div class="slider-track" id="sliderTrack"></div>
+                        <div class="slider-track" id="sliderTrack">
+                            <!-- 50+ slides injected by JS -->
+                        </div>
                         <div class="slider-dots" id="sliderDots"></div>
                     </div>
 
-                    <!-- User Info -->
+                    <!-- User Info (minimal - IDs moved to profile) -->
                     <div class="glass-gold p-4 rounded-2xl border-amber-500/20 flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400">
@@ -1069,7 +1231,7 @@
                         </div>
                     </div>
 
-                    <!-- Mining Star -->
+                    <!-- Mining Star - requires 500 CX staked -->
                     <div class="glass-gold p-6 rounded-2xl border-amber-500/20 flex flex-col items-center justify-center text-center py-8 space-y-5">
                         <div class="space-y-1">
                             <h3 class="text-sm font-bold tracking-wider text-amber-300/80 uppercase">🌟 माइनिंग रिवॉर्ड स्टार</h3>
@@ -1091,7 +1253,7 @@
                     </div>
                 </section>
 
-                <!-- ===== PURCHASE ===== -->
+                <!-- PURCHASE -->
                 <section id="purchasePage" class="app-page w-full hidden space-y-4">
                     <div class="glass-gold p-4 rounded-2xl border-amber-500/20">
                         <h3 class="text-sm font-bold text-amber-400"><i class="fa-solid fa-cart-shopping mr-1.5"></i> कॉइन परचेज करें</h3>
@@ -1152,7 +1314,7 @@
                     </div>
                 </section>
 
-                <!-- ===== STAKING ===== -->
+                <!-- STAKING -->
                 <section id="stakingPage" class="app-page w-full hidden space-y-4">
                     <div class="glass-gold p-4 rounded-2xl border-amber-500/20">
                         <h3 class="text-sm font-bold text-amber-400"><i class="fa-solid fa-vault mr-1.5"></i> कॉइन स्टेकिंग</h3>
@@ -1189,7 +1351,7 @@
                     </div>
                 </section>
 
-                <!-- ===== PROFILE ===== -->
+                <!-- ======================== PROFILE ======================== -->
                 <section id="profilePage" class="app-page w-full hidden space-y-4">
                     <div class="glass-gold p-4 rounded-2xl border-amber-500/20 flex items-center justify-between">
                         <div class="flex items-center gap-3">
@@ -1208,7 +1370,7 @@
                         </div>
                     </div>
 
-                    <!-- IDs -->
+                    <!-- IDs moved from dashboard to profile -->
                     <div class="id-box id-box-gold">
                         <div>
                             <span class="id-label">🆔 आपकी Unique CoinX ID</span>
@@ -1230,7 +1392,7 @@
                         </button>
                     </div>
 
-                    <!-- Smart Contract -->
+                    <!-- Smart Contract Address -->
                     <div class="sc-address-box">
                         <div>
                             <span class="sc-label"><i class="fa-solid fa-link mr-1 text-amber-400"></i> स्मार्ट कॉन्ट्रैक्ट एड्रेस</span>
@@ -1255,10 +1417,11 @@
                         </button>
                     </div>
 
-                    <!-- Withdrawal Setup -->
+                    <!-- Withdrawal Setup with CoinX Wallet SC option -->
                     <div class="glass-gold p-4 rounded-2xl border-amber-500/20 space-y-3">
                         <h4 class="text-xs font-bold text-amber-400 border-b border-amber-500/15 pb-1.5"><i class="fa-solid fa-money-bill-transfer mr-1"></i> विथड्रॉवल सेटअप</h4>
 
+                        <!-- USDT BEP20 Withdrawal -->
                         <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-2 text-center">
                             <span class="text-[11px] font-bold text-red-400"><i class="fa-solid fa-circle-exclamation mr-1"></i> USDT (BEP20) में ही Withdrawal लें।</span>
                         </div>
@@ -1294,7 +1457,7 @@
                             </div>
                         </div>
 
-                        <!-- CoinX Wallet Withdrawal -->
+                        <!-- CoinX Wallet Withdrawal via Smart Contract -->
                         <div class="pt-3 border-t border-amber-500/15">
                             <h5 class="text-[10px] font-bold text-amber-400 mb-2"><i class="fa-solid fa-wallet mr-1"></i> CoinX Wallet में विथड्रॉवल</h5>
                             <p class="text-[9px] text-amber-300/40 mb-2">CoinX Wallet के स्मार्ट कॉन्ट्रैक्ट एड्रेस से विथड्रॉवल करें (10% शुल्क)</p>
@@ -1350,7 +1513,7 @@
                     </button>
                 </section>
 
-                <!-- ===== BOTTOM NAV ===== -->
+                <!-- BOTTOM NAV - Removed Trade Wallet -->
                 <nav id="bottomNavBar" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bottom-nav hidden">
                     <button onclick="showPage('dashboardPage')" id="nav-dashboardPage" class="flex flex-col items-center justify-center text-amber-400 text-center transition-all btn-animate active">
                         <i class="fa-solid fa-house-chimney text-lg mb-0.5"></i>
@@ -1372,7 +1535,7 @@
 
             </div>
 
-            <!-- ===== ADMIN PANEL ===== -->
+            <!-- ======================== ADMIN PANEL ======================== -->
             <div id="adminPanelContainer" class="hidden">
 
                 <!-- Admin Login -->
@@ -1524,7 +1687,9 @@
 
         </main>
 
-        <!-- ===== RECEIPT MODAL ===== -->
+        <!-- ============================================================ -->
+        <!-- RECEIPT MODAL - Full Detailed Receipt with Download & Print   -->
+        <!-- ============================================================ -->
         <div id="receiptModal" class="receipt-modal hidden">
             <div class="receipt-card" id="receiptCard">
                 <div class="receipt-logo">
@@ -1535,7 +1700,9 @@
                     <h3><i class="fa-solid fa-receipt mr-2"></i> लेनदेन रसीद</h3>
                     <button class="receipt-close" onclick="closeReceipt()"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-                <div id="receiptContent"></div>
+                <div id="receiptContent">
+                    <!-- Dynamic content filled by JS -->
+                </div>
                 <div class="receipt-footer">
                     <button class="btn-download" onclick="downloadReceipt()"><i class="fa-solid fa-download"></i> डाउनलोड करें</button>
                     <button class="btn-print" onclick="printReceipt()"><i class="fa-solid fa-print"></i> प्रिंट करें</button>
@@ -1543,7 +1710,7 @@
             </div>
         </div>
 
-        <!-- ===== MODALS ===== -->
+        <!-- MODALS -->
         <div id="fullscreenImageModal" class="fixed inset-0 bg-black/95 flex flex-col items-center justify-center z-50 p-4 hidden">
             <div class="absolute top-4 right-4 z-50">
                 <button onclick="closeFullscreenImage()" class="bg-amber-500/20 hover:bg-amber-500 text-amber-500 hover:text-[#0a0712] w-10 h-10 rounded-full flex items-center justify-center transition-all btn-animate">
@@ -1555,7 +1722,6 @@
                 <p class="text-[10px] text-amber-300/30 mt-2">ज़ूम करने के लिए क्लिक करें</p>
             </div>
         </div>
-
         <div id="myReferralsModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 hidden">
             <div class="glass-gold p-5 rounded-2xl w-full max-w-sm space-y-4 shadow-2xl flex flex-col max-h-[85vh] border-amber-500/20">
                 <div class="flex items-center justify-between border-b border-amber-500/15 pb-2 shrink-0">
@@ -1565,7 +1731,6 @@
                 <div id="referralsListArea" class="flex-1 overflow-y-auto space-y-2 text-xs pr-1"></div>
             </div>
         </div>
-
         <div id="txHistoryModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 hidden">
             <div class="glass-gold p-5 rounded-2xl w-full max-w-sm space-y-4 shadow-2xl flex flex-col max-h-[85vh] border-amber-500/20">
                 <div class="flex items-center justify-between border-b border-amber-500/15 pb-2 shrink-0">
@@ -1579,7 +1744,6 @@
                 <div id="txHistoryListArea" class="flex-1 overflow-y-auto space-y-2 text-xs pr-1"></div>
             </div>
         </div>
-
         <div id="teamModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 hidden">
             <div class="glass-gold p-5 rounded-2xl w-full max-w-sm space-y-4 shadow-2xl flex flex-col max-h-[85vh] border-amber-500/20">
                 <div class="flex items-center justify-between border-b border-amber-500/15 pb-2 shrink-0">
@@ -1603,7 +1767,6 @@
                 <div id="teamListArea" class="flex-1 overflow-y-auto space-y-2 text-xs pr-1"></div>
             </div>
         </div>
-
         <div id="forgotPasswordModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 hidden">
             <div class="glass-gold p-5 rounded-2xl w-full max-w-sm space-y-4 shadow-2xl border-amber-500/20">
                 <div class="flex items-center justify-between border-b border-amber-500/15 pb-2">
@@ -1620,13 +1783,13 @@
             </div>
         </div>
 
-        <!-- ===== TOAST ===== -->
+        <!-- TOAST -->
         <div id="toastNotification"><span id="toastMessage"></span><button onclick="hideToast()"><i class="fa-solid fa-xmark"></i></button></div>
 
     </div>
 
     <!-- ============================================================ -->
-    <!-- JAVASCRIPT                                                   -->
+    <!-- FULL JAVASCRIPT                                               -->
     <!-- ============================================================ -->
     <script>
         // ============================================================
@@ -1788,7 +1951,68 @@
         }
 
         // ============================================================
-        // ADMIN
+        // ✅ ADMIN LOGIN - Fixed!
+        // ============================================================
+        async function submitAdminLogin(btn) {
+            const email = document.getElementById('adminUsernameInput').value.trim();
+            const password = document.getElementById('adminPasswordInput').value.trim();
+
+            if (!email || !password) {
+                showToast('कृपया एडमिन ईमेल और पासवर्ड दर्ज करें।', 'error');
+                return;
+            }
+
+            setButtonLoading(btn, true);
+
+            try {
+                // Try to login as admin
+                try { await account.get(); } catch (e) {}
+                try { await account.deleteSession('current'); } catch (e) {}
+
+                await account.createEmailPasswordSession(email, password);
+
+                // Check if user is in admin team
+                const memberships = await teams.listMemberships(ADMIN_TEAM_ID);
+                const isAdmin = memberships.memberships.some(m => m.userId === (await account.get()).$id);
+
+                if (!isAdmin) {
+                    showToast('❌ आप एडमिन नहीं हैं!', 'error');
+                    await account.deleteSession('current');
+                    setButtonLoading(btn, false);
+                    return;
+                }
+
+                // Load admin data
+                isAdminMode = true;
+                document.getElementById('userPanelContainer').classList.add('hidden');
+                document.getElementById('adminPanelContainer').classList.remove('hidden');
+                document.getElementById('adminLoginPage').classList.add('hidden');
+                document.getElementById('adminDashboardPage').classList.remove('hidden');
+
+                document.querySelector('#mainHeader').className =
+                    'w-full glass-gold-dark py-3 px-4 flex items-center justify-between sticky top-0 z-40 shadow-2xl admin-header backdrop-blur-2xl border-b border-amber-500/40';
+                document.getElementById('headerTitle').className =
+                    'font-extrabold text-md tracking-wider leading-none text-amber-400';
+                document.getElementById('headerTitle').innerText = 'COINX ADMIN';
+                document.getElementById('headerSubtitle').innerText = 'Super Admin';
+                document.getElementById('headerBadge').className = 'admin-badge';
+                document.getElementById('headerBadge').innerHTML = '<i class="fa-solid fa-shield-halved mr-1"></i> ADMIN';
+
+                showToast('✅ एडमिन मोड सक्रिय!', 'success');
+
+                // Load all data
+                await loadAllData();
+
+            } catch (error) {
+                console.error('Admin login error:', error);
+                showToast('❌ गलत ईमेल या पासवर्ड!', 'error');
+            } finally {
+                setButtonLoading(btn, false);
+            }
+        }
+
+        // ============================================================
+        // ADMIN CODE WORD (Backup method)
         // ============================================================
         function toggleAdminSearch() {
             const box = document.getElementById('adminSearchBox');
@@ -1802,17 +2026,21 @@
                 isAdminMode = true;
                 document.getElementById('userPanelContainer').classList.add('hidden');
                 document.getElementById('adminPanelContainer').classList.remove('hidden');
+                document.getElementById('adminLoginPage').classList.add('hidden');
+                document.getElementById('adminDashboardPage').classList.remove('hidden');
+
                 document.querySelector('#mainHeader').className =
                     'w-full glass-gold-dark py-3 px-4 flex items-center justify-between sticky top-0 z-40 shadow-2xl admin-header backdrop-blur-2xl border-b border-amber-500/40';
                 document.getElementById('headerTitle').className =
                     'font-extrabold text-md tracking-wider leading-none text-amber-400';
                 document.getElementById('headerTitle').innerText = 'COINX ADMIN';
-                document.getElementById('headerSubtitle').innerText = 'Super Admin';
+                document.getElementById('headerSubtitle').innerText = 'Super Admin (Code)';
                 document.getElementById('headerBadge').className = 'admin-badge';
                 document.getElementById('headerBadge').innerHTML = '<i class="fa-solid fa-shield-halved mr-1"></i> ADMIN';
                 document.getElementById('adminSearchBox').classList.add('hidden');
+
                 loadAllData();
-                showToast('✅ एडमिन मोड सक्रिय!', 'success');
+                showToast('✅ एडमिन मोड सक्रिय! (कोड)', 'success');
             } else {
                 showToast('❌ गलत कोड!', 'error');
             }
@@ -1834,6 +2062,9 @@
             showToast('एडमिन मोड बंद', 'info');
         }
 
+        // ============================================================
+        // LOAD ALL DATA FOR ADMIN
+        // ============================================================
         async function loadAllData() {
             if (!isAdminMode) return;
             try {
@@ -1846,7 +2077,10 @@
                 renderAdminWithdrawals();
                 renderAdminStaking();
                 renderAdminReferrals();
-            } catch (e) { showToast('डेटा लोड नहीं हो सका', 'error'); }
+            } catch (e) {
+                console.error('Load all data error:', e);
+                showToast('डेटा लोड नहीं हो सका', 'error');
+            }
         }
 
         async function loadStakingSettings() {
@@ -1872,6 +2106,9 @@
             document.getElementById('statReferrals').innerText = `${totalRefBonus.toFixed(2)} CX`;
         }
 
+        // ============================================================
+        // ADMIN TAB SWITCHING
+        // ============================================================
         function switchAdminTab(tab) {
             if (!isAdminMode) return;
             currentAdminTab = tab;
@@ -1891,6 +2128,9 @@
             if (tab === 'referrals') renderAdminReferrals();
         }
 
+        // ============================================================
+        // ADMIN USERS
+        // ============================================================
         function renderAdminUsers() {
             if (!isAdminMode) return;
             const list = document.getElementById('adminUserList');
@@ -1906,27 +2146,27 @@
                 const card = document.createElement('div');
                 card.className = 'bg-black/40 p-3 rounded-xl border border-amber-500/15 space-y-1';
                 card.innerHTML = `
-                        <div class="flex justify-between font-bold text-amber-400">
-                            <span>${u.name||'N/A'}</span>
-                            <span class="text-white">${parseFloat(u.coins||0).toFixed(2)} CX</span>
-                        </div>
-                        <div class="text-[10px] text-amber-300/30 grid grid-cols-2 gap-1 pb-1">
-                            <span>ईमेल: ${u.email||'N/A'} <button onclick="copyToClipboard('${emailId}','✅ Email कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
-                            <span>मोबाइल: ${u.phone||'N/A'} <button onclick="copyToClipboard('${phoneId}','✅ Phone कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
-                            <span>CoinX ID: ${u.coinxId||'N/A'} <button onclick="copyToClipboard('${coinxId}','✅ CoinX ID कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
-                            <span>रेफरल: ${u.$id||'N/A'} <button onclick="copyToClipboard('${refId}','✅ रेफरल कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
-                            <span class="col-span-2">🔗 Smart: ${u.smartContract||'N/A'} <button onclick="copyToClipboard('${scId}','✅ Smart Contract कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
-                        </div>
-                        <div class="flex justify-between items-center pt-1 border-t border-amber-500/10 text-[10px] text-amber-300/30">
-                            <span>${u.$createdAt ? new Date(u.$createdAt).toLocaleDateString('hi-IN') : 'N/A'}</span>
-                            <button onclick="toggleBlock('${u.$id}')" class="text-[9px] px-2.5 py-0.5 rounded font-bold ${u.isBlocked?'bg-green-500/20 text-green-400':'bg-red-500/20 text-red-400'}">${u.isBlocked?'Unblock':'Block'}</button>
-                        </div>
-                        <span id="${emailId}" class="hidden">${u.email||''}</span>
-                        <span id="${phoneId}" class="hidden">${u.phone||''}</span>
-                        <span id="${coinxId}" class="hidden">${u.coinxId||''}</span>
-                        <span id="${refId}" class="hidden">${u.$id||''}</span>
-                        <span id="${scId}" class="hidden">${u.smartContract||''}</span>
-                    `;
+                    <div class="flex justify-between font-bold text-amber-400">
+                        <span>${u.name||'N/A'}</span>
+                        <span class="text-white">${parseFloat(u.coins||0).toFixed(2)} CX</span>
+                    </div>
+                    <div class="text-[10px] text-amber-300/30 grid grid-cols-2 gap-1 pb-1">
+                        <span>ईमेल: ${u.email||'N/A'} <button onclick="copyToClipboard('${emailId}','✅ Email कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
+                        <span>मोबाइल: ${u.phone||'N/A'} <button onclick="copyToClipboard('${phoneId}','✅ Phone कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
+                        <span>CoinX ID: ${u.coinxId||'N/A'} <button onclick="copyToClipboard('${coinxId}','✅ CoinX ID कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
+                        <span>रेफरल: ${u.$id||'N/A'} <button onclick="copyToClipboard('${refId}','✅ रेफरल कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
+                        <span class="col-span-2">🔗 Smart: ${u.smartContract||'N/A'} <button onclick="copyToClipboard('${scId}','✅ Smart Contract कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
+                    </div>
+                    <div class="flex justify-between items-center pt-1 border-t border-amber-500/10 text-[10px] text-amber-300/30">
+                        <span>${u.$createdAt ? new Date(u.$createdAt).toLocaleDateString('hi-IN') : 'N/A'}</span>
+                        <button onclick="toggleBlock('${u.$id}')" class="text-[9px] px-2.5 py-0.5 rounded font-bold ${u.isBlocked?'bg-green-500/20 text-green-400':'bg-red-500/20 text-red-400'}">${u.isBlocked?'Unblock':'Block'}</button>
+                    </div>
+                    <span id="${emailId}" class="hidden">${u.email||''}</span>
+                    <span id="${phoneId}" class="hidden">${u.phone||''}</span>
+                    <span id="${coinxId}" class="hidden">${u.coinxId||''}</span>
+                    <span id="${refId}" class="hidden">${u.$id||''}</span>
+                    <span id="${scId}" class="hidden">${u.smartContract||''}</span>
+                `;
                 list.appendChild(card);
             });
         }
@@ -1969,6 +2209,9 @@
             } catch (e) { showToast('बैलेंस अपडेट में त्रुटि!', 'error'); } finally { setButtonLoading(btn, false); }
         }
 
+        // ============================================================
+        // ADMIN DEPOSITS
+        // ============================================================
         function renderAdminDeposits() {
             if (!isAdminMode) return;
             const list = document.getElementById('adminDepositsList');
@@ -1981,11 +2224,11 @@
                 const card = document.createElement('div');
                 card.className = 'bg-black/40 p-3 rounded-xl border border-amber-500/15 space-y-2';
                 card.innerHTML = `
-                        <div class="flex justify-between font-bold text-xs"><span class="text-slate-300">${u.name} (${u.email})</span><span class="text-green-400">$${d.amountUSD}</span></div>
-                        <div class="text-[10px] text-amber-300/30">कॉइन: ${d.coinsAmount} CX | ${d.dateTime}</div>
-                        ${d.receiptFileId?`<div class="mt-1"><img src="${resolveImageUrl(d.receiptFileId)}" class="w-16 h-16 object-contain cursor-pointer" onclick="openFullscreenImage('${resolveImageUrl(d.receiptFileId)}')"></div>`:''}
-                        <div class="flex gap-2 justify-end"><button onclick="approveDeposit('${u.$id}')" class="bg-green-500 text-[#0a0712] px-3 py-1 rounded text-[10px]">Approve</button><button onclick="rejectDeposit('${u.$id}')" class="bg-red-500 text-white px-3 py-1 rounded text-[10px]">Reject</button></div>
-                    `;
+                    <div class="flex justify-between font-bold text-xs"><span class="text-slate-300">${u.name} (${u.email})</span><span class="text-green-400">$${d.amountUSD}</span></div>
+                    <div class="text-[10px] text-amber-300/30">कॉइन: ${d.coinsAmount} CX | ${d.dateTime}</div>
+                    ${d.receiptFileId?`<div class="mt-1"><img src="${resolveImageUrl(d.receiptFileId)}" class="w-16 h-16 object-contain cursor-pointer" onclick="openFullscreenImage('${resolveImageUrl(d.receiptFileId)}')"></div>`:''}
+                    <div class="flex gap-2 justify-end"><button onclick="approveDeposit('${u.$id}')" class="bg-green-500 text-[#0a0712] px-3 py-1 rounded text-[10px]">Approve</button><button onclick="rejectDeposit('${u.$id}')" class="bg-red-500 text-white px-3 py-1 rounded text-[10px]">Reject</button></div>
+                `;
                 list.appendChild(card);
             });
         }
@@ -2027,6 +2270,9 @@
             } catch (e) { showToast('त्रुटि', 'error'); }
         }
 
+        // ============================================================
+        // ADMIN WITHDRAWALS
+        // ============================================================
         function renderAdminWithdrawals() {
             if (!isAdminMode) return;
             const list = document.getElementById('adminWithdrawalsList');
@@ -2041,13 +2287,13 @@
                 const card = document.createElement('div');
                 card.className = 'bg-black/40 p-3 rounded-xl border border-amber-500/15 space-y-2';
                 card.innerHTML = `
-                        <div class="flex justify-between font-bold text-xs"><span class="text-slate-300">${u.name} (${u.email})</span><span class="text-amber-400">${w.coinsAmount} CX</span></div>
-                        <div class="text-[10px] text-amber-300/30">Address: ${u.withdrawal_address||'N/A'} | ${w.dateTime}</div>
-                        <div class="text-[10px] text-green-400">💰 INR: ₹${inrAmount} (10% चार्ज कट)</div>
-                        <div class="text-[10px] text-blue-400">💵 USDT BEP20: $${usdtAmount}</div>
-                        ${u.withdrawal_screenshot?`<div class="mt-1"><img src="${resolveImageUrl(u.withdrawal_screenshot)}" class="w-16 h-16 object-contain cursor-pointer" onclick="openFullscreenImage('${resolveImageUrl(u.withdrawal_screenshot)}')"></div>`:''}
-                        <div class="flex gap-2 justify-end"><button onclick="approveWithdrawal('${u.$id}')" class="bg-green-500 text-[#0a0712] px-3 py-1 rounded text-[10px]">Complete</button><button onclick="rejectWithdrawal('${u.$id}')" class="bg-red-500 text-white px-3 py-1 rounded text-[10px]">Reject</button></div>
-                    `;
+                    <div class="flex justify-between font-bold text-xs"><span class="text-slate-300">${u.name} (${u.email})</span><span class="text-amber-400">${w.coinsAmount} CX</span></div>
+                    <div class="text-[10px] text-amber-300/30">Address: ${u.withdrawal_address||'N/A'} | ${w.dateTime}</div>
+                    <div class="text-[10px] text-green-400">💰 INR: ₹${inrAmount} (10% चार्ज कट)</div>
+                    <div class="text-[10px] text-blue-400">💵 USDT BEP20: $${usdtAmount}</div>
+                    ${u.withdrawal_screenshot?`<div class="mt-1"><img src="${resolveImageUrl(u.withdrawal_screenshot)}" class="w-16 h-16 object-contain cursor-pointer" onclick="openFullscreenImage('${resolveImageUrl(u.withdrawal_screenshot)}')"></div>`:''}
+                    <div class="flex gap-2 justify-end"><button onclick="approveWithdrawal('${u.$id}')" class="bg-green-500 text-[#0a0712] px-3 py-1 rounded text-[10px]">Complete</button><button onclick="rejectWithdrawal('${u.$id}')" class="bg-red-500 text-white px-3 py-1 rounded text-[10px]">Reject</button></div>
+                `;
                 list.appendChild(card);
             });
         }
@@ -2100,17 +2346,20 @@
             } catch (e) { showToast('त्रुटि', 'error'); }
         }
 
+        // ============================================================
+        // ADMIN STAKING
+        // ============================================================
         function renderAdminStaking() {
             if (!isAdminMode) return;
             const plansConfig = document.getElementById('adminStakingPlansConfig');
             plansConfig.innerHTML = '';
             adminStakingSettings.plans.forEach(p => {
                 plansConfig.innerHTML += `
-                            <label class="flex items-center justify-between bg-black/40 p-2 rounded border border-amber-500/15">
-                                <span class="text-amber-300/50">${p.days} दिन</span>
-                                <input type="checkbox" ${p.enabled?'checked':''} onchange="togglePlanState(${p.days},this.checked)" class="accent-amber-500 w-3.5 h-3.5">
-                            </label>
-                        `;
+                        <label class="flex items-center justify-between bg-black/40 p-2 rounded border border-amber-500/15">
+                            <span class="text-amber-300/50">${p.days} दिन</span>
+                            <input type="checkbox" ${p.enabled?'checked':''} onchange="togglePlanState(${p.days},this.checked)" class="accent-amber-500 w-3.5 h-3.5">
+                        </label>
+                    `;
             });
             document.getElementById('adminStakingGloballyEnabled').checked = adminStakingSettings.globallyEnabled;
 
@@ -2200,6 +2449,9 @@
                 renderAdminStaking(); }
         }
 
+        // ============================================================
+        // ADMIN REFERRALS
+        // ============================================================
         function renderAdminReferrals() {
             if (!isAdminMode) return;
             const list = document.getElementById('adminReferralsList');
@@ -2217,13 +2469,16 @@
                 const div = document.createElement('div');
                 div.className = 'bg-black/40 p-2.5 rounded-xl border border-amber-500/15 space-y-1';
                 div.innerHTML = `
-                            <div class="flex justify-between text-xs"><span class="font-bold text-amber-400">${r.referrer} (${r.referrerEmail})</span><span class="text-green-400">+${Number(r.bonusReceived||0).toFixed(2)} CX</span></div>
-                            <div class="text-[10px] text-amber-300/30">रेफर: ${r.referredName||'N/A'} (${r.referredEmail||'N/A'}) | स्टेक: ${Number(r.stakedAmount||0).toFixed(2)} CX | ${r.dateTime||''}</div>
-                        `;
+                        <div class="flex justify-between text-xs"><span class="font-bold text-amber-400">${r.referrer} (${r.referrerEmail})</span><span class="text-green-400">+${Number(r.bonusReceived||0).toFixed(2)} CX</span></div>
+                        <div class="text-[10px] text-amber-300/30">रेफर: ${r.referredName||'N/A'} (${r.referredEmail||'N/A'}) | स्टेक: ${Number(r.stakedAmount||0).toFixed(2)} CX | ${r.dateTime||''}</div>
+                    `;
                 list.appendChild(div);
             });
         }
 
+        // ============================================================
+        // EXPORT ALL USER DATA
+        // ============================================================
         function exportAllUserData() {
             if (!isAdminMode || users.length === 0) { showToast('कोई डेटा नहीं', 'error'); return; }
             let csv =
@@ -2282,26 +2537,26 @@
             let typeLabel = isDeposit ? '💰 डिपॉजिट' : isWithdrawal ? '💸 विथड्रॉवल' : '🔄 ट्रांसफर';
             let amountDisplay = isDeposit ? `+$${data.amountUSD || '0'} USDT` : `-${data.coinsAmount || data.amount || 0} CX`;
             let receiptHTML = `
-                        <div class="receipt-row"><span class="label">📋 लेनदेन प्रकार</span><span class="value highlight">${typeLabel}</span></div>
-                        <div class="receipt-row"><span class="label">💰 राशि</span><span class="value ${isDeposit?'green':'red'}">${amountDisplay}</span></div>
-                        ${isDeposit ? `<div class="receipt-row"><span class="label">🪙 कॉइन</span><span class="value">${data.coinsAmount || 0} CX</span></div>` : ''}
-                        <div class="receipt-row"><span class="label">📅 तारीख & समय</span><span class="value">${data.dateTime || 'N/A'}</span></div>
-                        <div class="receipt-row"><span class="label">📊 स्थिति</span><span class="value">${statusBadge}</span></div>
-                        ${data.receiptFileId ? `<div class="receipt-row" style="flex-direction:column;align-items:center;padding:8px 0;"><span class="label" style="margin-bottom:6px;">🧾 रसीद स्क्रीनशॉट</span><img src="${resolveImageUrl(data.receiptFileId)}" class="w-24 h-24 object-contain rounded-lg border border-amber-500/20 cursor-pointer" onclick="openFullscreenImage('${resolveImageUrl(data.receiptFileId)}')"></div>` : ''}
-                        <div style="border-top:1px solid rgba(212,175,55,0.12);margin:8px 0 4px;padding-top:8px;">
-                            <div class="receipt-row"><span class="label">👤 यूजर का नाम</span><span class="value">${currentUser?.name || 'N/A'}</span></div>
-                            <div class="receipt-row"><span class="label">📧 ईमेल</span><span class="value">${currentUser?.email || 'N/A'}</span></div>
-                            <div class="receipt-row"><span class="label">📱 मोबाइल नंबर</span><span class="value">${currentUser?.phone || 'N/A'}</span></div>
-                            <div class="receipt-row"><span class="label">🆔 CoinX ID</span><span class="value">${currentUser?.coinxId || 'N/A'}</span></div>
-                            <div class="receipt-row"><span class="label">🔗 स्मार्ट कॉन्ट्रैक्ट</span><span class="value" style="font-size:10px;">${currentUser?.smartContract || 'N/A'}</span></div>
-                            ${isDeposit && data.upi ? `<div class="receipt-row"><span class="label">🏦 UPI ID</span><span class="value">${data.upi}</span></div>` : ''}
-                            ${isWithdrawal && currentUser?.withdrawal_address ? `<div class="receipt-row"><span class="label">🏦 विथड्रॉवल एड्रेस</span><span class="value" style="font-size:10px;">${currentUser.withdrawal_address}</span></div>` : ''}
-                            ${data.network ? `<div class="receipt-row"><span class="label">🌐 नेटवर्क</span><span class="value">${data.network}</span></div>` : `<div class="receipt-row"><span class="label">🌐 नेटवर्क</span><span class="value">BEP20 (USDT)</span></div>`}
-                        </div>
-                        <div style="border-top:1px solid rgba(212,175,55,0.08);margin-top:6px;padding-top:6px;text-align:center;">
-                            <span style="font-size:8px;color:#6b4a7a;">🔒 सुरक्षित लेनदेन • CoinX Network</span>
-                        </div>
-                    `;
+                    <div class="receipt-row"><span class="label">📋 लेनदेन प्रकार</span><span class="value highlight">${typeLabel}</span></div>
+                    <div class="receipt-row"><span class="label">💰 राशि</span><span class="value ${isDeposit?'green':'red'}">${amountDisplay}</span></div>
+                    ${isDeposit ? `<div class="receipt-row"><span class="label">🪙 कॉइन</span><span class="value">${data.coinsAmount || 0} CX</span></div>` : ''}
+                    <div class="receipt-row"><span class="label">📅 तारीख & समय</span><span class="value">${data.dateTime || 'N/A'}</span></div>
+                    <div class="receipt-row"><span class="label">📊 स्थिति</span><span class="value">${statusBadge}</span></div>
+                    ${data.receiptFileId ? `<div class="receipt-row" style="flex-direction:column;align-items:center;padding:8px 0;"><span class="label" style="margin-bottom:6px;">🧾 रसीद स्क्रीनशॉट</span><img src="${resolveImageUrl(data.receiptFileId)}" class="w-24 h-24 object-contain rounded-lg border border-amber-500/20 cursor-pointer" onclick="openFullscreenImage('${resolveImageUrl(data.receiptFileId)}')"></div>` : ''}
+                    <div style="border-top:1px solid rgba(212,175,55,0.12);margin:8px 0 4px;padding-top:8px;">
+                        <div class="receipt-row"><span class="label">👤 यूजर का नाम</span><span class="value">${currentUser?.name || 'N/A'}</span></div>
+                        <div class="receipt-row"><span class="label">📧 ईमेल</span><span class="value">${currentUser?.email || 'N/A'}</span></div>
+                        <div class="receipt-row"><span class="label">📱 मोबाइल नंबर</span><span class="value">${currentUser?.phone || 'N/A'}</span></div>
+                        <div class="receipt-row"><span class="label">🆔 CoinX ID</span><span class="value">${currentUser?.coinxId || 'N/A'}</span></div>
+                        <div class="receipt-row"><span class="label">🔗 स्मार्ट कॉन्ट्रैक्ट</span><span class="value" style="font-size:10px;">${currentUser?.smartContract || 'N/A'}</span></div>
+                        ${isDeposit && data.upi ? `<div class="receipt-row"><span class="label">🏦 UPI ID</span><span class="value">${data.upi}</span></div>` : ''}
+                        ${isWithdrawal && currentUser?.withdrawal_address ? `<div class="receipt-row"><span class="label">🏦 विथड्रॉवल एड्रेस</span><span class="value" style="font-size:10px;">${currentUser.withdrawal_address}</span></div>` : ''}
+                        ${data.network ? `<div class="receipt-row"><span class="label">🌐 नेटवर्क</span><span class="value">${data.network}</span></div>` : `<div class="receipt-row"><span class="label">🌐 नेटवर्क</span><span class="value">BEP20 (USDT)</span></div>`}
+                    </div>
+                    <div style="border-top:1px solid rgba(212,175,55,0.08);margin-top:6px;padding-top:6px;text-align:center;">
+                        <span style="font-size:8px;color:#6b4a7a;">🔒 सुरक्षित लेनदेन • CoinX Network</span>
+                    </div>
+                `;
             content.innerHTML = receiptHTML;
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -2327,36 +2582,36 @@
             clone.style.margin = '0 auto';
             clone.style.fontFamily = "'Poppins', sans-serif";
             const html = `
-                        <html>
-                        <head>
-                            <title>CoinX_Receipt_${receiptData.dateTime || Date.now()}.html</title>
-                            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-                            <style>
-                                body { background: #0d0a12; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; padding:20px; font-family:'Poppins',sans-serif; }
-                                .receipt-card { background: #1a1228; border-radius:16px; padding:24px; max-width:460px; width:100%; border:1px solid rgba(212,175,55,0.2); }
-                                .receipt-logo { text-align:center; padding-bottom:12px; border-bottom:1px solid rgba(212,175,55,0.1); }
-                                .receipt-logo span { font-size:22px; font-weight:800; background:linear-gradient(135deg,#f5d97e,#d4af37,#c9a030); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-                                .receipt-logo small { display:block; font-size:9px; color:#6b4a7a; letter-spacing:2px; }
-                                .receipt-row { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; }
-                                .receipt-row .label { color:#a78bbf; }
-                                .receipt-row .value { color:#f1e6f5; text-align:right; word-break:break-all; max-width:60%; font-family:monospace; }
-                                .receipt-row .value.highlight { color:#d4af37; font-weight:600; }
-                                .receipt-row .value.green { color:#34d399; }
-                                .receipt-row .value.red { color:#f87171; }
-                                .receipt-badge { display:inline-block; padding:2px 14px; border-radius:20px; font-size:9px; font-weight:700; }
-                                .receipt-badge.approved { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
-                                .receipt-badge.pending { background:rgba(251,191,36,0.2); color:#fbbf24; border:1px solid rgba(251,191,36,0.3); }
-                                .receipt-badge.completed { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
-                                .receipt-badge.rejected { background:rgba(239,68,68,0.2); color:#f87171; border:1px solid rgba(239,68,68,0.3); }
-                                .watermark { text-align:center; font-size:8px; color:#6b4a7a; margin-top:8px; padding-top:6px; border-top:1px solid rgba(212,175,55,0.08); }
-                            </style>
-                        </head>
-                        <body>
-                            ${clone.outerHTML}
-                            <p style="text-align:center;font-size:8px;color:#6b4a7a;margin-top:12px;">© CoinX Network • Premium Gold Edition</p>
-                        </body>
-                        </html>
-                    `;
+                    <html>
+                    <head>
+                        <title>CoinX_Receipt_${receiptData.dateTime || Date.now()}.html</title>
+                        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+                        <style>
+                            body { background: #0d0a12; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; padding:20px; font-family:'Poppins',sans-serif; }
+                            .receipt-card { background: #1a1228; border-radius:16px; padding:24px; max-width:460px; width:100%; border:1px solid rgba(212,175,55,0.2); }
+                            .receipt-logo { text-align:center; padding-bottom:12px; border-bottom:1px solid rgba(212,175,55,0.1); }
+                            .receipt-logo span { font-size:22px; font-weight:800; background:linear-gradient(135deg,#f5d97e,#d4af37,#c9a030); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+                            .receipt-logo small { display:block; font-size:9px; color:#6b4a7a; letter-spacing:2px; }
+                            .receipt-row { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; }
+                            .receipt-row .label { color:#a78bbf; }
+                            .receipt-row .value { color:#f1e6f5; text-align:right; word-break:break-all; max-width:60%; font-family:monospace; }
+                            .receipt-row .value.highlight { color:#d4af37; font-weight:600; }
+                            .receipt-row .value.green { color:#34d399; }
+                            .receipt-row .value.red { color:#f87171; }
+                            .receipt-badge { display:inline-block; padding:2px 14px; border-radius:20px; font-size:9px; font-weight:700; }
+                            .receipt-badge.approved { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
+                            .receipt-badge.pending { background:rgba(251,191,36,0.2); color:#fbbf24; border:1px solid rgba(251,191,36,0.3); }
+                            .receipt-badge.completed { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
+                            .receipt-badge.rejected { background:rgba(239,68,68,0.2); color:#f87171; border:1px solid rgba(239,68,68,0.3); }
+                            .watermark { text-align:center; font-size:8px; color:#6b4a7a; margin-top:8px; padding-top:6px; border-top:1px solid rgba(212,175,55,0.08); }
+                        </style>
+                    </head>
+                    <body>
+                        ${clone.outerHTML}
+                        <p style="text-align:center;font-size:8px;color:#6b4a7a;margin-top:12px;">© CoinX Network • Premium Gold Edition</p>
+                    </body>
+                    </html>
+                `;
             const blob = new Blob([html], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -2374,36 +2629,36 @@
             const win = window.open('', '_blank', 'width=500,height=700');
             if (!win) { showToast('पॉप-अप ब्लॉक हो गया!', 'error'); return; }
             win.document.write(`
-                        <html><head><title>CoinX Receipt</title>
-                        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-                        <style>
-                            body { background:#0d0a12; display:flex; justify-content:center; padding:30px 20px; font-family:'Poppins',sans-serif; }
-                            .receipt-card { background:#1a1228; border-radius:16px; padding:24px; max-width:460px; width:100%; border:1px solid rgba(212,175,55,0.2); }
-                            .receipt-logo { text-align:center; padding-bottom:12px; border-bottom:1px solid rgba(212,175,55,0.1); }
-                            .receipt-logo span { font-size:22px; font-weight:800; background:linear-gradient(135deg,#f5d97e,#d4af37,#c9a030); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-                            .receipt-logo small { display:block; font-size:9px; color:#6b4a7a; letter-spacing:2px; }
-                            .receipt-row { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; }
-                            .receipt-row .label { color:#a78bbf; }
-                            .receipt-row .value { color:#f1e6f5; text-align:right; word-break:break-all; max-width:60%; font-family:monospace; }
-                            .receipt-row .value.highlight { color:#d4af37; font-weight:600; }
-                            .receipt-row .value.green { color:#34d399; }
-                            .receipt-row .value.red { color:#f87171; }
-                            .receipt-badge { display:inline-block; padding:2px 14px; border-radius:20px; font-size:9px; font-weight:700; }
-                            .receipt-badge.approved { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
-                            .receipt-badge.pending { background:rgba(251,191,36,0.2); color:#fbbf24; border:1px solid rgba(251,191,36,0.3); }
-                            .receipt-badge.completed { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
-                            .receipt-badge.rejected { background:rgba(239,68,68,0.2); color:#f87171; border:1px solid rgba(239,68,68,0.3); }
-                            .watermark { text-align:center; font-size:8px; color:#6b4a7a; margin-top:8px; padding-top:6px; border-top:1px solid rgba(212,175,55,0.08); }
-                            @media print { body { background:#fff; } .receipt-card { border-color:#ddd; background:#f9f9f9; } .receipt-row .label { color:#666; } .receipt-row .value { color:#333; } }
-                        </style>
-                        </head><body>
-                        <div class="receipt-card">
-                            <div class="receipt-logo"><span>CoinX Network</span><small>Premium • Gold Edition</small></div>
-                            ${content.innerHTML}
-                            <div class="watermark">© CoinX Network • सुरक्षित लेनदेन</div>
-                        </div>
-                        </body></html>
-                    `);
+                    <html><head><title>CoinX Receipt</title>
+                    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+                    <style>
+                        body { background:#0d0a12; display:flex; justify-content:center; padding:30px 20px; font-family:'Poppins',sans-serif; }
+                        .receipt-card { background:#1a1228; border-radius:16px; padding:24px; max-width:460px; width:100%; border:1px solid rgba(212,175,55,0.2); }
+                        .receipt-logo { text-align:center; padding-bottom:12px; border-bottom:1px solid rgba(212,175,55,0.1); }
+                        .receipt-logo span { font-size:22px; font-weight:800; background:linear-gradient(135deg,#f5d97e,#d4af37,#c9a030); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+                        .receipt-logo small { display:block; font-size:9px; color:#6b4a7a; letter-spacing:2px; }
+                        .receipt-row { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; }
+                        .receipt-row .label { color:#a78bbf; }
+                        .receipt-row .value { color:#f1e6f5; text-align:right; word-break:break-all; max-width:60%; font-family:monospace; }
+                        .receipt-row .value.highlight { color:#d4af37; font-weight:600; }
+                        .receipt-row .value.green { color:#34d399; }
+                        .receipt-row .value.red { color:#f87171; }
+                        .receipt-badge { display:inline-block; padding:2px 14px; border-radius:20px; font-size:9px; font-weight:700; }
+                        .receipt-badge.approved { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
+                        .receipt-badge.pending { background:rgba(251,191,36,0.2); color:#fbbf24; border:1px solid rgba(251,191,36,0.3); }
+                        .receipt-badge.completed { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
+                        .receipt-badge.rejected { background:rgba(239,68,68,0.2); color:#f87171; border:1px solid rgba(239,68,68,0.3); }
+                        .watermark { text-align:center; font-size:8px; color:#6b4a7a; margin-top:8px; padding-top:6px; border-top:1px solid rgba(212,175,55,0.08); }
+                        @media print { body { background:#fff; } .receipt-card { border-color:#ddd; background:#f9f9f9; } .receipt-row .label { color:#666; } .receipt-row .value { color:#333; } }
+                    </style>
+                    </head><body>
+                    <div class="receipt-card">
+                        <div class="receipt-logo"><span>CoinX Network</span><small>Premium • Gold Edition</small></div>
+                        ${content.innerHTML}
+                        <div class="watermark">© CoinX Network • सुरक्षित लेनदेन</div>
+                    </div>
+                    </body></html>
+                `);
             win.document.close();
             setTimeout(() => { win.print(); }, 500);
         }
@@ -2571,14 +2826,14 @@
                 c.className = 'confetti';
                 const size = Math.random() * 8 + 4;
                 c.style.cssText = `
-                            left: ${Math.random()*100}%;
-                            width: ${size}px;
-                            height: ${size*0.6}px;
-                            background: ${colors[Math.floor(Math.random()*colors.length)]};
-                            border-radius: ${Math.random()>0.5?'50%':'2px'};
-                            animation-delay: ${Math.random()*2}s;
-                            animation-duration: ${Math.random()*2+2}s;
-                        `;
+                        left: ${Math.random()*100}%;
+                        width: ${size}px;
+                        height: ${size*0.6}px;
+                        background: ${colors[Math.floor(Math.random()*colors.length)]};
+                        border-radius: ${Math.random()>0.5?'50%':'2px'};
+                        animation-delay: ${Math.random()*2}s;
+                        animation-duration: ${Math.random()*2+2}s;
+                    `;
                 container.appendChild(c);
                 setTimeout(() => c.remove(), 5000);
             }
@@ -2671,7 +2926,6 @@
                 localStorage.setItem('cx_last_claimed_' + currentUser.$id, String(now));
                 updateDashboardStats();
 
-                // Female voice
                 try {
                     const speech = new SpeechSynthesisUtterance('कांग्रेचुलेशन्स माय डियर, मैं फिर इसी समय आपका इंतजार करूंगी।');
                     speech.lang = 'hi-IN';
@@ -2849,7 +3103,6 @@
                 const list = [...(currentUser.staking || []), stake];
                 await saveUserFields({ coins: newCoins, staked: newStaked, staking: JSON.stringify(list) });
 
-                // Referral bonus
                 try {
                     if (currentUser.referredBy) await awardReferralBonus(currentUser.referredBy, amount,
                     selectedStakingDays);
@@ -3388,6 +3641,7 @@
         window.toggleTeamModal = toggleTeamModal;
         window.toggleAdminSearch = toggleAdminSearch;
         window.verifyAdminCode = verifyAdminCode;
+        window.submitAdminLogin = submitAdminLogin;
         window.logoutAdmin = logoutAdmin;
         window.switchAdminTab = switchAdminTab;
         window.toggleBlock = toggleBlock;
