@@ -11,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+    </script>
     <style>
-        /* All existing styles remain unchanged */
         * {
             margin: 0;
             padding: 0;
@@ -735,7 +736,6 @@
             pointer-events: auto;
             transform: translateX(-50%) translateY(0);
         }
-        /* Receipt Modal Styles - BIG AND BOLD */
         .receipt-modal {
             position: fixed;
             inset: 0;
@@ -799,7 +799,6 @@
             background: rgba(212, 175, 55, 0.35);
             transform: rotate(90deg);
         }
-        /* Big bold receipt rows */
         .receipt-modal .receipt-row {
             display: flex;
             justify-content: space-between;
@@ -837,7 +836,6 @@
             font-weight: 800;
             font-size: 24px;
         }
-        /* WITHDRAWAL COMPLETED big bold */
         .receipt-modal .withdrawal-completed {
             text-align: center;
             font-size: 34px;
@@ -981,7 +979,6 @@
         .receipt-modal .receipt-detail-block .big-value.green {
             color: #34d399;
         }
-        /* Green tick icon */
         .receipt-modal .green-tick {
             display: inline-block;
             font-size: 48px;
@@ -990,9 +987,17 @@
             animation: popIn 0.5s ease;
         }
         @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            70% { transform: scale(1.3); }
-            100% { transform: scale(1); opacity: 1; }
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         .receipt-modal .withdrawal-visit {
             display: inline-block;
@@ -1094,7 +1099,6 @@
                 font-size: 12px;
             }
         }
-        /* Staking History Table */
         .staking-history-item {
             background: rgba(18, 12, 28, 0.5);
             border: 1px solid rgba(212, 175, 55, 0.1);
@@ -1114,7 +1118,6 @@
         .staking-history-item .pending {
             color: #fbbf24;
         }
-        /* Admin copy button */
         .copy-btn-admin {
             background: rgba(212, 175, 55, 0.15);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -1128,7 +1131,6 @@
         .copy-btn-admin:hover {
             background: rgba(212, 175, 55, 0.3);
         }
-        /* Star pulse animation */
         @keyframes starPulse {
             0%,
             100% {
@@ -1149,7 +1151,6 @@
         .btn-animate:active {
             transform: scale(0.95);
         }
-        /* Admin search input */
         .admin-search-input {
             background: rgba(10, 6, 18, 0.8);
             border: 1px solid rgba(212, 175, 55, 0.3);
@@ -1171,6 +1172,19 @@
         }
         .staking-plan-btn:hover:not(.active) {
             border-color: rgba(212, 175, 55, 0.4);
+        }
+        /* Referral QR Styles */
+        .referral-qr-container {
+            background: #fff;
+            padding: 8px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+        }
+        .referral-qr-container canvas,
+        .referral-qr-container img {
+            display: block;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -1329,13 +1343,11 @@
 
                     <!-- Slider -->
                     <div class="slider-container">
-                        <div class="slider-track" id="sliderTrack">
-                            <!-- 50+ slides injected by JS -->
-                        </div>
+                        <div class="slider-track" id="sliderTrack"></div>
                         <div class="slider-dots" id="sliderDots"></div>
                     </div>
 
-                    <!-- User Info (minimal - IDs moved to profile) -->
+                    <!-- User Info -->
                     <div class="glass-gold p-4 rounded-2xl border-amber-500/20 flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400">
@@ -1371,7 +1383,7 @@
                         </div>
                     </div>
 
-                    <!-- Mining Star - requires 500 CX staked -->
+                    <!-- Mining Star -->
                     <div class="glass-gold p-6 rounded-2xl border-amber-500/20 flex flex-col items-center justify-center text-center py-8 space-y-5">
                         <div class="space-y-1">
                             <h3 class="text-sm font-bold tracking-wider text-amber-300/80 uppercase">🌟 माइनिंग रिवॉर्ड स्टार</h3>
@@ -1510,7 +1522,7 @@
                         </div>
                     </div>
 
-                    <!-- IDs moved from dashboard to profile -->
+                    <!-- IDs -->
                     <div class="id-box id-box-gold">
                         <div>
                             <span class="id-label">🆔 आपकी Unique CoinX ID</span>
@@ -1544,24 +1556,40 @@
                         </button>
                     </div>
 
-                    <!-- Invite Friends -->
+                    <!-- Invite Friends - Enhanced with QR Code -->
                     <div class="glass-gold p-4 rounded-2xl border-amber-500/20 space-y-3">
                         <h4 class="text-xs font-bold text-amber-400"><i class="fa-solid fa-share-nodes mr-1.5"></i> Invite Friends & Earn 2%</h4>
                         <p class="text-[10px] text-amber-300/40">जब आपके द्वारा आमंत्रित सदस्य स्टेक करेंगे, आपको 2% बोनस तुरंत मिलेगा!</p>
-                        <div class="w-full bg-black/40 p-2.5 rounded-xl border border-amber-500/20 flex items-center justify-between text-[11px]">
-                            <span id="referralShareLink" class="text-amber-300/40 truncate mr-2 select-all font-mono">https://coinxnetwork.online/?ref=</span>
-                            <button onclick="copyToClipboard('referralShareLink', '✅ रेफरल लिंक कॉपी हो गया!')" class="text-amber-400 hover:text-white shrink-0"><i class="fa-solid fa-copy"></i></button>
+
+                        <!-- Link Copy + QR Code -->
+                        <div class="flex flex-col md:flex-row items-center gap-3 bg-black/40 p-3 rounded-xl border border-amber-500/20">
+                            <div class="flex-1 w-full">
+                                <div class="flex items-center gap-2 bg-black/40 p-2 rounded-lg border border-amber-500/20">
+                                    <span id="referralShareLink" class="text-amber-300/40 truncate select-all font-mono text-[10px] flex-1">https://coinxnetwork.online/?ref=</span>
+                                    <button onclick="copyReferralLink()" class="text-amber-400 hover:text-white shrink-0 bg-amber-500/20 px-3 py-1 rounded-full text-xs font-bold transition-all btn-animate">
+                                        <i class="fa-solid fa-copy mr-1"></i> कॉपी
+                                    </button>
+                                </div>
+                                <button onclick="shareReferralLink()" class="w-full mt-2 btn-gold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-xl">
+                                    <i class="fa-solid fa-share-nodes"></i> Share Referral Link
+                                </button>
+                            </div>
+
+                            <!-- QR Code for Referral Link -->
+                            <div class="flex flex-col items-center justify-center bg-white p-2 rounded-xl shadow-xl shrink-0">
+                                <div id="referralQrContainer" class="w-28 h-28"></div>
+                                <span class="text-[7px] text-amber-300/50 mt-1">⬆️ स्कैन करें & रजिस्टर करें</span>
+                            </div>
                         </div>
-                        <button onclick="shareReferralLink()" class="w-full btn-gold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-xl">
-                            <i class="fa-solid fa-share-nodes"></i> Share Referral Link
-                        </button>
+
+                        <div class="text-[9px] text-amber-300/30 text-center">
+                            <i class="fa-regular fa-circle-check text-green-400 mr-1"></i> QR कोड स्कैन करें और सीधे रजिस्ट्रेशन पेज पर जाएं
+                        </div>
                     </div>
 
-                    <!-- Withdrawal Setup with CoinX Wallet SC option -->
+                    <!-- Withdrawal Setup -->
                     <div class="glass-gold p-4 rounded-2xl border-amber-500/20 space-y-3">
                         <h4 class="text-xs font-bold text-amber-400 border-b border-amber-500/15 pb-1.5"><i class="fa-solid fa-money-bill-transfer mr-1"></i> विथड्रॉवल सेटअप</h4>
-
-                        <!-- USDT BEP20 Withdrawal -->
                         <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-2 text-center">
                             <span class="text-[11px] font-bold text-red-400"><i class="fa-solid fa-circle-exclamation mr-1"></i> USDT (BEP20) में ही Withdrawal लें।</span>
                         </div>
@@ -1597,7 +1625,7 @@
                             </div>
                         </div>
 
-                        <!-- CoinX Wallet Withdrawal via Smart Contract -->
+                        <!-- CoinX Wallet Withdrawal -->
                         <div class="pt-3 border-t border-amber-500/15">
                             <h5 class="text-[10px] font-bold text-amber-400 mb-2"><i class="fa-solid fa-wallet mr-1"></i> CoinX Wallet में विथड्रॉवल</h5>
                             <p class="text-[9px] text-amber-300/40 mb-2">CoinX Wallet के स्मार्ट कॉन्ट्रैक्ट एड्रेस से विथड्रॉवल करें (10% शुल्क)</p>
@@ -1615,7 +1643,7 @@
                         </div>
                     </div>
 
-                    <!-- My Referrals & Transactions & Team -->
+                    <!-- My Referrals, Transactions, Team -->
                     <div class="grid grid-cols-3 gap-2">
                         <button onclick="toggleMyReferralsModal(true)" class="glass-gold border-amber-500/20 text-slate-200 py-2.5 rounded-xl text-xs font-semibold hover:border-amber-400/50 transition-all btn-animate">
                             <i class="fa-solid fa-users mr-1 text-amber-400"></i> Referrals
@@ -1828,7 +1856,7 @@
         </main>
 
         <!-- ============================================================ -->
-        <!-- RECEIPT MODAL - BIG & BOLD Withdrawal Completed with Masked Details -->
+        <!-- RECEIPT MODAL -->
         <!-- ============================================================ -->
         <div id="receiptModal" class="receipt-modal hidden">
             <div class="receipt-card" id="receiptCard">
@@ -1840,9 +1868,7 @@
                     <h3><i class="fa-solid fa-receipt mr-2"></i> विथड्रॉवल रसीद</h3>
                     <button class="receipt-close" onclick="closeReceipt()"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-                <div id="receiptContent">
-                    <!-- Dynamic content filled by JS with big bold withdrawal completed -->
-                </div>
+                <div id="receiptContent"></div>
                 <div class="receipt-footer">
                     <button class="btn-download" onclick="downloadReceipt()"><i class="fa-solid fa-download"></i> डाउनलोड करें</button>
                     <button class="btn-print" onclick="printReceipt()"><i class="fa-solid fa-print"></i> प्रिंट करें</button>
@@ -1929,7 +1955,7 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- FULL JAVASCRIPT                                               -->
+    <!-- JAVASCRIPT                                                   -->
     <!-- ============================================================ -->
     <script>
         // ============================================================
@@ -2089,6 +2115,43 @@
                 el.style.color = colors[Math.floor(Math.random() * colors.length)];
                 el.style.filter = `drop-shadow(0 0 10px ${el.style.color})`;
                 container.appendChild(el);
+            }
+        }
+
+        // ============================================================
+        // REFERRAL QR CODE GENERATION
+        // ============================================================
+        function generateReferralQR() {
+            if (!currentUser) return;
+            const ref = currentUser.$id;
+            const url = `${window.location.origin}${window.location.pathname}?ref=${ref}`;
+
+            const container = document.getElementById('referralQrContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            try {
+                new QRCode(container, {
+                    text: url,
+                    width: 112,
+                    height: 112,
+                    colorDark: '#d4af37',
+                    colorLight: '#ffffff',
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            } catch (e) {
+                container.innerHTML = `<p class="text-amber-400 text-[10px]">QR Error</p>`;
+            }
+        }
+
+        function copyReferralLink() {
+            const elem = document.getElementById('referralShareLink');
+            if (!elem) return;
+            const text = elem.innerText.trim();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => showToast('✅ रेफरल लिंक कॉपी हो गया!'));
+            } else {
+                legacyCopyFallback(text, '✅ रेफरल लिंक कॉपी हो गया!');
             }
         }
 
@@ -2345,7 +2408,7 @@
         }
 
         // ============================================================
-        // ADMIN WITHDRAWALS - with INR and USDT display
+        // ADMIN WITHDRAWALS
         // ============================================================
         function renderAdminWithdrawals() {
             if (!isAdminMode) return;
@@ -2421,7 +2484,7 @@
         }
 
         // ============================================================
-        // ADMIN STAKING - with unlock capability only for admin
+        // ADMIN STAKING
         // ============================================================
         function renderAdminStaking() {
             if (!isAdminMode) return;
@@ -2590,7 +2653,7 @@
         }
 
         // ============================================================
-        // MASK EMAIL & PHONE - show only first/last part
+        // MASK EMAIL & PHONE
         // ============================================================
         function maskEmail(email) {
             if (!email) return 'N/A';
@@ -2611,7 +2674,7 @@
         }
 
         // ============================================================
-        // RECEIPT MODAL - BIG & BOLD Withdrawal Completed with Masked Details
+        // RECEIPT MODAL
         // ============================================================
         function openReceipt(data) {
             receiptData = data;
@@ -2631,13 +2694,11 @@
                 statusBadge = '<span class="receipt-badge approved">✅ ' + (data.status || 'Completed') + '</span>';
             }
 
-            // Calculate INR (0.90 * coinsAmount)
             const inrAmount = (parseFloat(data.coinsAmount || 0) * 0.90).toFixed(2);
 
             let receiptHTML = '';
 
             if (isWithdrawal) {
-                // BIG BOLD WITHDRAWAL COMPLETED with Green Tick and Visit Text
                 receiptHTML = `
                             <div class="withdrawal-completed">
                                 <span class="green-tick">✔️</span> विथड्रॉवल पूर्ण!
@@ -2669,7 +2730,6 @@
                             </div>
                         `;
             } else {
-                // Deposit receipt (normal size with masked details)
                 let typeLabel = isDeposit ? '💰 डिपॉजिट' : '🔄 ट्रांसफर';
                 let amountDisplay = isDeposit ? `+$${data.amountUSD || '0'} USDT` : `-${data.coinsAmount || data.amount || 0} CX`;
                 receiptHTML = `
@@ -3057,7 +3117,7 @@
         }
 
         // ============================================================
-        // MINING REWARD - Female voice, requires 500 CX staked
+        // MINING REWARD
         // ============================================================
         async function triggerMiningReward(btn) {
             if (!currentUser) return;
@@ -3085,14 +3145,12 @@
                 localStorage.setItem('cx_last_claimed_' + currentUser.$id, String(now));
                 updateDashboardStats();
 
-                // Female voice - sweet voice
                 try {
                     const speech = new SpeechSynthesisUtterance('कांग्रेचुलेशन्स माय डियर, मैं फिर इसी समय आपका इंतजार करूंगी।');
                     speech.lang = 'hi-IN';
                     speech.rate = 1;
                     speech.pitch = 1.1;
                     speech.volume = 1;
-                    // Select a female voice if available
                     const voices = window.speechSynthesis.getVoices();
                     const femaleVoice = voices.find(v => v.lang === 'hi-IN' && v.name.includes('Female'));
                     if (femaleVoice) speech.voice = femaleVoice;
@@ -3212,7 +3270,7 @@
         }
 
         // ============================================================
-        // STAKING - No auto-unlock, history with dates, admin unlock only
+        // STAKING
         // ============================================================
         function renderStakingDetails() {
             if (!currentUser) return;
@@ -3268,7 +3326,6 @@
                 const list = [...(currentUser.staking || []), stake];
                 await saveUserFields({ coins: newCoins, staked: newStaked, staking: JSON.stringify(list) });
 
-                // Referral bonus
                 try {
                     if (currentUser.referredBy) await awardReferralBonus(currentUser.referredBy, amount,
                         selectedStakingDays);
@@ -3356,7 +3413,6 @@
                 list.innerHTML = '<p class="text-[10px] text-amber-300/30 text-center py-2">कोई हिस्ट्री नहीं है।</p>';
                 return;
             }
-            // Show latest first
             history.slice().reverse().forEach(s => {
                 const div = document.createElement('div');
                 div.className = 'staking-history-item';
@@ -3403,6 +3459,9 @@
                 qrPreview.classList.add('flex');
                 document.getElementById('qrUploadStatus').innerText = '✅ क्यूआर अपडेट';
             } else { qrPreview.classList.add('hidden'); }
+
+            // Generate referral QR
+            generateReferralQR();
         }
 
         async function handleQrUpload(e) {
@@ -3427,7 +3486,7 @@
         }
 
         // ============================================================
-        // WITHDRAWAL - USDT BEP20 with 10% fee
+        // WITHDRAWAL
         // ============================================================
         async function submitWithdrawal(btn) {
             if (!currentUser) { showToast('लॉगिन करें।', 'error'); return; }
@@ -3451,7 +3510,7 @@
         }
 
         // ============================================================
-        // COINX WALLET WITHDRAWAL via Smart Contract - 10% fee
+        // COINX WALLET WITHDRAWAL
         // ============================================================
         async function submitCoinXWalletWithdrawal() {
             if (!currentUser) { showToast('लॉगिन करें।', 'error'); return; }
@@ -3466,16 +3525,13 @@
             const netAmount = amount - fee;
 
             try {
-                // Find user by smart contract (CoinX Wallet)
                 const res = await databases.listDocuments(DATABASE_ID, USERS_COLLECTION_ID, [Query.equal('smartContract',
                     scAddress)]);
                 if (res.documents.length === 0) { showToast('❌ यह Smart Contract मौजूद नहीं है!', 'error'); return; }
                 const target = res.documents[0];
                 if (target.$id === currentUser.$id) { showToast('❌ खुद को नहीं भेज सकते!', 'error'); return; }
 
-                // Deduct from sender's coins (main wallet)
                 const newSenderCoins = parseFloat(currentUser.coins || 0) - amount;
-                // Add to receiver's trade wallet (CoinX Wallet)
                 const newReceiverTrade = parseFloat(target.tradeWallet || 0) + netAmount;
 
                 const tx = {
@@ -3682,7 +3738,7 @@
         }
 
         // ============================================================
-        // SLIDER - Unlimited photos with motivational quotes
+        // SLIDER
         // ============================================================
         function generateSliderData() {
             const baseSlides = [
@@ -3718,7 +3774,6 @@
                 { icon: '🌊', line1: 'समुद्र की गहराई में छुपा है जादू', line2: 'अपने अंदर की गहराई को पहचानो', badge: '✦ गहराई ✦' },
                 { icon: '🔥', line1: 'जलो, तपो, और चमको', line2: 'हर मुश्किल को मौका बनाओ', badge: '✦ तपस्या ✦' },
             ];
-            // Duplicate to make unlimited feel
             let slides = [];
             for (let i = 0; i < 30; i++) {
                 const s = baseSlides[i % baseSlides.length];
@@ -3833,6 +3888,8 @@
         window.printReceipt = printReceipt;
         window.toggleForgotPasswordModal = toggleForgotPasswordModal;
         window.handleForgotPassword = handleForgotPassword;
+        window.copyReferralLink = copyReferralLink;
+        window.generateReferralQR = generateReferralQR;
     </script>
 
 </body>
