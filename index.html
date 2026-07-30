@@ -40,7 +40,7 @@
             box-shadow: 0 0 25px rgba(34, 197, 94, 0.2);
         }
         .gold-bg-gradient {
-            background: linear-gradient(145deg, #22c55e, #1ea854, #1a9a4a);
+            background: linear-gradient(145deg, #22c55e, #1ea854, #16a34a);
         }
         .gold-text-gradient {
             background: linear-gradient(135deg, #4ade80, #22c55e, #16a34a);
@@ -322,33 +322,6 @@
         }
         .admin-sec.hidden {
             display: none !important;
-        }
-        .history-item {
-            background: rgba(18, 12, 28, 0.6);
-            border: 1px solid rgba(34, 197, 94, 0.12);
-            border-radius: 12px;
-            padding: 12px 14px;
-            transition: all 0.3s;
-            backdrop-filter: blur(4px);
-        }
-        .history-item:hover {
-            border-color: rgba(34, 197, 94, 0.3);
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.05);
-        }
-        .history-item .type-transfer {
-            color: #a78bfa;
-        }
-        .history-item .type-deposit {
-            color: #60a5fa;
-        }
-        .history-item .type-withdrawal {
-            color: #22c55e;
-        }
-        .history-item .type-trade {
-            color: #c084fc;
-        }
-        .history-item .type-admin {
-            color: #22c55e;
         }
         .slider-container {
             position: relative;
@@ -650,64 +623,6 @@
             border-radius: 10px;
             box-shadow: 0 0 16px rgba(34, 197, 94, 0.4);
         }
-        .filter-tabs {
-            display: flex;
-            gap: 3px;
-            background: rgba(18, 12, 28, 0.6);
-            padding: 3px;
-            border-radius: 12px;
-            border: 1px solid rgba(34, 197, 94, 0.15);
-            flex-wrap: wrap;
-        }
-        .filter-tabs button {
-            flex: 1;
-            padding: 4px 6px;
-            border-radius: 8px;
-            font-size: 9px;
-            font-weight: 600;
-            color: #8a6b9a;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            min-width: 40px;
-        }
-        .filter-tabs button.active {
-            background: #22c55e;
-            color: #0a0712;
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.25);
-        }
-        .filter-tabs button:hover:not(.active) {
-            color: #d4b0e0;
-        }
-        .sc-address-box {
-            background: rgba(18, 12, 28, 0.7);
-            border: 1px solid rgba(34, 197, 94, 0.25);
-            border-radius: 14px;
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            backdrop-filter: blur(6px);
-            transition: all 0.3s;
-        }
-        .sc-address-box:hover {
-            border-color: rgba(34, 197, 94, 0.5);
-            box-shadow: 0 0 30px rgba(34, 197, 94, 0.08);
-        }
-        .sc-address-box .sc-label {
-            font-size: 9px;
-            color: #a78bbf;
-            display: block;
-        }
-        .sc-address-box .sc-address {
-            font-size: 13px;
-            font-weight: 600;
-            font-family: monospace;
-            color: #22c55e;
-            letter-spacing: 0.5px;
-            word-break: break-all;
-        }
         #toastNotification {
             position: fixed;
             top: 20px;
@@ -827,12 +742,12 @@
             font-size: 24px;
         }
         .receipt-modal .receipt-row .value.green {
-            color: #34d399;
+            color: #22c55e;
             font-weight: 800;
             font-size: 26px;
         }
-        .receipt-modal .receipt-row .value.red {
-            color: #f87171;
+        .receipt-modal .receipt-row .value.usdt {
+            color: #26A17B;
             font-weight: 800;
             font-size: 24px;
         }
@@ -847,22 +762,18 @@
             border-bottom: 2px solid rgba(34, 197, 94, 0.2);
             margin-bottom: 16px;
         }
-        .receipt-modal .cx-coin-big {
-            font-size: 32px;
-            font-weight: 900;
-            color: #4ade80;
-            background: rgba(34, 197, 94, 0.1);
-            padding: 8px 20px;
-            border-radius: 16px;
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            display: inline-block;
-            margin: 6px 0;
-        }
         .receipt-modal .inr-amount-big {
             font-size: 34px;
             font-weight: 900;
-            color: #34d399;
-            text-shadow: 0 0 30px rgba(52, 211, 153, 0.25);
+            color: #22c55e;
+            text-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+            display: inline-block;
+        }
+        .receipt-modal .usdt-amount-big {
+            font-size: 28px;
+            font-weight: 900;
+            color: #26A17B;
+            text-shadow: 0 0 30px rgba(38, 161, 123, 0.25);
             display: inline-block;
         }
         .receipt-modal .receipt-badge {
@@ -976,9 +887,6 @@
         .receipt-modal .receipt-detail-block .big-value.gold {
             color: #22c55e;
         }
-        .receipt-modal .receipt-detail-block .big-value.green {
-            color: #34d399;
-        }
         .receipt-modal .green-tick {
             display: inline-block;
             font-size: 48px;
@@ -998,19 +906,6 @@
                 transform: scale(1);
                 opacity: 1;
             }
-        }
-        .receipt-modal .withdrawal-visit {
-            display: inline-block;
-            background: linear-gradient(135deg, #22c55e, #4ade80);
-            color: #0a0712;
-            padding: 8px 24px;
-            border-radius: 40px;
-            font-size: 18px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            box-shadow: 0 0 40px rgba(34, 197, 94, 0.3);
-            margin: 6px 0;
         }
         .receipt-modal .masked-text {
             font-family: monospace;
@@ -1067,15 +962,17 @@
             .receipt-modal .receipt-row .value.green {
                 font-size: 20px;
             }
+            .receipt-modal .receipt-row .value.usdt {
+                font-size: 18px;
+            }
             .receipt-modal .withdrawal-completed {
                 font-size: 24px;
             }
-            .receipt-modal .cx-coin-big {
-                font-size: 24px;
-                padding: 4px 14px;
-            }
             .receipt-modal .inr-amount-big {
                 font-size: 26px;
+            }
+            .receipt-modal .usdt-amount-big {
+                font-size: 22px;
             }
             .receipt-modal .receipt-footer button {
                 font-size: 12px;
@@ -1090,10 +987,6 @@
             }
             .receipt-modal .green-tick {
                 font-size: 36px;
-            }
-            .receipt-modal .withdrawal-visit {
-                font-size: 14px;
-                padding: 6px 16px;
             }
             .receipt-modal .masked-text {
                 font-size: 12px;
@@ -1114,9 +1007,6 @@
         }
         .staking-history-item .unlocked {
             color: #34d399;
-        }
-        .staking-history-item .pending {
-            color: #fbbf24;
         }
         .copy-btn-admin {
             background: rgba(34, 197, 94, 0.15);
@@ -1150,16 +1040,6 @@
         }
         .btn-animate:active {
             transform: scale(0.95);
-        }
-        .admin-search-input {
-            background: rgba(10, 6, 18, 0.8);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            color: #f5e6d3;
-        }
-        .admin-search-input:focus {
-            border-color: #22c55e;
-            outline: none;
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
         }
         .staking-plan-btn {
             transition: all 0.3s;
@@ -1279,6 +1159,58 @@
             font-size: 10px;
             font-weight: 700;
             border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        .deposit-slab-btn {
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .deposit-slab-btn:hover {
+            border-color: #22c55e !important;
+            transform: translateY(-2px);
+        }
+        .deposit-slab-btn.active {
+            border-color: #22c55e !important;
+            background: rgba(34, 197, 94, 0.15) !important;
+        }
+        .admin-search-input {
+            background: rgba(10, 6, 18, 0.8);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #f5e6d3;
+        }
+        .admin-search-input:focus {
+            border-color: #22c55e;
+            outline: none;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 3px;
+            background: rgba(18, 12, 28, 0.6);
+            padding: 3px;
+            border-radius: 12px;
+            border: 1px solid rgba(34, 197, 94, 0.15);
+            flex-wrap: wrap;
+        }
+        .filter-tabs button {
+            flex: 1;
+            padding: 4px 6px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 600;
+            color: #8a6b9a;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 40px;
+        }
+        .filter-tabs button.active {
+            background: #22c55e;
+            color: #0a0712;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.25);
+        }
+        .filter-tabs button:hover:not(.active) {
+            color: #d4b0e0;
         }
     </style>
 </head>
@@ -1478,27 +1410,27 @@
                     <!-- Stats Grid -->
                     <div class="grid grid-cols-2 gap-3">
                         <div class="glass-gold-dark p-3.5 rounded-2xl border-green-500/15 card-3d">
-                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-coins mr-1 text-yellow-400"></i> Total Staking (USDT)</span>
+                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-coins mr-1 text-yellow-400"></i> 💰 Total Staking (USDT)</span>
                             <span id="statTotalStakingUSDT" class="text-md font-bold text-white">$0.00</span>
                         </div>
                         <div class="glass-gold-dark p-3.5 rounded-2xl border-green-500/15 card-3d">
-                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-indian-rupee-sign mr-1 text-green-400"></i> Total Staking (₹)</span>
+                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-indian-rupee-sign mr-1 text-green-400"></i> 💵 Total Staking (₹)</span>
                             <span id="statTotalStakingINR" class="text-md font-bold text-green-400">₹0.00</span>
                         </div>
                         <div class="glass-gold-dark p-3.5 rounded-2xl border-green-500/15 card-3d">
-                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-gift mr-1 text-green-400"></i> Daily Release (0.5%)</span>
+                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-gift mr-1 text-green-400"></i> 📈 Daily Release (0.5%)</span>
                             <span id="statDailyRelease" class="text-md font-bold text-slate-200">₹0.00</span>
                         </div>
                         <div class="glass-gold-dark p-3.5 rounded-2xl border-green-500/15 card-3d">
-                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-wallet mr-1 text-green-400"></i> INR Wallet</span>
+                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-wallet mr-1 text-green-400"></i> 💳 INR Wallet</span>
                             <span id="statINRWallet" class="text-md font-bold text-green-400">₹0.00</span>
                         </div>
                         <div class="glass-gold-dark p-3.5 rounded-2xl border-green-500/15 card-3d">
-                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-dollar-sign mr-1 text-blue-400"></i> USDT Wallet</span>
+                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-dollar-sign mr-1 text-blue-400"></i> 💲 USDT Wallet</span>
                             <span id="statUSDTWallet" class="text-md font-bold text-blue-400">$0.00</span>
                         </div>
                         <div class="glass-gold-dark p-3.5 rounded-2xl border-green-500/15 card-3d">
-                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-users mr-1 text-yellow-400"></i> Referral Income</span>
+                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-users mr-1 text-yellow-400"></i> 👥 Referral Income</span>
                             <span id="statReferralIncome" class="text-md font-bold text-yellow-400">₹0.00</span>
                         </div>
                     </div>
@@ -1507,7 +1439,7 @@
                     <div class="daily-reward-card">
                         <div class="flex justify-between items-center mb-3">
                             <div>
-                                <span class="reward-label">⭐ Daily Claim Reward</span>
+                                <span class="reward-label">⭐ Daily Claim Reward (0.5%)</span>
                                 <div class="flex items-center gap-3 mt-1">
                                     <span class="reward-amount" id="dailyRewardAmount">₹0.00</span>
                                     <span class="streak-badge" id="streakBadge">🔥 0 Days</span>
@@ -1528,18 +1460,24 @@
                         <div id="claimStatusMessage" class="mt-2 text-center text-xs text-green-400 hidden"></div>
                     </div>
 
+                    <!-- Rewards -->
+                    <div class="glass-gold p-3 rounded-2xl border-green-500/20 flex justify-between items-center">
+                        <span class="text-xs text-green-300/60"><i class="fa-solid fa-gift mr-1 text-yellow-400"></i> 🎁 Rewards</span>
+                        <span id="totalRewardsDisplay" class="text-sm font-bold text-yellow-400">₹0.00</span>
+                    </div>
+
                     <!-- Mini Stats -->
                     <div class="grid grid-cols-3 gap-2">
                         <div class="glass-gold p-2 rounded-xl border-green-500/20 text-center">
-                            <span class="text-[8px] text-green-300/40 block">Rewards</span>
+                            <span class="text-[8px] text-green-300/40 block">🎁 Rewards</span>
                             <span class="text-xs font-bold text-yellow-400" id="miniRewards">₹0</span>
                         </div>
                         <div class="glass-gold p-2 rounded-xl border-green-500/20 text-center">
-                            <span class="text-[8px] text-green-300/40 block">Deposit</span>
+                            <span class="text-[8px] text-green-300/40 block">💸 Deposit</span>
                             <span class="text-xs font-bold text-green-400" id="miniDeposit">₹0</span>
                         </div>
                         <div class="glass-gold p-2 rounded-xl border-green-500/20 text-center">
-                            <span class="text-[8px] text-green-300/40 block">Withdraw</span>
+                            <span class="text-[8px] text-green-300/40 block">💳 Withdraw</span>
                             <span class="text-xs font-bold text-red-400" id="miniWithdraw">₹0</span>
                         </div>
                     </div>
@@ -1549,16 +1487,17 @@
                 <section id="stakingPage" class="app-page w-full hidden space-y-4">
                     <div class="glass-gold p-4 rounded-2xl border-green-500/20">
                         <h3 class="text-sm font-bold text-green-400"><i class="fa-solid fa-vault mr-1.5"></i> 💼 स्टेकिंग</h3>
-                        <p class="text-[11px] text-green-300/40">अपने उपलब्ध कॉइन्स को लॉक करके शानदार दैनिक रिवॉर्ड प्राप्त करें।</p>
+                        <p class="text-[11px] text-green-300/40">अपने फंड को लॉक करके 0.5% दैनिक रिवॉर्ड प्राप्त करें।</p>
+                        <p class="text-[10px] text-green-400/60 mt-1">💰 1 USDT = ₹100 (Platform Rate)</p>
                     </div>
                     <div class="glass-gold p-5 rounded-2xl border-green-500/20 space-y-4">
                         <div class="flex justify-between items-center text-xs">
                             <span class="text-green-300/50">अवेलेबल बैलेंस:</span>
-                            <span id="stakingAvailableCoins" class="font-bold text-green-400">0.00 SX</span>
+                            <span id="stakingAvailableCoins" class="font-bold text-green-400">₹0.00</span>
                         </div>
                         <div>
-                            <label class="block text-[10px] text-green-300/50 mb-1">कितने कॉइन स्टेकिंग में लगाने हैं?</label>
-                            <input type="number" id="stakeInputCoins" placeholder="न्यूनतम 50 SX" class="w-full bg-black/40 border border-green-500/20 rounded-xl py-2.5 px-3 text-xs focus:outline-none focus:border-green-400 text-white backdrop-blur-sm">
+                            <label class="block text-[10px] text-green-300/50 mb-1">कितना स्टेक करना है? (₹)</label>
+                            <input type="number" id="stakeInputCoins" placeholder="न्यूनतम ₹500" class="w-full bg-black/40 border border-green-500/20 rounded-xl py-2.5 px-3 text-xs focus:outline-none focus:border-green-400 text-white backdrop-blur-sm">
                         </div>
                         <div>
                             <label class="block text-[10px] text-green-300/50 mb-1.5">लॉकिंग अवधि चुनें</label>
@@ -1595,7 +1534,7 @@
                         </div>
                         <div class="bg-black/40 p-2.5 rounded-xl border border-green-500/15">
                             <span class="text-[8px] text-green-300/30 block">Total Staked</span>
-                            <strong id="teamTotalStaked" class="text-green-400 text-md">0 SX</strong>
+                            <strong id="teamTotalStaked" class="text-green-400 text-md">₹0</strong>
                         </div>
                         <div class="bg-black/40 p-2.5 rounded-xl border border-green-500/15">
                             <span class="text-[8px] text-green-300/30 block">Total Bonus</span>
@@ -1619,20 +1558,32 @@
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <div class="glass-gold-dark p-4 rounded-2xl border-green-500/15">
-                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-indian-rupee-sign mr-1 text-green-400"></i> INR Wallet</span>
+                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-indian-rupee-sign mr-1 text-green-400"></i> 💳 INR Wallet</span>
                             <span id="walletINR" class="text-lg font-bold text-green-400">₹0.00</span>
                         </div>
                         <div class="glass-gold-dark p-4 rounded-2xl border-blue-500/15">
-                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-dollar-sign mr-1 text-blue-400"></i> USDT Wallet</span>
+                            <span class="text-[10px] text-green-300/50 block mb-1"><i class="fa-solid fa-dollar-sign mr-1 text-blue-400"></i> 💲 USDT Wallet</span>
                             <span id="walletUSDT" class="text-lg font-bold text-blue-400">$0.00</span>
                         </div>
                     </div>
+
+                    <!-- Deposit Section -->
                     <div class="glass-gold p-4 rounded-2xl border-green-500/20 space-y-3">
                         <h4 class="text-xs font-bold text-green-300/70">💸 Deposit</h4>
-                        <div class="flex gap-2">
-                            <input type="number" id="depositAmount" placeholder="₹ अमाउंट" class="flex-1 bg-black/40 border border-green-500/20 rounded-xl py-2 px-3 text-xs focus:outline-none focus:border-green-400 text-white">
+                        <div class="grid grid-cols-4 gap-2">
+                            <button onclick="selectDepositSlab(500)" class="deposit-slab-btn bg-black/40 p-2 rounded-xl border border-green-500/20 text-[10px] text-green-300/60 hover:border-green-400">₹500</button>
+                            <button onclick="selectDepositSlab(1000)" class="deposit-slab-btn bg-black/40 p-2 rounded-xl border border-green-500/20 text-[10px] text-green-300/60 hover:border-green-400">₹1K</button>
+                            <button onclick="selectDepositSlab(5000)" class="deposit-slab-btn bg-black/40 p-2 rounded-xl border border-green-500/20 text-[10px] text-green-300/60 hover:border-green-400">₹5K</button>
+                            <button onclick="selectDepositSlab(10000)" class="deposit-slab-btn bg-black/40 p-2 rounded-xl border border-green-500/20 text-[10px] text-green-300/60 hover:border-green-400">₹10K</button>
+                            <button onclick="selectDepositSlab(25000)" class="deposit-slab-btn bg-black/40 p-2 rounded-xl border border-green-500/20 text-[10px] text-green-300/60 hover:border-green-400">₹25K</button>
+                            <button onclick="selectDepositSlab(50000)" class="deposit-slab-btn bg-black/40 p-2 rounded-xl border border-green-500/20 text-[10px] text-green-300/60 hover:border-green-400">₹50K</button>
+                            <button onclick="selectDepositSlab(100000)" class="deposit-slab-btn bg-black/40 p-2 rounded-xl border border-green-500/20 text-[10px] text-green-300/60 hover:border-green-400">₹1L</button>
+                            <button onclick="selectDepositSlab(250000)" class="deposit-slab-btn bg-black/40 p-2 rounded-xl border border-green-500/20 text-[10px] text-green-300/60 hover:border-green-400">₹2.5L</button>
+                        </div>
+                        <div class="flex gap-2 mt-2">
+                            <input type="number" id="customDepositAmount" placeholder="₹ कस्टम अमाउंट" class="flex-1 bg-black/40 border border-green-500/20 rounded-xl py-2 px-3 text-xs focus:outline-none focus:border-green-400 text-white">
                             <button onclick="generateDepositQR()" class="btn-gold px-4 py-2 rounded-xl text-xs font-bold shadow-xl">
-                                <i class="fa-solid fa-qrcode mr-1"></i> QR
+                                <i class="fa-solid fa-qrcode mr-1"></i> Generate QR
                             </button>
                         </div>
                         <div id="depositQRContainer" class="hidden text-center">
@@ -1642,8 +1593,17 @@
                                 <span class="text-[10px] text-green-300/60 font-mono break-all" id="depositAddress">0x7be243182b7442D17a13e2C019f0d0174F196817</span>
                                 <button onclick="copyToClipboard('depositAddress', '✅ एड्रेस कॉपी!')" class="text-green-400 hover:text-white text-xs shrink-0">कॉपी</button>
                             </div>
+                            <div class="mt-2">
+                                <label class="block text-[10px] text-green-300/50 mb-1">स्क्रीनशॉट अपलोड करें</label>
+                                <input type="file" id="depositScreenshot" accept="image/*" class="w-full bg-black/40 border border-green-500/20 rounded-xl py-2 px-3 text-xs text-green-300/40">
+                                <button onclick="submitDeposit()" class="w-full mt-2 btn-gold py-2 rounded-xl text-xs font-bold shadow-xl">
+                                    <i class="fa-solid fa-paper-plane mr-1"></i> Deposit Request Submit
+                                </button>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Withdraw Section -->
                     <div class="glass-gold p-4 rounded-2xl border-green-500/20 space-y-3">
                         <h4 class="text-xs font-bold text-green-300/70">💳 Withdraw</h4>
                         <div>
@@ -1658,7 +1618,7 @@
                         </div>
                         <div class="text-center bg-black/40 border border-green-500/20 rounded-xl p-2">
                             <span class="text-[10px] font-bold text-green-400 block"><i class="fa-regular fa-clock mr-1"></i> Processing - अधिकतम 24 घंटे</span>
-                            <span class="text-[8px] text-green-300/30 block">💡 USDT BEP20 में विथड्रॉवल लेने के लिए SX Coin एक्सचेंज करें</span>
+                            <span class="text-[8px] text-green-300/30 block">💡 USDT BEP20 में विथड्रॉवल लेने के लिए INR को USDT में एक्सचेंज करें</span>
                         </div>
                     </div>
                 </section>
@@ -1687,7 +1647,7 @@
                         <div>
                             <span class="id-label">🆔 आपकी Unique SupriX ID</span>
                             <span class="id-value" id="profileCoinXIdDisplay">SPX123456789</span>
-                            <span class="id-usage">इस ID से कॉइन भेजें/ले सकते हैं</span>
+                            <span class="id-usage">इस ID से पहचान करें</span>
                         </div>
                         <button onclick="copyToClipboard('profileCoinXIdDisplay', '✅ SPX ID कॉपी हो गई!')" class="text-green-400 hover:text-white shrink-0 btn-animate text-xs">
                             <i class="fa-solid fa-copy mr-1"></i> कॉपी
@@ -1697,7 +1657,7 @@
                         <div>
                             <span class="id-label">📧 Email (Unique ID)</span>
                             <span class="id-value" id="profileEmailIdDisplay">user@example.com</span>
-                            <span class="id-usage">ईमेल द्वारा भी कॉइन भेज सकते हैं</span>
+                            <span class="id-usage">ईमेल द्वारा भी पहचान करें</span>
                         </div>
                         <button onclick="copyToClipboard('profileEmailIdDisplay', '✅ Email कॉपी हो गई!')" class="text-green-400 hover:text-white shrink-0 btn-animate text-xs">
                             <i class="fa-solid fa-copy mr-1"></i> कॉपी
@@ -1709,7 +1669,7 @@
                         <div>
                             <span class="sc-label"><i class="fa-solid fa-link mr-1 text-green-400"></i> स्मार्ट कॉन्ट्रैक्ट एड्रेस</span>
                             <span class="sc-address" id="profileSmartContract">0x000...000</span>
-                            <span class="text-[8px] text-green-400/40 block mt-0.5">इस एड्रेस पर कॉइन भेजें / प्राप्त करें</span>
+                            <span class="text-[8px] text-green-400/40 block mt-0.5">इस एड्रेस पर USDT भेजें / प्राप्त करें</span>
                         </div>
                         <button onclick="copyToClipboard('profileSmartContract', '✅ Smart Contract कॉपी हो गया!')" class="text-green-400 hover:text-white shrink-0 btn-animate text-xs bg-green-500/10 px-3 py-1.5 rounded-full border border-green-500/20">
                             <i class="fa-solid fa-copy mr-1"></i> कॉपी
@@ -1851,7 +1811,7 @@
                         </div>
                         <div class="bg-black/40 p-2.5 rounded-xl border border-green-500/15">
                             <span class="text-[8px] text-green-300/30 block mb-0.5">Locked Staking</span>
-                            <strong id="statTotalStaked" class="text-green-400 text-md">0 SX</strong>
+                            <strong id="statTotalStaked" class="text-green-400 text-md">₹0</strong>
                         </div>
                         <div class="bg-black/40 p-2.5 rounded-xl border border-green-500/15">
                             <span class="text-[8px] text-green-300/30 block mb-0.5">Pending Dep.</span>
@@ -1879,10 +1839,10 @@
                     <!-- Users Tab -->
                     <div id="adminSection-users" class="admin-sec space-y-3">
                         <div class="glass-gold p-4 rounded-2xl border-green-500/20 space-y-3">
-                            <h4 class="text-xs font-bold text-green-300/70">यूजर कॉइन कस्टमाइज़ेशन</h4>
+                            <h4 class="text-xs font-bold text-green-300/70">यूजर बैलेंस कस्टमाइज़ेशन</h4>
                             <div class="grid grid-cols-2 gap-2 text-xs">
                                 <input type="text" id="adminCoinUserId" placeholder="यूजर आईडी/ईमेल" class="col-span-2 bg-black/40 border border-green-500/20 rounded-xl p-2 text-xs text-white focus:outline-none backdrop-blur-sm">
-                                <input type="number" id="adminCoinAmount" placeholder="कॉइन्स की संख्या" class="bg-black/40 border border-green-500/20 rounded-xl p-2 text-xs text-white focus:outline-none backdrop-blur-sm">
+                                <input type="number" id="adminCoinAmount" placeholder="₹ अमाउंट" class="bg-black/40 border border-green-500/20 rounded-xl p-2 text-xs text-white focus:outline-none backdrop-blur-sm">
                                 <select id="adminCoinAction" class="bg-black/40 border border-green-500/20 rounded-xl p-2 text-xs text-green-300/60 focus:outline-none backdrop-blur-sm">
                                     <option value="add">जोड़ें (Credit)</option>
                                     <option value="subtract">घटाएं (Debit)</option>
@@ -2026,19 +1986,17 @@
         const APPWRITE_ENDPOINT = "https://fra.cloud.appwrite.io/v1";
         const APPWRITE_PROJECT_ID = "6a43cbf70027f5ff8960";
         const DATABASE_ID = "6a47b7550016c4291ab3";
-        const USERS_COLLECTION_ID = "users";
+        const USERS_COLLECTION_ID = "6a47b7550016c4291ab3";
         const STAKING_SETTINGS_COLLECTION_ID = "staking_plan_settings";
         const SCREENSHOT_BUCKET_ID = "6a47d26c00001f17b543";
         const STAKING_SETTINGS_DOC_ID = "global_config";
-        const ADMIN_TEAM_ID = "6a4a84580012aed57e61";
         const SECRET_ADMIN_KEY = "admin2025";
 
-        const { Client, Databases, Storage, Account, Teams, Query, ID } = Appwrite;
+        const { Client, Databases, Storage, Account, Query, ID } = Appwrite;
         const client = new Client().setEndpoint(APPWRITE_ENDPOINT).setProject(APPWRITE_PROJECT_ID);
         const databases = new Databases(client);
         const storage = new Storage(client);
         const account = new Account(client);
-        const teams = new Teams(client);
 
         // ============================================================
         // STATE
@@ -2052,15 +2010,12 @@
             ]
         };
         let selectedStakingDays = 30;
-        let selectedPurchaseUsd = 0;
-        let selectedPurchaseCoins = 0;
         let currentTxHistoryTab = 'deposit';
-        let uploadReceiptFile = null;
-        let currentAdminTab = 'users';
         let isAdminMode = false;
         let receiptData = null;
-        let dailyClaimTimer = null;
         let liveUSDTPrice = 87.50;
+        let dailyClaimTimer = null;
+        let selectedDepositAmount = 0;
 
         // ============================================================
         // UTILITY FUNCTIONS
@@ -2111,19 +2066,21 @@
                 approvedWithdrawals: parseJsonSafe(doc.approved_withdrawal, []),
                 referrals: parseJsonSafe(doc.referrals, []),
                 transactions: parseJsonSafe(doc.transactions, []),
-                tradeHistory: parseJsonSafe(doc.tradeHistory, []),
-                buySellWallet: parseFloat(doc.buySellWallet || 0),
-                coins: parseFloat(doc.coins || 0),
-                tradeWallet: parseFloat(doc.tradeWallet || 0),
                 coinxId: doc.coinxId || doc.coinxid || generateSPXId(),
                 smartContract: doc.smartContract || generateSmartContract(),
-                coinxWalletSC: doc.coinxWalletSC || '',
                 inrWallet: parseFloat(doc.inrWallet || 0),
                 usdtWallet: parseFloat(doc.usdtWallet || 0),
+                staked: parseFloat(doc.staked || 0),
+                coins: parseFloat(doc.coins || 0),
+                withdrawal: parseFloat(doc.withdrawal || 0),
                 totalClaimedRewards: parseFloat(doc.totalClaimedRewards || 0),
                 claimStreak: parseInt(doc.claimStreak || 0),
                 lastClaimDate: doc.lastClaimDate || null,
-                referralIncome: parseFloat(doc.referralIncome || 0)
+                referralIncome: parseFloat(doc.referralIncome || 0),
+                withdrawal_address: doc.withdrawal_address || '',
+                withdrawal_screenshot: doc.withdrawal_screenshot || '',
+                referredBy: doc.referredBy || null,
+                isBlocked: !!doc.isBlocked
             };
         }
 
@@ -2166,7 +2123,7 @@
         function getUSDTRate() {
             const apiKey = '9gfx9mbrV3AMMPRFCK0bjeR7BEmShcHtTcF1m0rolXdVsqraUvDu1kBUsZdeHSkv';
             const url =
-            `https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=INR&api_key=${apiKey}`;
+                `https://min-api.cryptocompare.com/data/price?fsym=USDT&tsyms=INR&api_key=${apiKey}`;
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
@@ -2174,13 +2131,26 @@
                         liveUSDTPrice = data.INR;
                         document.getElementById('liveUSDTRate').innerText = '₹' + liveUSDTPrice.toFixed(2);
                         document.getElementById('platformRate').innerText = '₹' + Math.round(liveUSDTPrice * 1.02)
-                    .toFixed(2);
+                            .toFixed(2);
                     }
                 })
                 .catch(() => {
-                    // Use fallback
                     document.getElementById('liveUSDTRate').innerText = '₹' + liveUSDTPrice.toFixed(2);
                 });
+        }
+
+        function playVoiceMessage(text) {
+            try {
+                const speech = new SpeechSynthesisUtterance(text);
+                speech.lang = 'hi-IN';
+                speech.rate = 0.9;
+                speech.pitch = 1.1;
+                speech.volume = 1;
+                const voices = window.speechSynthesis.getVoices();
+                const femaleVoice = voices.find(v => v.lang === 'hi-IN' && v.name.includes('Female'));
+                if (femaleVoice) speech.voice = femaleVoice;
+                window.speechSynthesis.speak(speech);
+            } catch (e) { console.log('Voice error:', e); }
         }
 
         // ============================================================
@@ -2325,7 +2295,7 @@
                 0), 0);
             document.getElementById('statTotalDeposits').innerText = `₹${totalDep.toFixed(2)}`;
             const totalStaked = users.reduce((a, u) => a + parseFloat(u.staked || 0), 0);
-            document.getElementById('statTotalStaked').innerText = `${totalStaked.toFixed(2)} SX`;
+            document.getElementById('statTotalStaked').innerText = `₹${totalStaked.toFixed(2)}`;
             document.getElementById('statPendingDep').innerText = users.filter(u => u.pendingDeposit).length;
             document.getElementById('statPendingWith').innerText = users.filter(u => u.pendingWithdrawal).length;
             const totalRefBonus = users.reduce((a, u) => a + parseFloat(u.referralIncome || 0), 0);
@@ -2362,7 +2332,7 @@
             const list = document.getElementById('adminUserList');
             list.innerHTML = '';
             if (users.length === 0) { list.innerHTML =
-                    '<p class="text-green-300/30 text-center py-2">कोई यूजर नहीं</p>'; return; }
+                '<p class="text-green-300/30 text-center py-2">कोई यूजर नहीं</p>'; return; }
             users.forEach(u => {
                 const emailId = 'aemail' + u.$id,
                     phoneId = 'aphone' + u.$id,
@@ -2374,7 +2344,7 @@
                 card.innerHTML = `
                             <div class="flex justify-between font-bold text-green-400">
                                 <span>${u.name||'N/A'}</span>
-                                <span class="text-white">${parseFloat(u.coins||0).toFixed(2)} SX</span>
+                                <span class="text-white">₹${parseFloat(u.inrWallet||0).toFixed(2)}</span>
                             </div>
                             <div class="text-[10px] text-green-300/30 grid grid-cols-2 gap-1 pb-1">
                                 <span>ईमेल: ${u.email||'N/A'} <button onclick="copyToClipboard('${emailId}','✅ Email कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
@@ -2413,21 +2383,20 @@
         async function updateUserCoinsManually(btn) {
             if (!isAdminMode) return;
             const targetId = document.getElementById('adminCoinUserId').value.trim();
-            const coinAmount = parseFloat(document.getElementById('adminCoinAmount').value);
+            const amount = parseFloat(document.getElementById('adminCoinAmount').value);
             const action = document.getElementById('adminCoinAction').value;
-            if (!targetId || !coinAmount || coinAmount <= 0) { showToast('सही आईडी/ईमेल और मान्य कॉइन संख्या भरें।',
-                    'error'); return; }
+            if (!targetId || !amount || amount <= 0) { showToast('सही आईडी/ईमेल और मान्य अमाउंट भरें।',
+                'error'); return; }
             setButtonLoading(btn, true);
             const idx = users.findIndex(u => u.$id === targetId || u.email === targetId);
             if (idx === -1) { setButtonLoading(btn, false);
                 showToast('यूजर नहीं मिला!', 'error'); return; }
-            const field = 'coins';
-            const current = parseFloat(users[idx][field] || 0);
-            const newBal = action === 'add' ? current + coinAmount : Math.max(0, current - coinAmount);
+            const current = parseFloat(users[idx].inrWallet || 0);
+            const newBal = action === 'add' ? current + amount : Math.max(0, current - amount);
             try {
-                await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, users[idx].docId, { [field]: newBal });
-                users[idx][field] = newBal;
-                showToast(action === 'add' ? `${coinAmount} कॉइन्स क्रेडिट!` : `${coinAmount} कॉइन्स डेबिट!`, 'success');
+                await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, users[idx].docId, { inrWallet: newBal });
+                users[idx].inrWallet = newBal;
+                showToast(action === 'add' ? `₹${amount} क्रेडिट!` : `₹${amount} डेबिट!`, 'success');
                 document.getElementById('adminCoinUserId').value = '';
                 document.getElementById('adminCoinAmount').value = '';
                 updateAdminStats();
@@ -2444,14 +2413,14 @@
             list.innerHTML = '';
             const pending = users.filter(u => u.pendingDeposit && u.pendingDeposit.type === 'user');
             if (pending.length === 0) { list.innerHTML =
-                    '<p class="text-green-300/30 text-center py-2">कोई पेंडिंग डिपॉजिट नहीं</p>'; return; }
+                '<p class="text-green-300/30 text-center py-2">कोई पेंडिंग डिपॉजिट नहीं</p>'; return; }
             pending.forEach(u => {
                 const d = u.pendingDeposit;
                 const card = document.createElement('div');
                 card.className = 'bg-black/40 p-3 rounded-xl border border-green-500/15 space-y-2';
                 card.innerHTML = `
                             <div class="flex justify-between font-bold text-xs"><span class="text-slate-300">${u.name} (${u.email})</span><span class="text-green-400">₹${d.amountINR}</span></div>
-                            <div class="text-[10px] text-green-300/30">कॉइन: ${d.coinsAmount} SX | ${d.dateTime}</div>
+                            <div class="text-[10px] text-green-300/30">USDT: $${d.amountUSDT} | ${d.dateTime}</div>
                             ${d.receiptFileId?`<div class="mt-1"><img src="${resolveImageUrl(d.receiptFileId)}" class="w-16 h-16 object-contain cursor-pointer" onclick="openFullscreenImage('${resolveImageUrl(d.receiptFileId)}')"></div>`:''}
                             <div class="flex gap-2 justify-end"><button onclick="approveDeposit('${u.$id}')" class="bg-green-500 text-[#0a0712] px-3 py-1 rounded text-[10px]">Approve</button><button onclick="rejectDeposit('${u.$id}')" class="bg-red-500 text-white px-3 py-1 rounded text-[10px]">Reject</button></div>
                         `;
@@ -2469,18 +2438,18 @@
                 if (!pending) { showToast('पहले ही प्रोसेस', 'info');
                     users[idx].pendingDeposit = null;
                     renderAdminDeposits(); return; }
-                const newCoins = parseFloat(fresh.coins || 0) + parseFloat(pending.coinsAmount || 0);
                 const newINR = parseFloat(fresh.inrWallet || 0) + parseFloat(pending.amountINR || 0);
+                const newUSDT = parseFloat(fresh.usdtWallet || 0) + parseFloat(pending.amountUSDT || 0);
                 const approved = parseJsonSafe(fresh.approved_deposit, []);
                 approved.push({ ...pending, approvedAt: new Date().toISOString() });
                 await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, id, {
-                    coins: newCoins,
                     inrWallet: newINR,
+                    usdtWallet: newUSDT,
                     approved_deposit: JSON.stringify(approved),
                     pending_deposit: ''
                 });
-                users[idx].coins = newCoins;
                 users[idx].inrWallet = newINR;
+                users[idx].usdtWallet = newUSDT;
                 users[idx].approvedDeposits = approved;
                 users[idx].pendingDeposit = null;
                 showToast('✅ डिपॉजिट स्वीकृत', 'success');
@@ -2511,18 +2480,15 @@
             list.innerHTML = '';
             const pending = users.filter(u => u.pendingWithdrawal);
             if (pending.length === 0) { list.innerHTML =
-                    '<p class="text-green-300/30 text-center py-2">कोई पेंडिंग विथड्रॉवल नहीं</p>'; return; }
+                '<p class="text-green-300/30 text-center py-2">कोई पेंडिंग विथड्रॉवल नहीं</p>'; return; }
             pending.forEach(u => {
                 const w = u.pendingWithdrawal;
-                const usdtAmount = (parseFloat(w.coinsAmount || 0) * 0.90 / 100).toFixed(2);
-                const inrAmount = (parseFloat(w.coinsAmount || 0) * 0.90).toFixed(2);
                 const card = document.createElement('div');
                 card.className = 'bg-black/40 p-3 rounded-xl border border-green-500/15 space-y-2';
                 card.innerHTML = `
-                            <div class="flex justify-between font-bold text-xs"><span class="text-slate-300">${u.name} (${u.email})</span><span class="text-green-400">${w.coinsAmount} SX</span></div>
+                            <div class="flex justify-between font-bold text-xs"><span class="text-slate-300">${u.name} (${u.email})</span><span class="text-green-400">₹${w.amountINR}</span></div>
                             <div class="text-[10px] text-green-300/30">Address: ${u.withdrawal_address||'N/A'} | ${w.dateTime}</div>
-                            <div class="text-[10px] text-green-400">💰 INR: ₹${inrAmount} (10% चार्ज कट)</div>
-                            <div class="text-[10px] text-blue-400">💵 USDT BEP20: $${usdtAmount}</div>
+                            <div class="text-[10px] text-blue-400">💵 USDT BEP20: $${w.amountUSDT}</div>
                             ${u.withdrawal_screenshot?`<div class="mt-1"><img src="${resolveImageUrl(u.withdrawal_screenshot)}" class="w-16 h-16 object-contain cursor-pointer" onclick="openFullscreenImage('${resolveImageUrl(u.withdrawal_screenshot)}')"></div>`:''}
                             <div class="flex gap-2 justify-end"><button onclick="approveWithdrawal('${u.$id}')" class="bg-green-500 text-[#0a0712] px-3 py-1 rounded text-[10px]">Complete</button><button onclick="rejectWithdrawal('${u.$id}')" class="bg-red-500 text-white px-3 py-1 rounded text-[10px]">Reject</button></div>
                         `;
@@ -2542,14 +2508,11 @@
                     renderAdminWithdrawals(); return; }
                 const approved = parseJsonSafe(fresh.approved_withdrawal, []);
                 approved.push({ ...pending, completedAt: new Date().toISOString() });
-                const newWithdrawn = parseFloat(fresh.withdrawal || 0) + parseFloat(pending.coinsAmount || 0);
                 await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, id, {
                     approved_withdrawal: JSON.stringify(approved),
-                    withdrawal: newWithdrawn,
                     pending_withdrawal: ''
                 });
                 users[idx].approvedWithdrawals = approved;
-                users[idx].withdrawal = newWithdrawn;
                 users[idx].pendingWithdrawal = null;
                 showToast('✅ विथड्रॉवल पूरा', 'success');
                 updateAdminStats();
@@ -2562,17 +2525,9 @@
             const idx = users.findIndex(u => u.$id === id);
             if (idx === -1) return;
             try {
-                const fresh = await databases.getDocument(DATABASE_ID, USERS_COLLECTION_ID, id);
-                const pending = parseJsonSafe(fresh.pending_withdrawal, null);
-                if (!pending) { showToast('पहले ही प्रोसेस', 'info');
-                    users[idx].pendingWithdrawal = null;
-                    renderAdminWithdrawals(); return; }
-                const refund = parseFloat(fresh.coins || 0) + parseFloat(pending.coinsAmount || 0);
-                await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, id, { coins: refund,
-                    pending_withdrawal: '' });
-                users[idx].coins = refund;
+                await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, id, { pending_withdrawal: '' });
                 users[idx].pendingWithdrawal = null;
-                showToast('❌ अस्वीकृत, कॉइन रिफंड', 'info');
+                showToast('❌ अस्वीकृत', 'info');
                 updateAdminStats();
                 renderAdminWithdrawals();
             } catch (e) { showToast('त्रुटि', 'error'); }
@@ -2609,7 +2564,7 @@
                         div.innerHTML = `
                                         <div>
                                             <div class="text-green-400 text-xs font-bold">${u.name}</div>
-                                            <div class="text-[9px] text-green-300/30">${s.amount} SX | ${s.days} days</div>
+                                            <div class="text-[9px] text-green-300/30">₹${s.amount} | ${s.days} days</div>
                                             <div class="text-[9px] text-green-300/30">Stake: ${s.startDate || 'N/A'} | Unlock: ${new Date(s.lockUntil).toLocaleDateString('hi-IN')}</div>
                                         </div>
                                         <div class="text-right">
@@ -2631,23 +2586,23 @@
             const stakeIdx = users[idx].staking.findIndex(s => s.stakeId === stakeId);
             if (stakeIdx === -1) return;
             const stake = users[idx].staking[stakeIdx];
-            const newCoins = parseFloat(users[idx].coins || 0) + parseFloat(stake.amount);
+            const newINR = parseFloat(users[idx].inrWallet || 0) + parseFloat(stake.amount);
             const newStaked = Math.max(0, parseFloat(users[idx].staked || 0) - parseFloat(stake.amount));
             const remaining = users[idx].staking.filter(s => s.stakeId !== stakeId);
             const history = users[idx].stakingHistory || [];
             history.push({ ...stake, unlockedAt: new Date().toISOString(), unlockedBy: 'admin' });
             try {
                 await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, userId, {
-                    coins: newCoins,
+                    inrWallet: newINR,
                     staked: newStaked,
                     staking: JSON.stringify(remaining),
                     stakingHistory: JSON.stringify(history)
                 });
-                users[idx].coins = newCoins;
+                users[idx].inrWallet = newINR;
                 users[idx].staked = newStaked;
                 users[idx].staking = remaining;
                 users[idx].stakingHistory = history;
-                showToast(`✅ ${stake.amount} SX अनलॉक कर दिया गया`, 'success');
+                showToast(`✅ ₹${stake.amount} अनलॉक कर दिया गया`, 'success');
                 renderAdminStaking();
                 updateAdminStats();
             } catch (e) { showToast('त्रुटि', 'error'); }
@@ -2695,14 +2650,14 @@
                 });
             });
             if (all.length === 0) { list.innerHTML =
-                    '<p class="text-green-300/30 text-center py-2">कोई रेफरल नहीं</p>'; return; }
+                '<p class="text-green-300/30 text-center py-2">कोई रेफरल नहीं</p>'; return; }
             all.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
             all.forEach(r => {
                 const div = document.createElement('div');
                 div.className = 'bg-black/40 p-2.5 rounded-xl border border-green-500/15 space-y-1';
                 div.innerHTML = `
                                 <div class="flex justify-between text-xs"><span class="font-bold text-green-400">${r.referrer} (${r.referrerEmail})</span><span class="text-green-400">+₹${Number(r.bonusReceived||0).toFixed(2)}</span></div>
-                                <div class="text-[10px] text-green-300/30">रेफर: ${r.referredName||'N/A'} (${r.referredEmail||'N/A'}) | स्टेक: ${Number(r.stakedAmount||0).toFixed(2)} SX | ${r.dateTime||''}</div>
+                                <div class="text-[10px] text-green-300/30">रेफर: ${r.referredName||'N/A'} (${r.referredEmail||'N/A'}) | स्टेक: ₹${Number(r.stakedAmount||0).toFixed(2)} | ${r.dateTime||''}</div>
                             `;
                 list.appendChild(div);
             });
@@ -2714,10 +2669,10 @@
         function exportAllUserData() {
             if (!isAdminMode || users.length === 0) { showToast('कोई डेटा नहीं', 'error'); return; }
             let csv =
-                "Name,Email,Phone,SPXID,SmartContract,Coins,Staked,Withdrawn,Referrals,TradeWallet,INRWallet,USDTWallet\n";
+                "Name,Email,Phone,SPXID,SmartContract,INRWallet,USDTWallet,Staked,Withdrawn,Referrals,ReferralIncome\n";
             users.forEach(u => {
                 csv +=
-                    `${u.name||''},${u.email||''},${u.phone||''},${u.coinxId||''},${u.smartContract||''},${parseFloat(u.coins||0).toFixed(2)},${parseFloat(u.staked||0).toFixed(2)},${parseFloat(u.withdrawal||0).toFixed(2)},${(u.referrals||[]).length},${parseFloat(u.tradeWallet||0).toFixed(2)},${parseFloat(u.inrWallet||0).toFixed(2)},${parseFloat(u.usdtWallet||0).toFixed(2)}\n`;
+                    `${u.name||''},${u.email||''},${u.phone||''},${u.coinxId||''},${u.smartContract||''},${parseFloat(u.inrWallet||0).toFixed(2)},${parseFloat(u.usdtWallet||0).toFixed(2)},${parseFloat(u.staked||0).toFixed(2)},${parseFloat(u.withdrawal||0).toFixed(2)},${(u.referrals||[]).length},${parseFloat(u.referralIncome||0).toFixed(2)}\n`;
             });
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = URL.createObjectURL(blob);
@@ -2775,8 +2730,6 @@
             receiptData = data;
             const modal = document.getElementById('receiptModal');
             const content = document.getElementById('receiptContent');
-            const isDeposit = data.type === 'deposit';
-            const isWithdrawal = data.type === 'withdrawal';
 
             let statusBadge = '';
             if (data.status === 'Approved' || data.status === 'Completed' || data.status === 'SUCCESS') {
@@ -2789,68 +2742,60 @@
                 statusBadge = '<span class="receipt-badge approved">✅ ' + (data.status || 'SUCCESS') + '</span>';
             }
 
-            const inrAmount = (parseFloat(data.coinsAmount || 0) * 0.90).toFixed(2);
             const usdtAmount = (parseFloat(data.amountINR || 0) / liveUSDTPrice).toFixed(2);
 
-            let receiptHTML = '';
+            let receiptHTML = `
+                        <div class="receipt-detail-block" style="text-align:center;">
+                            <div class="big-label">💵 Amount (INR)</div>
+                            <div class="inr-amount-big">₹ ${parseFloat(data.amountINR || 0).toFixed(2)}</div>
+                            <div style="margin-top:8px;">
+                                <span class="big-label">💲 USDT (BEP20)</span>
+                                <div class="usdt-amount-big">$ ${usdtAmount}</div>
+                            </div>
+                        </div>
+                        <div class="receipt-row"><span class="label">👤 Member Name</span><span class="value"><span class="masked-text">${currentUser?.name || 'N/A'}</span></span></div>
+                        <div class="receipt-row"><span class="label">🆔 Member ID</span><span class="value"><span class="masked-text">${currentUser?.coinxId || 'N/A'}</span></span></div>
+                        <div class="receipt-row"><span class="label">🧾 Receipt ID</span><span class="value"><span class="masked-text">SPX-${new Date().toISOString().slice(0,10).replace(/-/g,'')}-${Math.floor(100000+Math.random()*900000)}</span></span></div>
+                        <div class="receipt-row"><span class="label">🌐 Network</span><span class="value">BNB Smart Chain (BEP20)</span></div>
+                        <div class="receipt-row"><span class="label">📅 Date & Time</span><span class="value">${data.dateTime || new Date().toLocaleString('hi-IN')}</span></div>
+                        <div class="receipt-row"><span class="label">✅ Status</span><span class="value">${statusBadge}</span></div>
+                        <div class="receipt-row"><span class="label">🔗 Transaction Hash</span><span class="value" style="font-size:13px;">0x8f4a...c91d</span></div>
+                        <div style="text-align:center;padding-top:12px;border-top:1px solid rgba(34,197,94,0.08);margin-top:6px;">
+                            <span style="font-size:10px;color:#6b4a7a;">✔️ Principal Amount Recorded</span><br>
+                            <span style="font-size:10px;color:#6b4a7a;">🔒 Secure & Verified Transaction</span>
+                        </div>
+                    `;
 
-            if (isWithdrawal) {
-                receiptHTML = `
-                            <div class="withdrawal-completed">
-                                <span class="green-tick">✔️</span> विथड्रॉवल पूर्ण!
-                            </div>
-                            <div style="text-align:center;margin-bottom:12px;">
-                                <span class="withdrawal-visit">💎 विथड्रॉवल विजिट 💎</span>
-                            </div>
-                            <div class="receipt-detail-block" style="text-align:center;">
-                                <div class="big-label">कुल विथड्रॉवल</div>
-                                <div class="cx-coin-big">${parseFloat(data.coinsAmount || 0).toFixed(2)} SX</div>
-                                <div style="margin-top:8px;">
-                                    <span class="big-label">💰 रुपया (INR)</span>
-                                    <div class="inr-amount-big">₹ ${inrAmount}</div>
-                                </div>
-                                <div style="margin-top:6px;font-size:14px;color:#a78bbf;">(10% शुल्क कटने के बाद)</div>
-                            </div>
-                            <div class="receipt-row"><span class="label">📅 तारीख & समय</span><span class="value">${data.dateTime || 'N/A'}</span></div>
-                            <div class="receipt-row"><span class="label">📊 स्थिति</span><span class="value">${statusBadge}</span></div>
-                            <div style="border-top:1px solid rgba(34,197,94,0.12);margin:10px 0 6px;padding-top:10px;">
-                                <div class="receipt-row"><span class="label">👤 यूजर</span><span class="value"><span class="masked-text">${currentUser?.name || 'N/A'}</span></span></div>
-                                <div class="receipt-row"><span class="label">📧 ईमेल</span><span class="value"><span class="masked-text">${maskEmail(currentUser?.email || 'N/A')}</span></span></div>
-                                <div class="receipt-row"><span class="label">📱 मोबाइल</span><span class="value"><span class="masked-text">${maskPhone(currentUser?.phone || 'N/A')}</span></span></div>
-                                <div class="receipt-row"><span class="label">🆔 SPX ID</span><span class="value"><span class="masked-text">${currentUser?.coinxId || 'N/A'}</span></span></div>
-                                <div class="receipt-row"><span class="label">🏦 विथड्रॉवल एड्रेस</span><span class="value" style="font-size:13px;"><span class="masked-text">${currentUser?.withdrawal_address ? currentUser.withdrawal_address.substring(0,8)+'...'+currentUser.withdrawal_address.substring(currentUser.withdrawal_address.length-4) : 'N/A'}</span></span></div>
-                                <div class="receipt-row"><span class="label">🌐 नेटवर्क</span><span class="value">BEP20 (USDT)</span></div>
-                            </div>
-                            <div style="text-align:center;padding-top:8px;border-top:1px solid rgba(34,197,94,0.08);margin-top:6px;">
-                                <span style="font-size:10px;color:#6b4a7a;">🔒 सुरक्षित लेनदेन • SupriX Global</span>
-                            </div>
-                        `;
-            } else {
-                let typeLabel = isDeposit ? '💰 डिपॉजिट' : '🔄 ट्रांसफर';
-                let amountDisplay = isDeposit ? `+₹${data.amountINR || '0'}` :
-                `-${data.coinsAmount || data.amount || 0} SX`;
-                receiptHTML = `
-                            <div class="receipt-row"><span class="label">📋 लेनदेन प्रकार</span><span class="value highlight">${typeLabel}</span></div>
-                            <div class="receipt-row"><span class="label">💰 राशि</span><span class="value ${isDeposit?'green':'red'}">${amountDisplay}</span></div>
-                            ${isDeposit ? `<div class="receipt-row"><span class="label">🪙 कॉइन</span><span class="value">${data.coinsAmount || 0} SX</span></div>` : ''}
-                            <div class="receipt-row"><span class="label">💵 USDT (BEP20)</span><span class="value" style="color:#26A17B;">$${usdtAmount}</span></div>
-                            <div class="receipt-row"><span class="label">📅 तारीख & समय</span><span class="value">${data.dateTime || 'N/A'}</span></div>
-                            <div class="receipt-row"><span class="label">📊 स्थिति</span><span class="value">${statusBadge}</span></div>
-                            ${data.receiptFileId ? `<div class="receipt-row" style="flex-direction:column;align-items:center;padding:8px 0;"><span class="label" style="margin-bottom:6px;">🧾 रसीद स्क्रीनशॉट</span><img src="${resolveImageUrl(data.receiptFileId)}" class="w-24 h-24 object-contain rounded-lg border border-green-500/20 cursor-pointer" onclick="openFullscreenImage('${resolveImageUrl(data.receiptFileId)}')"></div>` : ''}
-                            <div style="border-top:1px solid rgba(34,197,94,0.12);margin:8px 0 4px;padding-top:8px;">
-                                <div class="receipt-row"><span class="label">👤 यूजर</span><span class="value"><span class="masked-text">${currentUser?.name || 'N/A'}</span></span></div>
-                                <div class="receipt-row"><span class="label">📧 ईमेल</span><span class="value"><span class="masked-text">${maskEmail(currentUser?.email || 'N/A')}</span></span></div>
-                                <div class="receipt-row"><span class="label">📱 मोबाइल</span><span class="value"><span class="masked-text">${maskPhone(currentUser?.phone || 'N/A')}</span></span></div>
-                                <div class="receipt-row"><span class="label">🆔 SPX ID</span><span class="value"><span class="masked-text">${currentUser?.coinxId || 'N/A'}</span></span></div>
-                                <div class="receipt-row"><span class="label">🌐 नेटवर्क</span><span class="value">BEP20 (USDT)</span></div>
-                            </div>
-                            <div style="border-top:1px solid rgba(34,197,94,0.08);margin-top:6px;padding-top:6px;text-align:center;">
-                                <span style="font-size:8px;color:#6b4a7a;">🔒 सुरक्षित लेनदेन • SupriX Global</span>
-                            </div>
-                        `;
+            // QR Code for verification
+            try {
+                const qrContainer = document.createElement('div');
+                qrContainer.style.textAlign = 'center';
+                qrContainer.style.marginTop = '12px';
+                const qrDiv = document.createElement('div');
+                qrDiv.id = 'receiptQR';
+                qrDiv.style.display = 'inline-block';
+                qrDiv.style.background = '#fff';
+                qrDiv.style.padding = '8px';
+                qrDiv.style.borderRadius = '12px';
+                qrContainer.appendChild(qrDiv);
+                content.innerHTML = receiptHTML;
+                content.appendChild(qrContainer);
+                setTimeout(() => {
+                    try {
+                        new QRCode(document.getElementById('receiptQR'), {
+                            text: `SupriX Global Receipt\nAmount: ₹${parseFloat(data.amountINR||0).toFixed(2)}\nUSDT: $${usdtAmount}\nUser: ${currentUser?.email||''}\nDate: ${data.dateTime||''}`,
+                            width: 120,
+                            height: 120,
+                            colorDark: '#22c55e',
+                            colorLight: '#ffffff',
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                    } catch (e) {}
+                }, 100);
+            } catch (e) {
+                content.innerHTML = receiptHTML;
             }
 
-            content.innerHTML = receiptHTML;
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
@@ -2877,7 +2822,7 @@
             const html = `
                             <html>
                             <head>
-                                <title>SupriX_Receipt_${receiptData.dateTime || Date.now()}.html</title>
+                                <title>SupriX_Receipt_${Date.now()}.html</title>
                                 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
                                 <style>
                                     body { background:#0d0a12; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; padding:20px; font-family:'Poppins',sans-serif; }
@@ -2888,24 +2833,12 @@
                                     .receipt-row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:16px; font-weight:600; }
                                     .receipt-row .label { color:#a78bbf; font-weight:500; font-size:14px; }
                                     .receipt-row .value { color:#f1e6f5; font-weight:700; text-align:right; word-break:break-all; max-width:60%; font-family:monospace; font-size:16px; }
-                                    .receipt-row .value.highlight { color:#22c55e; font-weight:800; font-size:20px; }
-                                    .receipt-row .value.green { color:#22c55e; font-weight:800; font-size:22px; }
-                                    .receipt-row .value.red { color:#f87171; font-weight:800; font-size:20px; }
-                                    .withdrawal-completed { text-align:center; font-size:30px; font-weight:900; color:#22c55e; letter-spacing:2px; text-shadow:0 0 40px rgba(34,197,94,0.3); padding:12px 0 8px; border-bottom:2px solid rgba(34,197,94,0.2); margin-bottom:16px; }
-                                    .cx-coin-big { font-size:28px; font-weight:900; color:#4ade80; background:rgba(34,197,94,0.1); padding:8px 20px; border-radius:16px; border:1px solid rgba(34,197,94,0.3); display:inline-block; margin:6px 0; }
-                                    .inr-amount-big { font-size:30px; font-weight:900; color:#34d399; text-shadow:0 0 30px rgba(52,211,153,0.25); display:inline-block; }
+                                    .inr-amount-big { font-size:30px; font-weight:900; color:#22c55e; text-shadow:0 0 30px rgba(34,197,94,0.3); display:inline-block; }
+                                    .usdt-amount-big { font-size:24px; font-weight:900; color:#26A17B; text-shadow:0 0 30px rgba(38,161,123,0.25); display:inline-block; }
                                     .receipt-badge { display:inline-block; padding:4px 20px; border-radius:30px; font-size:14px; font-weight:800; }
                                     .receipt-badge.approved { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
-                                    .receipt-badge.completed { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
-                                    .receipt-badge.pending { background:rgba(251,191,36,0.2); color:#fbbf24; border:1px solid rgba(251,191,36,0.3); }
-                                    .receipt-badge.rejected { background:rgba(239,68,68,0.2); color:#f87171; border:1px solid rgba(239,68,68,0.3); }
                                     .receipt-detail-block { background:rgba(0,0,0,0.3); border-radius:16px; padding:16px 20px; margin:10px 0; border:1px solid rgba(34,197,94,0.1); }
                                     .receipt-detail-block .big-label { font-size:14px; color:#a78bbf; font-weight:500; }
-                                    .receipt-detail-block .big-value { font-size:28px; font-weight:900; color:#f1e6f5; }
-                                    .receipt-detail-block .big-value.gold { color:#22c55e; }
-                                    .receipt-detail-block .big-value.green { color:#34d399; }
-                                    .green-tick { font-size:40px; color:#34d399; display:inline-block; }
-                                    .withdrawal-visit { display:inline-block; background:linear-gradient(135deg,#22c55e,#4ade80); color:#0a0712; padding:6px 20px; border-radius:40px; font-size:16px; font-weight:900; letter-spacing:2px; text-transform:uppercase; box-shadow:0 0 40px rgba(34,197,94,0.3); margin:4px 0; }
                                     .masked-text { font-family:monospace; letter-spacing:2px; color:#22c55e; background:rgba(34,197,94,0.08); padding:2px 10px; border-radius:6px; font-size:14px; }
                                     @media print { body { background:#fff; } .receipt-card { border-color:#ddd; background:#f9f9f9; } .receipt-row .label { color:#666; } .receipt-row .value { color:#333; } }
                                 </style>
@@ -2944,24 +2877,12 @@
                                 .receipt-row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:16px; font-weight:600; }
                                 .receipt-row .label { color:#a78bbf; font-weight:500; font-size:14px; }
                                 .receipt-row .value { color:#f1e6f5; font-weight:700; text-align:right; word-break:break-all; max-width:60%; font-family:monospace; font-size:16px; }
-                                .receipt-row .value.highlight { color:#22c55e; font-weight:800; font-size:20px; }
-                                .receipt-row .value.green { color:#22c55e; font-weight:800; font-size:22px; }
-                                .receipt-row .value.red { color:#f87171; font-weight:800; font-size:20px; }
-                                .withdrawal-completed { text-align:center; font-size:30px; font-weight:900; color:#22c55e; letter-spacing:2px; text-shadow:0 0 40px rgba(34,197,94,0.3); padding:12px 0 8px; border-bottom:2px solid rgba(34,197,94,0.2); margin-bottom:16px; }
-                                .cx-coin-big { font-size:28px; font-weight:900; color:#4ade80; background:rgba(34,197,94,0.1); padding:8px 20px; border-radius:16px; border:1px solid rgba(34,197,94,0.3); display:inline-block; margin:6px 0; }
-                                .inr-amount-big { font-size:30px; font-weight:900; color:#34d399; text-shadow:0 0 30px rgba(52,211,153,0.25); display:inline-block; }
+                                .inr-amount-big { font-size:30px; font-weight:900; color:#22c55e; text-shadow:0 0 30px rgba(34,197,94,0.3); display:inline-block; }
+                                .usdt-amount-big { font-size:24px; font-weight:900; color:#26A17B; text-shadow:0 0 30px rgba(38,161,123,0.25); display:inline-block; }
                                 .receipt-badge { display:inline-block; padding:4px 20px; border-radius:30px; font-size:14px; font-weight:800; }
                                 .receipt-badge.approved { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
-                                .receipt-badge.completed { background:rgba(52,211,153,0.2); color:#34d399; border:1px solid rgba(52,211,153,0.3); }
-                                .receipt-badge.pending { background:rgba(251,191,36,0.2); color:#fbbf24; border:1px solid rgba(251,191,36,0.3); }
-                                .receipt-badge.rejected { background:rgba(239,68,68,0.2); color:#f87171; border:1px solid rgba(239,68,68,0.3); }
                                 .receipt-detail-block { background:rgba(0,0,0,0.3); border-radius:16px; padding:16px 20px; margin:10px 0; border:1px solid rgba(34,197,94,0.1); }
                                 .receipt-detail-block .big-label { font-size:14px; color:#a78bbf; font-weight:500; }
-                                .receipt-detail-block .big-value { font-size:28px; font-weight:900; color:#f1e6f5; }
-                                .receipt-detail-block .big-value.gold { color:#22c55e; }
-                                .receipt-detail-block .big-value.green { color:#34d399; }
-                                .green-tick { font-size:40px; color:#34d399; display:inline-block; }
-                                .withdrawal-visit { display:inline-block; background:linear-gradient(135deg,#22c55e,#4ade80); color:#0a0712; padding:6px 20px; border-radius:40px; font-size:16px; font-weight:900; letter-spacing:2px; text-transform:uppercase; box-shadow:0 0 40px rgba(34,197,94,0.3); margin:4px 0; }
                                 .masked-text { font-family:monospace; letter-spacing:2px; color:#22c55e; background:rgba(34,197,94,0.08); padding:2px 10px; border-radius:6px; font-size:14px; }
                                 @media print { body { background:#fff; } .receipt-card { border-color:#ddd; background:#f9f9f9; } .receipt-row .label { color:#666; } .receipt-row .value { color:#333; } }
                             </style>
@@ -3061,25 +2982,29 @@
                     await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, doc.$id, { stakingHistory: JSON.stringify([]) });
                     doc.stakingHistory = [];
                 }
-                if (!doc.inrWallet) {
+                if (doc.inrWallet === undefined || doc.inrWallet === null) {
                     await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, doc.$id, { inrWallet: 0 });
                     doc.inrWallet = 0;
                 }
-                if (!doc.usdtWallet) {
+                if (doc.usdtWallet === undefined || doc.usdtWallet === null) {
                     await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, doc.$id, { usdtWallet: 0 });
                     doc.usdtWallet = 0;
                 }
-                if (!doc.totalClaimedRewards) {
+                if (doc.totalClaimedRewards === undefined || doc.totalClaimedRewards === null) {
                     await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, doc.$id, { totalClaimedRewards: 0 });
                     doc.totalClaimedRewards = 0;
                 }
-                if (!doc.claimStreak) {
+                if (doc.claimStreak === undefined || doc.claimStreak === null) {
                     await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, doc.$id, { claimStreak: 0 });
                     doc.claimStreak = 0;
                 }
-                if (!doc.referralIncome) {
+                if (doc.referralIncome === undefined || doc.referralIncome === null) {
                     await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, doc.$id, { referralIncome: 0 });
                     doc.referralIncome = 0;
+                }
+                if (doc.staked === undefined || doc.staked === null) {
+                    await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, doc.$id, { staked: 0 });
+                    doc.staked = 0;
                 }
                 currentUser = mapUserDoc(doc);
                 await loadStakingSettings();
@@ -3137,14 +3062,10 @@
                     withdrawal_screenshot: '',
                     referrals: JSON.stringify([]),
                     transactions: JSON.stringify([]),
-                    tradeHistory: JSON.stringify([]),
-                    buySellWallet: 0,
-                    tradeWallet: 0,
                     coinxId,
                     smartContract,
                     referredBy: referral || null,
                     isBlocked: false,
-                    coinxWalletSC: '',
                     inrWallet: 0,
                     usdtWallet: 0,
                     totalClaimedRewards: 0,
@@ -3213,15 +3134,17 @@
 
             const totalStakingUSDT = parseFloat(currentUser.staked || 0) / 100;
             document.getElementById('statTotalStakingUSDT').innerText = `$${totalStakingUSDT.toFixed(2)}`;
-            const totalStakingINR = parseFloat(currentUser.staked || 0) * (liveUSDTPrice / 100);
-            document.getElementById('statTotalStakingINR').innerText = `₹${totalStakingINR.toFixed(2)}`;
+            document.getElementById('statTotalStakingINR').innerText = `₹${parseFloat(currentUser.staked||0).toFixed(2)}`;
 
-            const dailyRelease = parseFloat(currentUser.staked || 0) * 0.005 * (liveUSDTPrice / 100);
+            const dailyRelease = parseFloat(currentUser.staked || 0) * 0.005;
             document.getElementById('statDailyRelease').innerText = `₹${dailyRelease.toFixed(2)}`;
 
             document.getElementById('statINRWallet').innerText = `₹${parseFloat(currentUser.inrWallet||0).toFixed(2)}`;
             document.getElementById('statUSDTWallet').innerText = `$${parseFloat(currentUser.usdtWallet||0).toFixed(2)}`;
             document.getElementById('statReferralIncome').innerText = `₹${parseFloat(currentUser.referralIncome||0).toFixed(2)}`;
+
+            // Rewards total
+            document.getElementById('totalRewardsDisplay').innerText = `₹${parseFloat(currentUser.totalClaimedRewards||0).toFixed(2)}`;
 
             // Mini stats
             const totalRewards = parseFloat(currentUser.totalClaimedRewards || 0);
@@ -3229,8 +3152,8 @@
             const totalDeposits = (currentUser.approvedDeposits || []).reduce((a, d) => a + parseFloat(d.amountINR || 0),
             0);
             document.getElementById('miniDeposit').innerText = `₹${totalDeposits.toFixed(0)}`;
-            const totalWithdrawals = (currentUser.approvedWithdrawals || []).reduce((a, w) => a + parseFloat(w.coinsAmount ||
-                0) * (liveUSDTPrice / 100), 0);
+            const totalWithdrawals = (currentUser.approvedWithdrawals || []).reduce((a, w) => a + parseFloat(w.amountINR ||
+                0), 0);
             document.getElementById('miniWithdraw').innerText = `₹${totalWithdrawals.toFixed(0)}`;
 
             // Update daily claim UI
@@ -3238,7 +3161,7 @@
         }
 
         // ============================================================
-        // DAILY CLAIM REWARD
+        // DAILY CLAIM REWARD (0.5% of Staked)
         // ============================================================
         function updateDailyClaimUI() {
             if (!currentUser) return;
@@ -3247,13 +3170,28 @@
             const oneDay = 24 * 60 * 60 * 1000;
             const canClaim = !lastClaim || (now - lastClaim) >= oneDay;
 
-            const dailyAmount = 100; // Fixed ₹100 daily reward
+            // Calculate 0.5% of staked amount
+            const stakedAmount = parseFloat(currentUser.staked || 0);
+            const dailyAmount = stakedAmount * 0.005;
+
             document.getElementById('dailyRewardAmount').innerText = `₹${dailyAmount.toFixed(2)}`;
             document.getElementById('totalClaimedRewards').innerText = `₹${parseFloat(currentUser.totalClaimedRewards||0).toFixed(2)}`;
             document.getElementById('streakBadge').innerText = `🔥 ${currentUser.claimStreak||0} Days`;
 
             const btn = document.getElementById('dailyClaimBtn');
             const statusMsg = document.getElementById('claimStatusMessage');
+
+            if (stakedAmount < 500) {
+                btn.disabled = true;
+                btn.className = 'claim-btn';
+                btn.innerHTML = '⚠️ Minimum ₹500 Staking Required';
+                statusMsg.classList.remove('hidden');
+                statusMsg.className = 'mt-2 text-center text-xs text-yellow-400';
+                statusMsg.innerHTML = '⚠️ Daily Reward के लिए न्यूनतम ₹500 स्टेकिंग आवश्यक है।';
+                document.getElementById('lastClaimDate').innerText = 'N/A';
+                document.getElementById('nextClaimCountdown').innerText = '--';
+                return;
+            }
 
             if (canClaim) {
                 btn.disabled = false;
@@ -3280,6 +3218,12 @@
                 if (!currentUser) return;
                 const last = currentUser.lastClaimDate ? new Date(currentUser.lastClaimDate).getTime() : 0;
                 const now2 = Date.now();
+                const staked2 = parseFloat(currentUser.staked || 0);
+                if (staked2 < 500) {
+                    updateDailyClaimUI();
+                    clearInterval(dailyClaimTimer);
+                    return;
+                }
                 if (!last || (now2 - last) >= oneDay) {
                     updateDailyClaimUI();
                     clearInterval(dailyClaimTimer);
@@ -3292,22 +3236,14 @@
             }, 30000);
         }
 
-        function playVoiceMessage(text) {
-            try {
-                const speech = new SpeechSynthesisUtterance(text);
-                speech.lang = 'hi-IN';
-                speech.rate = 0.9;
-                speech.pitch = 1.1;
-                speech.volume = 1;
-                const voices = window.speechSynthesis.getVoices();
-                const femaleVoice = voices.find(v => v.lang === 'hi-IN' && v.name.includes('Female'));
-                if (femaleVoice) speech.voice = femaleVoice;
-                window.speechSynthesis.speak(speech);
-            } catch (e) { console.log('Voice error:', e); }
-        }
-
         async function claimDailyReward() {
             if (!currentUser) { showToast('लॉगिन करें।', 'error'); return; }
+
+            const stakedAmount = parseFloat(currentUser.staked || 0);
+            if (stakedAmount < 500) {
+                showToast('⚠️ न्यूनतम ₹500 स्टेकिंग आवश्यक है!', 'error');
+                return;
+            }
 
             const lastClaim = currentUser.lastClaimDate ? new Date(currentUser.lastClaimDate).getTime() : 0;
             const now = Date.now();
@@ -3319,7 +3255,7 @@
                 const m = Math.floor((diff % 3600000) / 60000);
                 playVoiceMessage(
                     'आप आज का डेली रिवॉर्ड पहले ही प्राप्त कर चुके हैं। कृपया अगला रिवॉर्ड प्राप्त करने के लिए 24 घंटे पूरे होने तक प्रतीक्षा करें। धन्यवाद।'
-                    );
+                );
                 showToast(`⏳ ${h} घंटे ${m} मिनट बाद।`, 'info');
                 return;
             }
@@ -3328,7 +3264,7 @@
             setButtonLoading(btn, true);
 
             try {
-                const dailyAmount = 100; // ₹100 per day
+                const dailyAmount = stakedAmount * 0.005;
                 const newINR = parseFloat(currentUser.inrWallet || 0) + dailyAmount;
                 const newTotalClaimed = parseFloat(currentUser.totalClaimedRewards || 0) + dailyAmount;
                 const newStreak = (currentUser.claimStreak || 0) + 1;
@@ -3356,26 +3292,48 @@
                 // Voice announcement
                 playVoiceMessage(
                     'बधाई हो! आपका आज का डेली रिवॉर्ड सफलतापूर्वक आपके INR वॉलेट में जोड़ दिया गया है। SupriX Global के साथ जुड़े रहने के लिए आपका धन्यवाद। आपका दिन शुभ हो।'
-                    );
+                );
 
-                showToast(`✅ ₹${dailyAmount} रिवॉर्ड मिला!`, 'success');
+                showToast(`✅ ₹${dailyAmount.toFixed(2)} रिवॉर्ड मिला!`, 'success');
                 updateDashboardStats();
                 updateDailyClaimUI();
 
                 // Show success status
                 const statusMsg = document.getElementById('claimStatusMessage');
                 statusMsg.classList.remove('hidden');
+                statusMsg.className = 'mt-2 text-center text-xs text-green-400';
                 statusMsg.innerHTML =
-                    `✅ ₹${dailyAmount} क्रेडिट हुआ | ${new Date().toLocaleString('hi-IN')} | Transaction ID: DR-${Math.floor(100000 + Math.random() * 900000)}`;
+                    `✅ ₹${dailyAmount.toFixed(2)} क्रेडिट हुआ | ${new Date().toLocaleString('hi-IN')} | Transaction ID: DR-${Math.floor(100000 + Math.random() * 900000)}`;
 
             } catch (e) {
                 playVoiceMessage(
                     'क्षमा करें, आपका डेली रिवॉर्ड इस समय प्राप्त नहीं हो सका। कृपया कुछ देर बाद पुनः प्रयास करें। यदि समस्या बनी रहती है, तो सहायता केंद्र से संपर्क करें। धन्यवाद।'
-                    );
+                );
                 showToast('त्रुटि!', 'error');
             } finally {
                 setButtonLoading(btn, false);
             }
+        }
+
+        async function saveUserFields(fields) {
+            if (!currentUser) return;
+            await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, currentUser.$id, fields);
+            Object.assign(currentUser, fields);
+            if ('staking' in fields) currentUser.staking = parseJsonSafe(fields.staking, []);
+            if ('stakingHistory' in fields) currentUser.stakingHistory = parseJsonSafe(fields.stakingHistory, []);
+            if ('pending_deposit' in fields) currentUser.pendingDeposit = parseJsonSafe(fields.pending_deposit, null);
+            if ('approved_deposit' in fields) currentUser.approvedDeposits = parseJsonSafe(fields.approved_deposit, []);
+            if ('pending_withdrawal' in fields) currentUser.pendingWithdrawal = parseJsonSafe(fields.pending_withdrawal,
+                null);
+            if ('approved_withdrawal' in fields) currentUser.approvedWithdrawals = parseJsonSafe(fields
+                .approved_withdrawal, []);
+            if ('referrals' in fields) currentUser.referrals = parseJsonSafe(fields.referrals, []);
+            if ('transactions' in fields) currentUser.transactions = parseJsonSafe(fields.transactions, []);
+            if ('inrWallet' in fields) currentUser.inrWallet = parseFloat(fields.inrWallet);
+            if ('usdtWallet' in fields) currentUser.usdtWallet = parseFloat(fields.usdtWallet);
+            if ('staked' in fields) currentUser.staked = parseFloat(fields.staked);
+            if ('coins' in fields) currentUser.coins = parseFloat(fields.coins);
+            if ('withdrawal' in fields) currentUser.withdrawal = parseFloat(fields.withdrawal);
         }
 
         // ============================================================
@@ -3383,7 +3341,7 @@
         // ============================================================
         function renderStakingDetails() {
             if (!currentUser) return;
-            document.getElementById('stakingAvailableCoins').innerText = `${parseFloat(currentUser.coins||0).toFixed(2)} SX`;
+            document.getElementById('stakingAvailableCoins').innerText = `₹${parseFloat(currentUser.inrWallet||0).toFixed(2)}`;
 
             const container = document.getElementById('stakingPlansContainer');
             container.innerHTML = '';
@@ -3415,11 +3373,11 @@
         async function submitStake(btn) {
             if (!currentUser) return;
             const amount = parseFloat(document.getElementById('stakeInputCoins').value);
-            if (!amount || amount < 50) { showToast('न्यूनतम 50 SX', 'error'); return; }
-            if (amount > parseFloat(currentUser.coins || 0)) { showToast('बैलेंस से अधिक!', 'error'); return; }
+            if (!amount || amount < 500) { showToast('न्यूनतम ₹500', 'error'); return; }
+            if (amount > parseFloat(currentUser.inrWallet || 0)) { showToast('बैलेंस से अधिक!', 'error'); return; }
             setButtonLoading(btn, true);
             try {
-                const newCoins = parseFloat(currentUser.coins) - amount;
+                const newINR = parseFloat(currentUser.inrWallet) - amount;
                 const newStaked = parseFloat(currentUser.staked || 0) + amount;
                 const lockUntil = Date.now() + (selectedStakingDays * 24 * 60 * 60 * 1000);
                 const stake = {
@@ -3433,7 +3391,7 @@
                     unlockTime: new Date(lockUntil).toLocaleTimeString('hi-IN')
                 };
                 const list = [...(currentUser.staking || []), stake];
-                await saveUserFields({ coins: newCoins, staked: newStaked, staking: JSON.stringify(list) });
+                await saveUserFields({ inrWallet: newINR, staked: newStaked, staking: JSON.stringify(list) });
 
                 try {
                     if (currentUser.referredBy) await awardReferralBonus(currentUser.referredBy, amount,
@@ -3449,7 +3407,7 @@
                 document.getElementById('stakeInputCoins').value = '';
                 renderStakingDetails();
                 updateDashboardStats();
-                showToast(`✅ ${amount} SX ${selectedStakingDays} दिनों के लिए लॉक!`, 'success');
+                showToast(`✅ ₹${amount} ${selectedStakingDays} दिनों के लिए लॉक!`, 'success');
             } catch (e) { showToast('त्रुटि!', 'error'); } finally { setButtonLoading(btn, false); }
         }
 
@@ -3462,7 +3420,7 @@
                     if (res.documents.length) referrer = res.documents[0];
                 }
                 if (!referrer || referrer.$id === currentUser.$id) return;
-                const bonus = stakedAmount * 0.02 * (liveUSDTPrice / 100); // Bonus in INR
+                const bonus = stakedAmount * 0.02;
                 const newINR = parseFloat(referrer.inrWallet || 0) + bonus;
                 const newRefIncome = parseFloat(referrer.referralIncome || 0) + bonus;
                 const refs = parseJsonSafe(referrer.referrals, []);
@@ -3503,7 +3461,7 @@
                 div.className = 'bg-black/40 p-2.5 rounded-xl border border-green-500/15 flex justify-between';
                 div.innerHTML = `
                             <div>
-                                <div class="font-bold text-white text-xs">${Number(s.amount).toFixed(2)} SX</div>
+                                <div class="font-bold text-white text-xs">₹${Number(s.amount).toFixed(2)}</div>
                                 <div class="text-[9px] text-green-300/30">${s.startDate} (${s.days} दिन)</div>
                                 <div class="text-[9px] text-green-300/30">🔓 ${s.unlockDate || new Date(s.lockUntil).toLocaleDateString('hi-IN')} ${s.unlockTime || ''}</div>
                             </div>
@@ -3532,7 +3490,7 @@
                 const statusText = s.unlockedAt ? '✅ अनलॉक' : '🔒 लॉक';
                 div.innerHTML = `
                             <div class="flex justify-between">
-                                <span class="font-bold text-white text-xs">${Number(s.amount).toFixed(2)} SX</span>
+                                <span class="font-bold text-white text-xs">₹${Number(s.amount).toFixed(2)}</span>
                                 <span class="text-xs ${statusClass}">${statusText}</span>
                             </div>
                             <div class="text-[9px] text-green-300/30 flex justify-between flex-wrap">
@@ -3557,7 +3515,7 @@
             refs.forEach(r => { totalStaked += parseFloat(r.stakedAmount || 0);
                 totalBonus += parseFloat(r.bonusReceived || 0); });
             document.getElementById('teamTotalMembers').innerText = refs.length;
-            document.getElementById('teamTotalStaked').innerText = totalStaked.toFixed(2) + ' SX';
+            document.getElementById('teamTotalStaked').innerText = '₹' + totalStaked.toFixed(2);
             document.getElementById('teamTotalBonus').innerText = '₹' + totalBonus.toFixed(2);
             list.innerHTML = '';
             if (refs.length === 0) { list.innerHTML =
@@ -3572,7 +3530,7 @@
                             </div>
                             <div class="text-[10px] text-green-300/30 flex flex-wrap gap-2">
                                 <span>📧 ${r.referredEmail || 'N/A'}</span>
-                                <span>💰 ${Number(r.stakedAmount || 0).toFixed(2)} SX</span>
+                                <span>💰 ₹${Number(r.stakedAmount || 0).toFixed(2)}</span>
                                 <span>📅 ${Number(r.stakingDays || 0)} दिन</span>
                                 <span>🕐 ${r.dateTime || ''}</span>
                             </div>
@@ -3590,15 +3548,30 @@
             document.getElementById('walletUSDT').innerText = `$${parseFloat(currentUser.usdtWallet||0).toFixed(2)}`;
         }
 
+        function selectDepositSlab(amount) {
+            selectedDepositAmount = amount;
+            document.getElementById('customDepositAmount').value = amount;
+            document.querySelectorAll('.deposit-slab-btn').forEach(b => {
+                b.classList.remove('active', 'border-green-400', 'bg-green-500/15');
+            });
+            // Highlight selected
+            document.querySelectorAll('.deposit-slab-btn').forEach(b => {
+                if (parseInt(b.innerText.replace(/[₹K,]/g, '')) === amount ||
+                    (b.innerText.includes('K') && parseInt(b.innerText.replace(/[₹K,]/g, '')) * 1000 === amount)) {
+                    b.classList.add('active', 'border-green-400', 'bg-green-500/15');
+                }
+            });
+        }
+
         function generateDepositQR() {
-            const amount = parseFloat(document.getElementById('depositAmount').value);
+            const amount = parseFloat(document.getElementById('customDepositAmount').value);
             if (!amount || amount <= 0) { showToast('वैध राशि दर्ज करें।', 'error'); return; }
             const container = document.getElementById('depositQRContainer');
             container.classList.remove('hidden');
             const qrDiv = document.getElementById('depositQR');
             qrDiv.innerHTML = '';
             const address = '0x7be243182b7442D17a13e2C019f0d0174F196817';
-            const usdtAmount = (amount / liveUSDTPrice).toFixed(2);
+            const usdtAmount = (amount / 100).toFixed(2);
             const text = `USDT BEP20: ${address}\nAmount: $${usdtAmount}\nINR: ₹${amount}`;
             try {
                 new QRCode(qrDiv, {
@@ -3614,6 +3587,34 @@
             } catch (e) { showToast('QR त्रुटि', 'error'); }
         }
 
+        async function submitDeposit() {
+            if (!currentUser) { showToast('लॉगिन करें।', 'error'); return; }
+            const amount = parseFloat(document.getElementById('customDepositAmount').value);
+            if (!amount || amount <= 0) { showToast('वैध राशि दर्ज करें।', 'error'); return; }
+            if (currentUser.pendingDeposit) { showToast('पहले से पेंडिंग।', 'error'); return; }
+
+            const fileInput = document.getElementById('depositScreenshot');
+            const file = fileInput.files[0];
+            if (!file) { showToast('स्क्रीनशॉट अपलोड करें।', 'error'); return; }
+
+            try {
+                const uploaded = await storage.createFile(SCREENSHOT_BUCKET_ID, ID.unique(), file);
+                const deposit = {
+                    amountINR: amount,
+                    amountUSDT: (amount / 100).toFixed(2),
+                    receiptFileId: uploaded.$id,
+                    dateTime: new Date().toLocaleString('hi-IN'),
+                    type: 'user',
+                    network: 'BEP20 (USDT)'
+                };
+                await saveUserFields({ pending_deposit: JSON.stringify(deposit) });
+                fileInput.value = '';
+                document.getElementById('customDepositAmount').value = '';
+                document.getElementById('depositQRContainer').classList.add('hidden');
+                showToast('✅ डिपॉजिट रिक्वेस्ट भेजी गई!', 'success');
+            } catch (e) { showToast('त्रुटि!', 'error'); }
+        }
+
         async function submitWithdraw() {
             if (!currentUser) { showToast('लॉगिन करें।', 'error'); return; }
             const address = document.getElementById('withdrawAddress').value.trim();
@@ -3623,10 +3624,10 @@
             if (amount > parseFloat(currentUser.inrWallet || 0)) { showToast('पर्याप्त INR नहीं!', 'error'); return; }
             if (currentUser.pendingWithdrawal) { showToast('पहले से पेंडिंग।', 'error'); return; }
 
-            const coinsAmount = amount / (liveUSDTPrice / 100);
+            const usdtAmount = amount / 100;
             const newWithdrawal = {
-                coinsAmount: coinsAmount,
                 amountINR: amount,
+                amountUSDT: usdtAmount.toFixed(2),
                 dateTime: new Date().toLocaleString('hi-IN'),
                 network: 'BEP20 (USDT)'
             };
@@ -3716,42 +3717,30 @@
                 const div = document.createElement('div');
                 div.className =
                     'bg-black/40 p-2.5 rounded-xl border border-green-500/15 flex justify-between items-center';
-                const label = e.amountINR ? `+₹${e.amountINR}` : `-${e.coinsAmount} SX`;
+                const label = e.amountINR ? `+₹${e.amountINR}` : `-₹${e.amountINR}`;
                 const isDeposit = e.type === 'deposit' || e.amountINR;
                 div.innerHTML = `
                             <div>
                                 <div class="font-bold text-white text-xs">${label}</div>
-                                <div class="text-[9px] text-green-300/30">${e.dateTime||''} ${e.coinsAmount ? `(${e.coinsAmount} SX)` : ''}</div>
+                                <div class="text-[9px] text-green-300/30">${e.dateTime||''} ${e.amountUSDT ? `($${e.amountUSDT} USDT)` : ''}</div>
                             </div>
                             <div class="text-right flex flex-col items-end gap-1">
                                 <span class="px-2 py-0.5 rounded text-[9px] font-bold ${color}">${e.status}</span>
-                                ${isDeposit && e.receiptFileId ? `<button onclick="viewReceipt('${e.type}','${e.coinsAmount||0}','${e.amountINR||0}','${e.dateTime||''}','${e.status||'Approved'}','${e.receiptFileId||''}')" class="text-[8px] bg-green-500/20 border border-green-500/30 px-2 py-0.5 rounded text-green-400 hover:bg-green-500/30 transition-all">🧾 View Receipt</button>` : ''}
-                                ${!isDeposit && e.coinsAmount ? `<button onclick="viewWithdrawalReceipt('${e.coinsAmount}','${e.dateTime||''}','${e.status||'Completed'}')" class="text-[8px] bg-green-500/20 border border-green-500/30 px-2 py-0.5 rounded text-green-400 hover:bg-green-500/30 transition-all">🧾 View Receipt</button>` : ''}
+                                ${isDeposit && e.receiptFileId ? `<button onclick="viewReceipt('${e.type}','${e.amountINR||0}','${e.amountUSDT||0}','${e.dateTime||''}','${e.status||'Approved'}','${e.receiptFileId||''}')" class="text-[8px] bg-green-500/20 border border-green-500/30 px-2 py-0.5 rounded text-green-400 hover:bg-green-500/30 transition-all">🧾 View Receipt</button>` : ''}
                             </div>
                         `;
                 list.appendChild(div);
             });
         }
 
-        function viewReceipt(type, coinsAmount, amountINR, dateTime, status, receiptFileId) {
+        function viewReceipt(type, amountINR, amountUSDT, dateTime, status, receiptFileId) {
             openReceipt({
                 type: 'deposit',
-                coinsAmount: coinsAmount,
                 amountINR: amountINR,
+                amountUSDT: amountUSDT,
                 dateTime: dateTime,
                 status: status,
                 receiptFileId: receiptFileId,
-                network: 'BEP20 (USDT)'
-            });
-        }
-
-        function viewWithdrawalReceipt(coinsAmount, dateTime, status) {
-            openReceipt({
-                type: 'withdrawal',
-                coinsAmount: coinsAmount,
-                dateTime: dateTime,
-                status: status,
-                receiptFileId: null,
                 network: 'BEP20 (USDT)'
             });
         }
@@ -3762,17 +3751,17 @@
         function generateSliderData() {
             const baseSlides = [
                 { icon: '🚀', line1: 'अपने सपनों को पंख लगाओ', line2: 'SupriX Global के साथ आज ही शुरू करें', badge: '✦ शुरुआत ✦' },
-                { icon: '💎', line1: 'हर कॉइन कीमती है', line2: 'स्मार्ट कॉन्ट्रैक्ट से सुरक्षित', badge: '✦ सुरक्षा ✦' },
+                { icon: '💎', line1: 'हर पैसा कीमती है', line2: 'स्मार्ट कॉन्ट्रैक्ट से सुरक्षित', badge: '✦ सुरक्षा ✦' },
                 { icon: '🦋', line1: 'जीवन में उतार-चढ़ाव आते हैं', line2: 'पर हार न मानो, मंजिल पास है', badge: '✦ धैर्य ✦' },
                 { icon: '🌟', line1: 'जो आज तुम्हारा मज़ाक उड़ा रहे हैं', line2: 'कल वही तुम्हारी सफलता पर ताली बजाएँगे', badge: '✦ विश्वास ✦' },
                 { icon: '⚔️', line1: 'जब तक जीत नहीं मिलती', line2: 'तब तक लड़ना ही असली पहचान है', badge: '✦ संघर्ष ✦' },
                 { icon: '👑', line1: 'सिंहासन उन्हीं को मिलता है', line2: 'जो खुद को हर दिन बेहतर बनाते हैं', badge: '✦ बेहतरी ✦' },
                 { icon: '🎯', line1: 'अपने लक्ष्य पर नज़र रखो', line2: 'दुनिया की नज़रें तुम्हारी तरफ होंगी', badge: '✦ लक्ष्य ✦' },
                 { icon: '🔥', line1: 'आज पसीना बहाओ, कल दुनिया सलाम करेगी', line2: 'मेहनत की आग में तपकर ही सोना चमकता है', badge: '✦ तपस्या ✦' },
-                { icon: '🎁', line1: '50000 SX + 3 Active Referral', line2: 'पर मिलेगा स्लिम कीपैड फोन 🎁', badge: '🎁 गिफ्ट 🎁' },
-                { icon: '📱', line1: '100000 SX + 10 Active Referral', line2: 'पर मिलेगा ₹10000 का Android फोन 🎁', badge: '🎁 गिफ्ट 🎁' },
-                { icon: '📟', line1: '200000 SX + 5 Active Referral', line2: 'पर मिलेगा बड़ा Tablet ₹18000 का 🎁', badge: '🎁 गिफ्ट 🎁' },
-                { icon: '🏍️', line1: '100 Active Referral × 10000 SX Stake', line2: 'पर मिलेगी ₹100000 की बाइक 🏍️', badge: '🎁 गिफ्ट 🎁' },
+                { icon: '🎁', line1: '₹50,000 स्टेक + 3 Active Referral', line2: 'पर मिलेगा स्लिम कीपैड फोन 🎁', badge: '🎁 गिफ्ट 🎁' },
+                { icon: '📱', line1: '₹1,00,000 स्टेक + 10 Active Referral', line2: 'पर मिलेगा ₹10000 का Android फोन 🎁', badge: '🎁 गिफ्ट 🎁' },
+                { icon: '📟', line1: '₹2,00,000 स्टेक + 5 Active Referral', line2: 'पर मिलेगा बड़ा Tablet ₹18000 का 🎁', badge: '🎁 गिफ्ट 🎁' },
+                { icon: '🏍️', line1: '100 Active Referral × ₹10,000 स्टेक', line2: 'पर मिलेगी ₹100000 की बाइक 🏍️', badge: '🎁 गिफ्ट 🎁' },
                 { icon: '🏆', line1: 'सम्मानित किया जाएगा कंपनी की ओर से', line2: 'आपकी मेहनत को मिलेगा पहचान', badge: '✦ सम्मान ✦' },
                 { icon: '🌅', line1: 'हर सुबह एक नई शुरुआत है', line2: 'अपने सपनों को पंख लगाओ और उड़ान भरो', badge: '✦ शुरुआत ✦' },
                 { icon: '🙏', line1: 'जिस दिन तुमने खुद पर विश्वास कर लिया', line2: 'उस दिन दुनिया की कोई ताकत तुम्हें रोक नहीं सकती', badge: '✦ विश्वास ✦' },
@@ -3843,11 +3832,12 @@
         window.onload = async function() {
             createButterflies();
             renderSlider();
+
             // Update notice board with dynamic content
             const noticeText = document.getElementById('noticeText');
             const notices = [
                 '📢 <strong>आज का अपडेट:</strong> Live Market Rate अपडेट हो चुका है। Daily Reward Claim करना न भूलें।',
-                '📢 <strong>नई सुविधा:</strong> अब आप Daily Claim Reward से ₹100 प्रतिदिन कमा सकते हैं!',
+                '📢 <strong>नई सुविधा:</strong> अब आप 0.5% Daily Reward से ₹ प्रतिदिन कमा सकते हैं!',
                 '📢 <strong>स्टेकिंग बोनस:</strong> 30 दिनों की स्टेकिंग पर अतिरिक्त 5% बोनस!',
                 '📢 <strong>रेफरल प्रोग्राम:</strong> हर रेफरल पर 2% कमीशन! अपने दोस्तों को आमंत्रित करें।'
             ];
@@ -3856,6 +3846,9 @@
                 idx = (idx + 1) % notices.length;
                 noticeText.innerHTML = notices[idx];
             }, 15000);
+
+            // Get voices for speech
+            window.speechSynthesis.getVoices();
 
             try {
                 const loaded = await loadCurrentUserData();
@@ -3886,7 +3879,9 @@
         window.copyToClipboard = copyToClipboard;
         window.submitStake = submitStake;
         window.claimDailyReward = claimDailyReward;
+        window.selectDepositSlab = selectDepositSlab;
         window.generateDepositQR = generateDepositQR;
+        window.submitDeposit = submitDeposit;
         window.submitWithdraw = submitWithdraw;
         window.shareReferralLink = shareReferralLink;
         window.toggleTxHistoryModal = toggleTxHistoryModal;
@@ -3909,7 +3904,6 @@
         window.closeFullscreenImage = closeFullscreenImage;
         window.toggleZoomImage = toggleZoomImage;
         window.viewReceipt = viewReceipt;
-        window.viewWithdrawalReceipt = viewWithdrawalReceipt;
         window.closeReceipt = closeReceipt;
         window.downloadReceipt = downloadReceipt;
         window.printReceipt = printReceipt;
