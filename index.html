@@ -1212,6 +1212,34 @@
         .filter-tabs button:hover:not(.active) {
             color: #d4b0e0;
         }
+        .sc-address-box {
+            background: rgba(18, 12, 28, 0.7);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            border-radius: 14px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(6px);
+            transition: all 0.3s;
+        }
+        .sc-address-box:hover {
+            border-color: rgba(34, 197, 94, 0.5);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.08);
+        }
+        .sc-address-box .sc-label {
+            font-size: 9px;
+            color: #a78bbf;
+            display: block;
+        }
+        .sc-address-box .sc-address {
+            font-size: 13px;
+            font-weight: 600;
+            font-family: monospace;
+            color: #22c55e;
+            letter-spacing: 0.5px;
+            word-break: break-all;
+        }
     </style>
 </head>
 <body>
@@ -1646,10 +1674,10 @@
                     <div class="id-box id-box-gold">
                         <div>
                             <span class="id-label">🆔 आपकी Unique SupriX ID</span>
-                            <span class="id-value" id="profileCoinXIdDisplay">SPX123456789</span>
+                            <span class="id-value" id="profileSPXIdDisplay">SPX123456789</span>
                             <span class="id-usage">इस ID से पहचान करें</span>
                         </div>
-                        <button onclick="copyToClipboard('profileCoinXIdDisplay', '✅ SPX ID कॉपी हो गई!')" class="text-green-400 hover:text-white shrink-0 btn-animate text-xs">
+                        <button onclick="copyToClipboard('profileSPXIdDisplay', '✅ SPX ID कॉपी हो गई!')" class="text-green-400 hover:text-white shrink-0 btn-animate text-xs">
                             <i class="fa-solid fa-copy mr-1"></i> कॉपी
                         </button>
                     </div>
@@ -1981,14 +2009,14 @@
     <!-- ============================================================ -->
     <script>
         // ============================================================
-        // APPWRITE CONFIGURATION
+        // APPWRITE CONFIGURATION - YOUR UPDATED IDs
         // ============================================================
-        const APPWRITE_ENDPOINT = "https://fra.cloud.appwrite.io/v1";
-        const APPWRITE_PROJECT_ID = "6a43cbf70027f5ff8960";
-        const DATABASE_ID = "6a47b7550016c4291ab3";
-        const USERS_COLLECTION_ID = "6a47b7550016c4291ab3";
+        const APPWRITE_ENDPOINT = "https://cloud.appwrite.io/v1";
+        const APPWRITE_PROJECT_ID = "6a6b1c7400275c968e01";
+        const DATABASE_ID = "6a6b1e3c00135526f835";
+        const USERS_COLLECTION_ID = "users";
         const STAKING_SETTINGS_COLLECTION_ID = "staking_plan_settings";
-        const SCREENSHOT_BUCKET_ID = "6a47d26c00001f17b543";
+        const SCREENSHOT_BUCKET_ID = "6a6b9234003d3e1f78ed";
         const STAKING_SETTINGS_DOC_ID = "global_config";
         const SECRET_ADMIN_KEY = "admin2025";
 
@@ -2066,7 +2094,7 @@
                 approvedWithdrawals: parseJsonSafe(doc.approved_withdrawal, []),
                 referrals: parseJsonSafe(doc.referrals, []),
                 transactions: parseJsonSafe(doc.transactions, []),
-                coinxId: doc.coinxId || doc.coinxid || generateSPXId(),
+                spxId: doc.spxId || generateSPXId(),
                 smartContract: doc.smartContract || generateSmartContract(),
                 inrWallet: parseFloat(doc.inrWallet || 0),
                 usdtWallet: parseFloat(doc.usdtWallet || 0),
@@ -2332,11 +2360,11 @@
             const list = document.getElementById('adminUserList');
             list.innerHTML = '';
             if (users.length === 0) { list.innerHTML =
-                '<p class="text-green-300/30 text-center py-2">कोई यूजर नहीं</p>'; return; }
+                    '<p class="text-green-300/30 text-center py-2">कोई यूजर नहीं</p>'; return; }
             users.forEach(u => {
                 const emailId = 'aemail' + u.$id,
                     phoneId = 'aphone' + u.$id,
-                    coinxId = 'acoinx' + u.$id,
+                    spxId = 'aspx' + u.$id,
                     refId = 'aref' + u.$id,
                     scId = 'asc' + u.$id;
                 const card = document.createElement('div');
@@ -2349,7 +2377,7 @@
                             <div class="text-[10px] text-green-300/30 grid grid-cols-2 gap-1 pb-1">
                                 <span>ईमेल: ${u.email||'N/A'} <button onclick="copyToClipboard('${emailId}','✅ Email कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
                                 <span>मोबाइल: ${u.phone||'N/A'} <button onclick="copyToClipboard('${phoneId}','✅ Phone कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
-                                <span>SPX ID: ${u.coinxId||'N/A'} <button onclick="copyToClipboard('${coinxId}','✅ SPX ID कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
+                                <span>SPX ID: ${u.spxId||'N/A'} <button onclick="copyToClipboard('${spxId}','✅ SPX ID कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
                                 <span>रेफरल: ${u.$id||'N/A'} <button onclick="copyToClipboard('${refId}','✅ रेफरल कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
                                 <span class="col-span-2">🔗 Smart: ${u.smartContract||'N/A'} <button onclick="copyToClipboard('${scId}','✅ Smart Contract कॉपी!')" class="copy-btn-admin"><i class="fa-solid fa-copy"></i></button></span>
                             </div>
@@ -2359,7 +2387,7 @@
                             </div>
                             <span id="${emailId}" class="hidden">${u.email||''}</span>
                             <span id="${phoneId}" class="hidden">${u.phone||''}</span>
-                            <span id="${coinxId}" class="hidden">${u.coinxId||''}</span>
+                            <span id="${spxId}" class="hidden">${u.spxId||''}</span>
                             <span id="${refId}" class="hidden">${u.$id||''}</span>
                             <span id="${scId}" class="hidden">${u.smartContract||''}</span>
                         `;
@@ -2386,7 +2414,7 @@
             const amount = parseFloat(document.getElementById('adminCoinAmount').value);
             const action = document.getElementById('adminCoinAction').value;
             if (!targetId || !amount || amount <= 0) { showToast('सही आईडी/ईमेल और मान्य अमाउंट भरें।',
-                'error'); return; }
+                    'error'); return; }
             setButtonLoading(btn, true);
             const idx = users.findIndex(u => u.$id === targetId || u.email === targetId);
             if (idx === -1) { setButtonLoading(btn, false);
@@ -2413,7 +2441,7 @@
             list.innerHTML = '';
             const pending = users.filter(u => u.pendingDeposit && u.pendingDeposit.type === 'user');
             if (pending.length === 0) { list.innerHTML =
-                '<p class="text-green-300/30 text-center py-2">कोई पेंडिंग डिपॉजिट नहीं</p>'; return; }
+                    '<p class="text-green-300/30 text-center py-2">कोई पेंडिंग डिपॉजिट नहीं</p>'; return; }
             pending.forEach(u => {
                 const d = u.pendingDeposit;
                 const card = document.createElement('div');
@@ -2480,7 +2508,7 @@
             list.innerHTML = '';
             const pending = users.filter(u => u.pendingWithdrawal);
             if (pending.length === 0) { list.innerHTML =
-                '<p class="text-green-300/30 text-center py-2">कोई पेंडिंग विथड्रॉवल नहीं</p>'; return; }
+                    '<p class="text-green-300/30 text-center py-2">कोई पेंडिंग विथड्रॉवल नहीं</p>'; return; }
             pending.forEach(u => {
                 const w = u.pendingWithdrawal;
                 const card = document.createElement('div');
@@ -2650,7 +2678,7 @@
                 });
             });
             if (all.length === 0) { list.innerHTML =
-                '<p class="text-green-300/30 text-center py-2">कोई रेफरल नहीं</p>'; return; }
+                    '<p class="text-green-300/30 text-center py-2">कोई रेफरल नहीं</p>'; return; }
             all.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
             all.forEach(r => {
                 const div = document.createElement('div');
@@ -2672,7 +2700,7 @@
                 "Name,Email,Phone,SPXID,SmartContract,INRWallet,USDTWallet,Staked,Withdrawn,Referrals,ReferralIncome\n";
             users.forEach(u => {
                 csv +=
-                    `${u.name||''},${u.email||''},${u.phone||''},${u.coinxId||''},${u.smartContract||''},${parseFloat(u.inrWallet||0).toFixed(2)},${parseFloat(u.usdtWallet||0).toFixed(2)},${parseFloat(u.staked||0).toFixed(2)},${parseFloat(u.withdrawal||0).toFixed(2)},${(u.referrals||[]).length},${parseFloat(u.referralIncome||0).toFixed(2)}\n`;
+                    `${u.name||''},${u.email||''},${u.phone||''},${u.spxId||''},${u.smartContract||''},${parseFloat(u.inrWallet||0).toFixed(2)},${parseFloat(u.usdtWallet||0).toFixed(2)},${parseFloat(u.staked||0).toFixed(2)},${parseFloat(u.withdrawal||0).toFixed(2)},${(u.referrals||[]).length},${parseFloat(u.referralIncome||0).toFixed(2)}\n`;
             });
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = URL.createObjectURL(blob);
@@ -2742,7 +2770,7 @@
                 statusBadge = '<span class="receipt-badge approved">✅ ' + (data.status || 'SUCCESS') + '</span>';
             }
 
-            const usdtAmount = (parseFloat(data.amountINR || 0) / liveUSDTPrice).toFixed(2);
+            const usdtAmount = (parseFloat(data.amountINR || 0) / 100).toFixed(2);
 
             let receiptHTML = `
                         <div class="receipt-detail-block" style="text-align:center;">
@@ -2754,7 +2782,7 @@
                             </div>
                         </div>
                         <div class="receipt-row"><span class="label">👤 Member Name</span><span class="value"><span class="masked-text">${currentUser?.name || 'N/A'}</span></span></div>
-                        <div class="receipt-row"><span class="label">🆔 Member ID</span><span class="value"><span class="masked-text">${currentUser?.coinxId || 'N/A'}</span></span></div>
+                        <div class="receipt-row"><span class="label">🆔 Member ID</span><span class="value"><span class="masked-text">${currentUser?.spxId || 'N/A'}</span></span></div>
                         <div class="receipt-row"><span class="label">🧾 Receipt ID</span><span class="value"><span class="masked-text">SPX-${new Date().toISOString().slice(0,10).replace(/-/g,'')}-${Math.floor(100000+Math.random()*900000)}</span></span></div>
                         <div class="receipt-row"><span class="label">🌐 Network</span><span class="value">BNB Smart Chain (BEP20)</span></div>
                         <div class="receipt-row"><span class="label">📅 Date & Time</span><span class="value">${data.dateTime || new Date().toLocaleString('hi-IN')}</span></div>
@@ -2968,10 +2996,10 @@
             try {
                 const acc = await account.get();
                 const doc = await databases.getDocument(DATABASE_ID, USERS_COLLECTION_ID, acc.$id);
-                if (!doc.coinxId && !doc.coinxid) {
+                if (!doc.spxId) {
                     const newId = generateSPXId();
-                    await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, doc.$id, { coinxId: newId });
-                    doc.coinxId = newId;
+                    await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, doc.$id, { spxId: newId });
+                    doc.spxId = newId;
                 }
                 if (!doc.smartContract) {
                     const newSc = generateSmartContract();
@@ -3044,7 +3072,7 @@
                 try { await account.deleteSession('current'); } catch (e) {}
                 await account.createEmailPasswordSession(email, phone);
                 const smartContract = generateSmartContract();
-                const coinxId = generateSPXId();
+                const spxId = generateSPXId();
                 const userData = {
                     name,
                     email,
@@ -3062,8 +3090,8 @@
                     withdrawal_screenshot: '',
                     referrals: JSON.stringify([]),
                     transactions: JSON.stringify([]),
-                    coinxId,
-                    smartContract,
+                    spxId: spxId,
+                    smartContract: smartContract,
                     referredBy: referral || null,
                     isBlocked: false,
                     inrWallet: 0,
@@ -3143,10 +3171,8 @@
             document.getElementById('statUSDTWallet').innerText = `$${parseFloat(currentUser.usdtWallet||0).toFixed(2)}`;
             document.getElementById('statReferralIncome').innerText = `₹${parseFloat(currentUser.referralIncome||0).toFixed(2)}`;
 
-            // Rewards total
             document.getElementById('totalRewardsDisplay').innerText = `₹${parseFloat(currentUser.totalClaimedRewards||0).toFixed(2)}`;
 
-            // Mini stats
             const totalRewards = parseFloat(currentUser.totalClaimedRewards || 0);
             document.getElementById('miniRewards').innerText = `₹${totalRewards.toFixed(0)}`;
             const totalDeposits = (currentUser.approvedDeposits || []).reduce((a, d) => a + parseFloat(d.amountINR || 0),
@@ -3156,7 +3182,6 @@
                 0), 0);
             document.getElementById('miniWithdraw').innerText = `₹${totalWithdrawals.toFixed(0)}`;
 
-            // Update daily claim UI
             updateDailyClaimUI();
         }
 
@@ -3170,7 +3195,6 @@
             const oneDay = 24 * 60 * 60 * 1000;
             const canClaim = !lastClaim || (now - lastClaim) >= oneDay;
 
-            // Calculate 0.5% of staked amount
             const stakedAmount = parseFloat(currentUser.staked || 0);
             const dailyAmount = stakedAmount * 0.005;
 
@@ -3212,7 +3236,6 @@
                 statusMsg.classList.add('hidden');
             }
 
-            // Update countdown timer
             if (dailyClaimTimer) clearInterval(dailyClaimTimer);
             dailyClaimTimer = setInterval(() => {
                 if (!currentUser) return;
@@ -3277,7 +3300,6 @@
                     lastClaimDate: nowDate
                 });
 
-                // Add transaction
                 const txs = currentUser.transactions || [];
                 txs.push({
                     type: 'daily_reward',
@@ -3289,7 +3311,6 @@
                 });
                 await saveUserFields({ transactions: JSON.stringify(txs) });
 
-                // Voice announcement
                 playVoiceMessage(
                     'बधाई हो! आपका आज का डेली रिवॉर्ड सफलतापूर्वक आपके INR वॉलेट में जोड़ दिया गया है। SupriX Global के साथ जुड़े रहने के लिए आपका धन्यवाद। आपका दिन शुभ हो।'
                 );
@@ -3298,7 +3319,6 @@
                 updateDashboardStats();
                 updateDailyClaimUI();
 
-                // Show success status
                 const statusMsg = document.getElementById('claimStatusMessage');
                 statusMsg.classList.remove('hidden');
                 statusMsg.className = 'mt-2 text-center text-xs text-green-400';
@@ -3554,7 +3574,6 @@
             document.querySelectorAll('.deposit-slab-btn').forEach(b => {
                 b.classList.remove('active', 'border-green-400', 'bg-green-500/15');
             });
-            // Highlight selected
             document.querySelectorAll('.deposit-slab-btn').forEach(b => {
                 if (parseInt(b.innerText.replace(/[₹K,]/g, '')) === amount ||
                     (b.innerText.includes('K') && parseInt(b.innerText.replace(/[₹K,]/g, '')) * 1000 === amount)) {
@@ -3652,7 +3671,7 @@
             if (!currentUser) return;
             document.getElementById('profileName').innerText = currentUser.name || 'User';
             document.getElementById('profileEmail').innerText = currentUser.email || '';
-            document.getElementById('profileCoinXIdDisplay').innerText = currentUser.coinxId || 'N/A';
+            document.getElementById('profileSPXIdDisplay').innerText = currentUser.spxId || 'N/A';
             document.getElementById('profileEmailIdDisplay').innerText = currentUser.email || '';
             document.getElementById('profileSmartContract').innerText = currentUser.smartContract || 'N/A';
             const ref = currentUser.$id;
@@ -3833,7 +3852,6 @@
             createButterflies();
             renderSlider();
 
-            // Update notice board with dynamic content
             const noticeText = document.getElementById('noticeText');
             const notices = [
                 '📢 <strong>आज का अपडेट:</strong> Live Market Rate अपडेट हो चुका है। Daily Reward Claim करना न भूलें।',
@@ -3847,7 +3865,6 @@
                 noticeText.innerHTML = notices[idx];
             }, 15000);
 
-            // Get voices for speech
             window.speechSynthesis.getVoices();
 
             try {
@@ -3867,7 +3884,6 @@
                 if (ref) document.getElementById('regReferral').value = ref;
             }
 
-            // Update USDT rate every 60 seconds
             setInterval(getUSDTRate, 60000);
         };
 
