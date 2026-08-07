@@ -708,7 +708,7 @@
             font-size: 16px;
             font-weight: 700;
         }
-        /* new styles for profile modal */
+        /* profile modal */
         .profile-modal {
             position: fixed;
             inset: 0;
@@ -978,16 +978,16 @@
                         </div>
                     </div>
 
-                    <!-- Unlock Staking (Enhanced) - supports Email and SPX ID -->
+                    <!-- Unlock Staking (Enhanced) - unlocks ALL stakes regardless of lock period -->
                     <div class="glass-gold p-5 rounded-2xl border-amber-500/20 space-y-4">
-                        <h4 class="text-sm font-bold text-amber-400"><i class="fa-solid fa-lock-open mr-2"></i>स्टेकिंग अनलॉक (Email / SPX ID)</h4>
-                        <p class="text-[11px] text-amber-300/40">किसी भी यूजर की स्टेकिंग को जबरन अनलॉक करें (केवल मैच्योर स्टेकिंग)। आप <strong>SPX ID</strong>, Email या Smart Contract का उपयोग कर सकते हैं।</p>
+                        <h4 class="text-sm font-bold text-amber-400"><i class="fa-solid fa-lock-open mr-2"></i>स्टेकिंग अनलॉक (कभी भी) – SPX ID / Email</h4>
+                        <p class="text-[11px] text-amber-300/40"><strong>किसी भी यूजर की सभी स्टेकिंग को तुरंत अनलॉक करें</strong> – चाहे लॉकिंग अवधि समाप्त हुई हो या नहीं। आप <strong>SPX ID</strong>, Email या Smart Contract का उपयोग कर सकते हैं।</p>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <input type="text" id="adminUnlockIdentifier" placeholder="SPX ID / Email / SC" class="bg-black/40 border border-amber-500/20 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
-                            <button onclick="adminUnlockStakeByIdentifier()" class="btn-gold py-3 rounded-xl text-xs font-bold shadow-xl flex items-center justify-center gap-2 col-span-2"><i class="fa-solid fa-unlock"></i> स्टेकिंग अनलॉक करें</button>
+                            <button onclick="adminUnlockAllStakes()" class="btn-gold py-3 rounded-xl text-xs font-bold shadow-xl flex items-center justify-center gap-2 col-span-2"><i class="fa-solid fa-unlock"></i> सभी स्टेकिंग अनलॉक करें</button>
                         </div>
                         <div class="text-[10px] text-amber-300/40 mt-1">
-                            <i class="fa-solid fa-lightbulb mr-1"></i> <strong>Note:</strong> सिर्फ वही स्टेकिंग अनलॉक होगी जिसकी Locking Period समाप्त हो चुकी है। SPX ID और Email दोनों काम करेंगे।
+                            <i class="fa-solid fa-lightbulb mr-1"></i> <strong>Note:</strong> यह कमांड यूजर की <strong>सभी स्टेकिंग</strong> को अनलॉक कर देगा – भले ही लॉकिंग अवधि पूरी न हुई हो। अनलॉक की गई राशि यूजर के मुख्य बैलेंस में जोड़ दी जाएगी।
                         </div>
                     </div>
 
@@ -1020,7 +1020,7 @@
             <div class="w-full max-w-md flex flex-col items-center justify-center max-h-[80vh]"><img id="fullscreenImgTarget" src="" class="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 transform scale-100 cursor-zoom-in" onclick="toggleZoomImage(this)"><p class="text-[10px] text-amber-300/30 mt-2">ज़ूम करने के लिए क्लिक करें</p></div>
         </div>
 
-        <!-- PROFILE MODAL (NEW) -->
+        <!-- PROFILE MODAL -->
         <div id="userProfileModal" class="profile-modal hidden">
             <div class="profile-card" id="profileCard">
                 <div class="flex justify-between items-center border-b border-amber-500/15 pb-3 mb-4">
@@ -1438,7 +1438,7 @@
         }
 
         // ============================================================
-        // VIEW USER PROFILE (NEW)
+        // VIEW USER PROFILE
         // ============================================================
         function viewUserProfile(userId) {
             const u = users.find(usr => usr.$id === userId);
@@ -1481,7 +1481,7 @@
                     <div class="text-[10px] text-white/80 mt-1">${withdrawStr}</div>
                 </div>
                 <div class="flex gap-2 mt-3">
-                    <button onclick="adminUnlockAllMaturedStakes('${u.$id}')" class="flex-1 bg-amber-500/20 hover:bg-amber-500 text-amber-400 hover:text-[#0a0712] text-[10px] font-bold px-3 py-1.5 rounded-full border border-amber-500/30 transition-all btn-animate"><i class="fa-solid fa-unlock mr-1"></i> अनलॉक करें</button>
+                    <button onclick="adminUnlockAllStakesForUser('${u.$id}')" class="flex-1 bg-amber-500/20 hover:bg-amber-500 text-amber-400 hover:text-[#0a0712] text-[10px] font-bold px-3 py-1.5 rounded-full border border-amber-500/30 transition-all btn-animate"><i class="fa-solid fa-unlock mr-1"></i> सभी अनलॉक करें</button>
                     <button onclick="closeUserProfile()" class="flex-1 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-[#0a0712] text-[10px] font-bold px-3 py-1.5 rounded-full border border-red-500/30 transition-all btn-animate">बंद करें</button>
                 </div>
             `;
@@ -1495,42 +1495,36 @@
         }
 
         // ============================================================
-        // ADMIN UNLOCK ALL MATURED STAKES FOR A USER (used in profile)
+        // ADMIN UNLOCK ALL STAKES FOR A USER (used in profile)
         // ============================================================
-        async function adminUnlockAllMaturedStakes(userId) {
+        async function adminUnlockAllStakesForUser(userId) {
             if (!adminSession) return;
             const idx = users.findIndex(u => u.$id === userId);
             if (idx === -1) return;
             const u = users[idx];
             if (!u.staking || u.staking.length === 0) { showToast('कोई स्टेकिंग नहीं', 'info'); return; }
-            const now = Date.now();
-            const matured = u.staking.filter(s => s.lockUntil <= now);
-            if (matured.length === 0) { showToast('कोई मैच्योर स्टेकिंग नहीं', 'info'); return; }
+
             let total = 0;
-            const remaining = [];
             const history = u.stakingHistory || [];
             for (const s of u.staking) {
-                if (s.lockUntil <= now) {
-                    total += parseFloat(s.amount);
-                    history.push({ ...s, unlockedAt: new Date().toISOString(), unlockedBy: 'admin' });
-                } else {
-                    remaining.push(s);
-                }
+                total += parseFloat(s.amount);
+                history.push({ ...s, unlockedAt: new Date().toISOString(), unlockedBy: 'admin (forced)' });
             }
             const newCoins = parseFloat(u.coins) + total;
-            const newStaked = parseFloat(u.staked) - total;
+            const newStaked = 0; // all stakes removed
+
             try {
                 await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, userId, {
                     coins: newCoins,
-                    staked: Math.max(0, newStaked),
-                    staking: JSON.stringify(remaining),
+                    staked: 0,
+                    staking: JSON.stringify([]),
                     stakingHistory: JSON.stringify(history)
                 });
                 u.coins = newCoins;
-                u.staked = Math.max(0, newStaked);
-                u.staking = remaining;
+                u.staked = 0;
+                u.staking = [];
                 u.stakingHistory = history;
-                showToast(`✅ ${total.toFixed(2)} USDT अनलॉक कर दिया गया`, 'success');
+                showToast(`✅ ${total.toFixed(2)} USDT (सभी स्टेक) अनलॉक कर दिया गया`, 'success');
                 updateAdminStats();
                 renderAdminUsers();
                 renderAdminStaking();
@@ -1538,7 +1532,79 @@
                 if (!document.getElementById('userProfileModal').classList.contains('hidden')) {
                     viewUserProfile(userId);
                 }
-            } catch (e) { showToast('त्रुटि', 'error'); }
+            } catch (e) { showToast('त्रुटि: ' + e.message, 'error'); }
+        }
+
+        // ============================================================
+        // ADMIN UNLOCK ALL STAKES BY IDENTIFIER (anytime)
+        // ============================================================
+        async function adminUnlockAllStakes() {
+            if (!adminSession) return;
+            const identifier = document.getElementById('adminUnlockIdentifier').value.trim();
+            if (!identifier) { showToast('SPX ID / Email / SC दर्ज करें', 'error'); return; }
+
+            setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold'), true);
+
+            try {
+                const res = await databases.listDocuments(DATABASE_ID, USERS_COLLECTION_ID, [
+                    Query.or([
+                        Query.equal('email', identifier),
+                        Query.equal('coinxId', identifier),
+                        Query.equal('smartContract', identifier)
+                    ])
+                ]);
+
+                if (res.documents.length === 0) {
+                    showToast('❌ यूजर नहीं मिला!', 'error');
+                    setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold'), false);
+                    return;
+                }
+
+                const target = res.documents[0];
+                const user = mapUserDoc(target);
+
+                if (!user.staking || user.staking.length === 0) {
+                    showToast('❌ इस यूजर की कोई स्टेकिंग नहीं!', 'error');
+                    setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold'), false);
+                    return;
+                }
+
+                let total = 0;
+                const history = user.stakingHistory || [];
+                for (const s of user.staking) {
+                    total += parseFloat(s.amount);
+                    history.push({ ...s, unlockedAt: new Date().toISOString(), unlockedBy: 'admin (forced)' });
+                }
+
+                const newCoins = parseFloat(user.coins) + total;
+                const newStaked = 0;
+
+                await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, target.$id, {
+                    coins: newCoins,
+                    staked: newStaked,
+                    staking: JSON.stringify([]),
+                    stakingHistory: JSON.stringify(history)
+                });
+
+                const idx = users.findIndex(u => u.$id === target.$id);
+                if (idx !== -1) {
+                    users[idx].coins = newCoins;
+                    users[idx].staked = newStaked;
+                    users[idx].staking = [];
+                    users[idx].stakingHistory = history;
+                }
+
+                showToast(`✅ ${total.toFixed(2)} USDT (सभी स्टेक) अनलॉक कर दिया गया (${user.name})`, 'success');
+                document.getElementById('adminUnlockIdentifier').value = '';
+                renderAdminStaking();
+                updateAdminStats();
+                renderAdminUsers();
+
+            } catch (e) {
+                showToast('त्रुटि: ' + e.message, 'error');
+            } finally {
+                setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold'), false);
+            }
         }
 
         // ============================================================
@@ -1772,8 +1838,6 @@
                 if (u.staking && u.staking.length > 0) {
                     u.staking.forEach(s => {
                         found = true;
-                        const now = Date.now();
-                        const isUnlockable = s.lockUntil <= now;
                         const div = document.createElement('div');
                         div.className =
                             'bg-black/40 p-3 rounded-xl border border-amber-500/15 flex flex-wrap justify-between items-center';
@@ -1784,8 +1848,8 @@
                                 <div class="text-[9px] text-amber-300/30">📅 ${s.startDate || 'N/A'} | 🔓 ${new Date(s.lockUntil).toLocaleDateString('hi-IN')}</div>
                             </div>
                             <div class="text-right">
-                                <span class="text-[10px] ${isUnlockable ? 'text-green-400' : 'text-yellow-400'} font-bold">${isUnlockable ? '🔓 Ready' : '🔒 Locked'}</span>
-                                ${isUnlockable ? `<button onclick="adminUnlockStake('${u.$id}','${s.stakeId}')" class="bg-amber-500 text-[#0a0712] px-3 py-0.5 rounded-full text-[9px] mt-1 block font-bold hover:bg-amber-400 transition-all">Unlock</button>` : ''}
+                                <span class="text-[10px] text-amber-400 font-bold">🔒 Locked</span>
+                                <button onclick="adminUnlockStake('${u.$id}','${s.stakeId}')" class="bg-amber-500 text-[#0a0712] px-3 py-0.5 rounded-full text-[9px] mt-1 block font-bold hover:bg-amber-400 transition-all">🔓 Unlock (anytime)</button>
                             </div>
                         `;
                         list.appendChild(div);
@@ -1795,6 +1859,7 @@
             if (!found) list.innerHTML = '<p class="text-amber-300/30 text-center py-4">कोई स्टेकिंग नहीं</p>';
         }
 
+        // Individual stake unlock (anytime)
         async function adminUnlockStake(userId, stakeId) {
             if (!adminSession) return;
             const idx = users.findIndex(u => u.$id === userId);
@@ -1806,7 +1871,7 @@
             const newStaked = Math.max(0, parseFloat(users[idx].staked || 0) - parseFloat(stake.amount));
             const remaining = users[idx].staking.filter(s => s.stakeId !== stakeId);
             const history = users[idx].stakingHistory || [];
-            history.push({ ...stake, unlockedAt: new Date().toISOString(), unlockedBy: 'admin' });
+            history.push({ ...stake, unlockedAt: new Date().toISOString(), unlockedBy: 'admin (forced)' });
             try {
                 await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, userId, {
                     coins: newCoins,
@@ -1823,91 +1888,6 @@
                 updateAdminStats();
                 renderAdminUsers();
             } catch (e) { showToast('त्रुटि', 'error'); }
-        }
-
-        // ============================================================
-        // ADMIN UNLOCK STAKE BY IDENTIFIER (supports SPX ID, Email, SC)
-        // ============================================================
-        async function adminUnlockStakeByIdentifier() {
-            if (!adminSession) return;
-            const identifier = document.getElementById('adminUnlockIdentifier').value.trim();
-            if (!identifier) { showToast('SPX ID / Email / SC दर्ज करें', 'error'); return; }
-
-            setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold'), true);
-
-            try {
-                const res = await databases.listDocuments(DATABASE_ID, USERS_COLLECTION_ID, [
-                    Query.or([
-                        Query.equal('email', identifier),
-                        Query.equal('coinxId', identifier),
-                        Query.equal('smartContract', identifier)
-                    ])
-                ]);
-
-                if (res.documents.length === 0) {
-                    showToast('❌ यूजर नहीं मिला!', 'error');
-                    setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold'), false);
-                    return;
-                }
-
-                const target = res.documents[0];
-                const user = mapUserDoc(target);
-
-                if (!user.staking || user.staking.length === 0) {
-                    showToast('❌ इस यूजर की कोई स्टेकिंग नहीं!', 'error');
-                    setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold'), false);
-                    return;
-                }
-
-                let unlocked = 0;
-                const remaining = [];
-                const history = user.stakingHistory || [];
-                const now = Date.now();
-
-                user.staking.forEach(s => {
-                    if (s.lockUntil <= now) {
-                        unlocked += s.amount;
-                        history.push({ ...s, unlockedAt: new Date().toISOString(), unlockedBy: 'admin' });
-                    } else {
-                        remaining.push(s);
-                    }
-                });
-
-                if (unlocked === 0) {
-                    showToast('❌ कोई भी अनलॉक योग्य स्टेकिंग नहीं! (Locking Period समाप्त नहीं हुआ)', 'error');
-                    setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold'), false);
-                    return;
-                }
-
-                const newCoins = parseFloat(user.coins || 0) + unlocked;
-                const newStaked = Math.max(0, parseFloat(user.staked || 0) - unlocked);
-
-                await databases.updateDocument(DATABASE_ID, USERS_COLLECTION_ID, target.$id, {
-                    coins: newCoins,
-                    staked: newStaked,
-                    staking: JSON.stringify(remaining),
-                    stakingHistory: JSON.stringify(history)
-                });
-
-                const idx = users.findIndex(u => u.$id === target.$id);
-                if (idx !== -1) {
-                    users[idx].coins = newCoins;
-                    users[idx].staked = newStaked;
-                    users[idx].staking = remaining;
-                    users[idx].stakingHistory = history;
-                }
-
-                showToast(`✅ ${unlocked} USDT अनलॉक कर दिया गया (${user.name})`, 'success');
-                document.getElementById('adminUnlockIdentifier').value = '';
-                renderAdminStaking();
-                updateAdminStats();
-                renderAdminUsers();
-
-            } catch (e) {
-                showToast('त्रुटि: ' + e.message, 'error');
-            } finally {
-                setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold'), false);
-            }
         }
 
         // ============================================================
@@ -2402,7 +2382,7 @@
             const win = window.open('', '_blank', 'width=500,height=700');
             if (!win) { showToast('पॉप-अप ब्लॉक हो गया!', 'error'); return; }
             win.document.write(
-                `<html><head><title>CoinX Receipt</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><style>body{background:#0d0a12;display:flex;justify-content:center;padding:30px 20px;font-family:'Poppins',sans-serif;}.receipt-card{background:#1a1228;border-radius:16px;padding:24px;max-width:460px;width:100%;border:1px solid rgba(212,175,55,0.2);}.receipt-logo{text-align:center;padding-bottom:12px;border-bottom:1px solid rgba(212,175,55,0.1);}.receipt-logo span{font-size:22px;font-weight:800;background:linear-gradient(135deg,#f5d97e,#d4af37,#c9a030);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}.receipt-logo small{display:block;font-size:9px;color:#6b4a7a;letter-spacing:2px;}.receipt-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;}.receipt-row .label{color:#a78bbf;}.receipt-row .value{color:#f1e6f5;text-align:right;word-break:break-all;max-width:60%;font-family:monospace;}.receipt-row .value.highlight{color:#d4af37;font-weight:600;}.receipt-row .value.green{color:#34d399;}.receipt-row .value.red{color:#f87171;}.receipt-badge{display:inline-block;padding:2px 14px;border-radius:20px;font-size:9px;font-weight:700;}.receipt-badge.approved{background:rgba(52,211,153,0.2);color:#34d399;border:1px solid rgba(52,211,153,0.3);}.receipt-badge.pending{background:rgba(251,191,36,0.2);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);}.receipt-badge.completed{background:rgba(52,211,153,0.2);color:#34d399;border:1px solid rgba(52,211,153,0.3);}.receipt-badge.rejected{background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.3);}.watermark{text-align:center;font-size:8px;color:#6b4a7a;margin-top:8px;padding-top:6px;border-top:1px solid rgba(212,175,55,0.08);}@media print{body{background:#fff;}.receipt-card{border-color:#ddd;background:#f9f9f9;}.receipt-row .label{color:#666;}.receipt-row .value{color:#333;}}</style></head><body><div class="receipt-card"><div class="receipt-logo"><span>CoinX Network</span><small>Premium • Gold Edition</small></div>${content.innerHTML}<div class="watermark">© CoinX Network • सुरक्षित लेनदेन</div></div></body></html>`
+                `<html><head><title>CoinX Receipt</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><style>body{background:#0d0a12;display:flex;justify-content:center;padding:30px 20px;font-family:'Poppins',sans-serif;}.receipt-card{background:#1a1228;border-radius:16px;padding:24px;max-width:460px;width:100%;border:1px solid rgba(212,175,55,0.2);}.receipt-logo{text-align:center;padding-bottom:12px;border-bottom:1px solid rgba(212,175,55,0.1);}.receipt-logo span{font-size:22px;font-weight:800;background:linear-gradient(135deg,#f5d97e,#d4af37,#c9a030);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}.receipt-logo small{display:block;font-size:9px;color:#6b4a7a;letter-spacing:2px;}.receipt-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;}.receipt-row .label{color:#a78bbf;}.receipt-row .value{color:#f1e6f5;text-align:right;word-break:break-all;max-width:60%;font-family:monospace;}.receipt-row .value.highlight{color:#d4af37;font-weight:600;}.receipt-row .value.green{color:#34d399;}.receipt-row .value.red{color:#f87171;}.receipt-badge{display:inline-block;padding:2px 14px;border-radius:20px;font-size:9px;font-weight:700;}.receipt-badge.approved{background:rgba(52,211,153,0.2);color:#34d399;border:1px solid rgba(52,211,153,0.3);}.receipt-badge.pending{background:rgba(251,191,36,0.2);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);}.receipt-badge.completed{background:rgba(52,211,153,0.2);color:#34d399;border:1px solid rgba(52,211,153,0.3);}.receipt-badge.rejected{background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.3);}.watermark{text-align:center;font-size:8px;color:#6b4a7a;margin-top:8px;padding-top:6px;border-top:1px solid rgba(212,175,55,0.08);}@media print{body{background:#fff;}.receipt-card{border-color:#ddd;background:#f9f9f9;}.receipt-row .label{color:#666;}.receipt-row .value{color:#333;}}</style></head><body><div class="receipt-card"><div class="receipt-logo"><span>CoinX Network</span><small>Premium • Gold Edition</small></div>${content.innerHTML}<div class="watermark">© CoinX Network • सुरक्षित लेनदेन</div></body></html>`
                 );
             win.document.close();
             setTimeout(() => { win.print(); }, 500);
@@ -2466,7 +2446,8 @@
         window.approveWithdrawal = approveWithdrawal;
         window.rejectWithdrawal = rejectWithdrawal;
         window.adminUnlockStake = adminUnlockStake;
-        window.adminUnlockStakeByIdentifier = adminUnlockStakeByIdentifier;
+        window.adminUnlockAllStakes = adminUnlockAllStakes;
+        window.adminUnlockAllStakesForUser = adminUnlockAllStakesForUser;
         window.adminCoinXWalletTransaction = adminCoinXWalletTransaction;
         window.toggleGlobalStakingState = toggleGlobalStakingState;
         window.togglePlanState = togglePlanState;
@@ -2477,7 +2458,6 @@
         window.viewTransactionReceipt = viewTransactionReceipt;
         window.viewUserProfile = viewUserProfile;
         window.closeUserProfile = closeUserProfile;
-        window.adminUnlockAllMaturedStakes = adminUnlockAllMaturedStakes;
         window.closeReceipt = closeReceipt;
         window.downloadReceipt = downloadReceipt;
         window.printReceipt = printReceipt;
