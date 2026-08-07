@@ -15,205 +15,1298 @@
     </script>
     <style>
         /* ── RESET & BASE ── */
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Poppins',sans-serif; background:#f8f5f0; overflow-x:hidden; user-select:none; color:#1a1a2e; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f5f0;
+            overflow-x: hidden;
+            user-select: none;
+            color: #1a1a2e;
+        }
+        .gold-glow {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.45), 0 0 60px rgba(212, 175, 55, 0.15);
+        }
+        .gold-glow-sm {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        .gold-border {
+            border: 1px solid rgba(212, 175, 55, 0.35);
+        }
+        .gold-border-glow {
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+        }
+        .gold-bg-gradient {
+            background: linear-gradient(145deg, #d4af37, #c9a030, #b8962a);
+        }
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #f5d97e, #d4af37, #c9a030);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-gold {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+        }
+        .glass-gold-dark {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.05);
+        }
+        .card-3d {
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-3d:hover {
+            transform: perspective(1000px) rotateX(1.5deg) rotateY(2deg) translateY(-4px);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15);
+        }
+        .btn-gold {
+            background: linear-gradient(145deg, #d4af37, #c9a030, #b8962a);
+            color: #1a1a2e;
+            font-weight: 700;
+            border: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+        }
+        .btn-gold:hover {
+            transform: scale(1.03) translateY(-2px);
+            box-shadow: 0 8px 35px rgba(212, 175, 55, 0.5);
+        }
+        .btn-gold:active {
+            transform: scale(0.97);
+        }
+        .btn-gold-outline {
+            background: transparent;
+            color: #d4af37;
+            border: 1.5px solid rgba(212, 175, 55, 0.5);
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        .btn-gold-outline:hover {
+            background: rgba(212, 175, 55, 0.12);
+            border-color: #d4af37;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ede8e0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 20px;
+        }
+        .butterfly-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .butterfly-bg .bfly {
+            position: absolute;
+            font-size: 22px;
+            opacity: 0.2;
+            animation: floatButterfly linear infinite;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.2));
+            will-change: transform;
+        }
+        @keyframes floatButterfly {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(0.8);
+                opacity: 0.08;
+            }
+            25% {
+                transform: translate(80px, -120px) rotate(12deg) scale(1.1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(-60px, -220px) rotate(-8deg) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translate(100px, -340px) rotate(15deg) scale(1.2);
+                opacity: 0.25;
+            }
+            100% {
+                transform: translate(-20px, -480px) rotate(-5deg) scale(0.7);
+                opacity: 0.06;
+            }
+        }
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            z-index: 999;
+            animation: confetti-fall linear forwards;
+        }
+        .admin-badge {
+            background: linear-gradient(135deg, #d4af37, #c9a030);
+            color: #1a1a2e;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        .credential-box {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 14px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(6px);
+        }
+        .credential-box .label {
+            font-size: 10px;
+            color: #6b4a7a;
+        }
+        .credential-box .value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #d4af37;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        .success-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(245, 240, 235, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 18px;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .id-box {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 14px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .id-box .id-label {
+            font-size: 9px;
+            color: #6b4a7a;
+            display: block;
+        }
+        .id-box .id-value {
+            font-size: 13px;
+            font-weight: 700;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        .id-box .id-usage {
+            font-size: 8px;
+            color: #d4af37;
+            display: block;
+            margin-top: 2px;
+        }
+        .id-box-gold {
+            border: 1px solid rgba(212, 175, 55, 0.4);
+        }
+        .id-box-gold .id-value {
+            color: #d4af37;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 440px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 8px 0 12px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 50;
+            border-radius: 24px 24px 0 0;
+            box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.04);
+        }
+        .bottom-nav button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #a090a0;
+            font-size: 9px;
+            transition: all 0.3s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 12px;
+            position: relative;
+        }
+        .bottom-nav button i {
+            font-size: 20px;
+            margin-bottom: 1px;
+            transition: all 0.3s;
+        }
+        .bottom-nav button.active {
+            color: #d4af37;
+        }
+        .bottom-nav button.active i {
+            text-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+        }
+        .app-page {
+            display: block;
+        }
+        .app-page.hidden {
+            display: none !important;
+        }
+        .admin-page {
+            display: block;
+        }
+        .admin-page.hidden {
+            display: none !important;
+        }
+        .admin-sec {
+            display: block;
+        }
+        .admin-sec.hidden {
+            display: none !important;
+        }
+        .history-item {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 12px;
+            padding: 12px 14px;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
+        .history-item:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.05);
+        }
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .slider-track {
+            display: flex;
+            width: 3000%;
+            height: 100%;
+            animation: slide 120s infinite ease-in-out;
+        }
+        .slider-track .slide-item {
+            width: 3.33%;
+            height: 100%;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .slider-track .slide-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-track .slide-item .slide-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 18px 16px 14px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+            color: #fff;
+            text-align: center;
+        }
+        .slide-text .quote-icon {
+            font-size: 18px;
+            color: #d4af37;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .slide-text .quote-line {
+            font-size: 14px;
+            font-weight: 700;
+            color: #f5d97e;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3), 0 2px 12px rgba(0, 0, 0, 0.9);
+            letter-spacing: 0.3px;
+            line-height: 1.5;
+            display: block;
+        }
+        .slide-text .quote-line2 {
+            font-size: 13px;
+            font-weight: 400;
+            color: #e2d0ed;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+            line-height: 1.4;
+            display: block;
+            margin-top: 2px;
+        }
+        .slide-text .quote-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.25);
+            color: #f5d97e;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 8px;
+            font-weight: 700;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: 4px;
+            letter-spacing: 1px;
+            backdrop-filter: blur(4px);
+        }
+        @keyframes slide {
+            0%,
+            1% {
+                transform: translateX(0);
+            }
+            2%,
+            3% {
+                transform: translateX(-3.33%);
+            }
+            4%,
+            5% {
+                transform: translateX(-6.66%);
+            }
+            6%,
+            7% {
+                transform: translateX(-10%);
+            }
+            8%,
+            9% {
+                transform: translateX(-13.33%);
+            }
+            10%,
+            11% {
+                transform: translateX(-16.66%);
+            }
+            12%,
+            13% {
+                transform: translateX(-20%);
+            }
+            14%,
+            15% {
+                transform: translateX(-23.33%);
+            }
+            16%,
+            17% {
+                transform: translateX(-26.66%);
+            }
+            18%,
+            19% {
+                transform: translateX(-30%);
+            }
+            20%,
+            21% {
+                transform: translateX(-33.33%);
+            }
+            22%,
+            23% {
+                transform: translateX(-36.66%);
+            }
+            24%,
+            25% {
+                transform: translateX(-40%);
+            }
+            26%,
+            27% {
+                transform: translateX(-43.33%);
+            }
+            28%,
+            29% {
+                transform: translateX(-46.66%);
+            }
+            30%,
+            31% {
+                transform: translateX(-50%);
+            }
+            32%,
+            33% {
+                transform: translateX(-53.33%);
+            }
+            34%,
+            35% {
+                transform: translateX(-56.66%);
+            }
+            36%,
+            37% {
+                transform: translateX(-60%);
+            }
+            38%,
+            39% {
+                transform: translateX(-63.33%);
+            }
+            40%,
+            41% {
+                transform: translateX(-66.66%);
+            }
+            42%,
+            43% {
+                transform: translateX(-70%);
+            }
+            44%,
+            45% {
+                transform: translateX(-73.33%);
+            }
+            46%,
+            47% {
+                transform: translateX(-76.66%);
+            }
+            48%,
+            49% {
+                transform: translateX(-80%);
+            }
+            50%,
+            51% {
+                transform: translateX(-83.33%);
+            }
+            52%,
+            53% {
+                transform: translateX(-86.66%);
+            }
+            54%,
+            55% {
+                transform: translateX(-90%);
+            }
+            56%,
+            57% {
+                transform: translateX(-93.33%);
+            }
+            58%,
+            59% {
+                transform: translateX(-96.66%);
+            }
+            60%,
+            61% {
+                transform: translateX(-100%);
+            }
+            62%,
+            63% {
+                transform: translateX(-103.33%);
+            }
+            64%,
+            65% {
+                transform: translateX(-106.66%);
+            }
+            66%,
+            67% {
+                transform: translateX(-110%);
+            }
+            68%,
+            69% {
+                transform: translateX(-113.33%);
+            }
+            70%,
+            71% {
+                transform: translateX(-116.66%);
+            }
+            72%,
+            73% {
+                transform: translateX(-120%);
+            }
+            74%,
+            75% {
+                transform: translateX(-123.33%);
+            }
+            76%,
+            77% {
+                transform: translateX(-126.66%);
+            }
+            78%,
+            79% {
+                transform: translateX(-130%);
+            }
+            80%,
+            81% {
+                transform: translateX(-133.33%);
+            }
+            82%,
+            83% {
+                transform: translateX(-136.66%);
+            }
+            84%,
+            85% {
+                transform: translateX(-140%);
+            }
+            86%,
+            87% {
+                transform: translateX(-143.33%);
+            }
+            88%,
+            89% {
+                transform: translateX(-146.66%);
+            }
+            90%,
+            91% {
+                transform: translateX(-150%);
+            }
+            92%,
+            93% {
+                transform: translateX(-153.33%);
+            }
+            94%,
+            95% {
+                transform: translateX(-156.66%);
+            }
+            96%,
+            97% {
+                transform: translateX(-160%);
+            }
+            98%,
+            99% {
+                transform: translateX(-163.33%);
+            }
+            100% {
+                transform: translateX(-166.66%);
+            }
+        }
+        .slider-dots {
+            position: absolute;
+            bottom: 6px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+        }
+        .slider-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 3px;
+            transition: all 0.5s;
+        }
+        .slider-dots span.active {
+            background: #d4af37;
+            width: 22px;
+            border-radius: 10px;
+            box-shadow: 0 0 16px rgba(212, 175, 55, 0.4);
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 3px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 3px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            flex-wrap: wrap;
+        }
+        .filter-tabs button {
+            flex: 1;
+            padding: 4px 6px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 600;
+            color: #8a6b9a;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 40px;
+        }
+        .filter-tabs button.active {
+            background: #d4af37;
+            color: #1a1a2e;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+        }
+        #toastNotification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            max-width: 400px;
+            width: 92%;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #1a1a2e;
+            border-radius: 16px;
+            padding: 14px 20px;
+            box-shadow: 0 12px 60px rgba(0, 0, 0, 0.08), 0 0 40px rgba(212, 175, 55, 0.06);
+            z-index: 999;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #toastNotification.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
+        #toastNotification button {
+            background: none;
+            border: none;
+            color: #6b4a7a;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .receipt-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        .receipt-modal .receipt-card {
+            background: linear-gradient(145deg, #ffffff, #f5f0eb);
+            border: 3px solid #d4af37;
+            border-radius: 24px;
+            max-width: 480px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 28px 24px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12), 0 0 60px rgba(212, 175, 55, 0.15);
+            position: relative;
+        }
+        .receipt-modal .receipt-card::-webkit-scrollbar {
+            width: 3px;
+        }
+        .receipt-modal .receipt-card::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 10px;
+        }
+        .receipt-modal .receipt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 14px;
+            margin-bottom: 16px;
+        }
+        .receipt-modal .receipt-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #d4af37;
+        }
+        .receipt-modal .receipt-close {
+            background: rgba(212, 175, 55, 0.12);
+            border: none;
+            color: #6b4a7a;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .receipt-modal .receipt-close:hover {
+            background: rgba(212, 175, 55, 0.25);
+        }
+        .receipt-modal .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            font-size: 12px;
+        }
+        .receipt-modal .receipt-row .label {
+            color: #6b4a7a;
+            font-weight: 400;
+        }
+        .receipt-modal .receipt-row .value {
+            color: #1a1a2e;
+            font-weight: 500;
+            text-align: right;
+            word-break: break-all;
+            max-width: 60%;
+            font-family: monospace;
+        }
+        .receipt-modal .receipt-row .value.highlight {
+            color: #d4af37;
+            font-weight: 600;
+        }
+        .receipt-modal .receipt-row .value.green {
+            color: #22C55E;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .receipt-modal .receipt-row .value.usdt {
+            color: #26A17B;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .receipt-modal .receipt-row .value.red {
+            color: #b91c1c;
+        }
+        .receipt-modal .receipt-footer {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .receipt-modal .receipt-footer button {
+            flex: 1;
+            min-width: 100px;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .receipt-modal .receipt-footer .btn-download {
+            background: linear-gradient(145deg, #d4af37, #c9a030);
+            color: #1a1a2e;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+        .receipt-modal .receipt-footer .btn-download:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 30px rgba(212, 175, 55, 0.4);
+        }
+        .receipt-modal .receipt-footer .btn-print {
+            background: rgba(0, 0, 0, 0.04);
+            color: #4a3a4a;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        .receipt-modal .receipt-footer .btn-print:hover {
+            background: rgba(0, 0, 0, 0.08);
+        }
+        .receipt-modal .receipt-badge {
+            display: inline-block;
+            padding: 2px 14px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .receipt-modal .receipt-badge.approved {
+            background: rgba(34, 197, 94, 0.12);
+            color: #22C55E;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        .receipt-modal .receipt-badge.pending {
+            background: rgba(212, 175, 55, 0.12);
+            color: #b8962a;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .receipt-modal .receipt-badge.completed {
+            background: rgba(34, 197, 94, 0.12);
+            color: #22C55E;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        .receipt-modal .receipt-badge.rejected {
+            background: rgba(185, 28, 28, 0.12);
+            color: #b91c1c;
+            border: 1px solid rgba(185, 28, 28, 0.2);
+        }
+        .receipt-modal .receipt-logo {
+            text-align: center;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .receipt-modal .receipt-logo img {
+            height: 32px;
+            object-fit: contain;
+        }
+        .receipt-modal .receipt-logo small {
+            display: block;
+            font-size: 9px;
+            color: #6b4a7a;
+            letter-spacing: 2px;
+        }
+        .receipt-currency-box {
+            border: 3px solid #d4af37;
+            border-radius: 16px;
+            padding: 16px 18px;
+            margin: 10px 0 16px 0;
+            background: rgba(34, 197, 94, 0.06);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .receipt-currency-box .inr-amount {
+            font-size: 32px;
+            font-weight: 800;
+            color: #22C55E;
+            letter-spacing: 1px;
+        }
+        .receipt-currency-box .inr-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #22C55E;
+            display: block;
+            margin-top: 2px;
+        }
+        .receipt-currency-box .usdt-amount {
+            font-size: 20px;
+            font-weight: 700;
+            color: #26A17B;
+            margin-top: 6px;
+            display: block;
+            border-top: 1px solid rgba(38, 161, 123, 0.2);
+            padding-top: 6px;
+        }
+        .receipt-currency-box .usdt-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #26A17B;
+        }
+        .receipt-currency-box .globe-bg {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 80px;
+            opacity: 0.06;
+            pointer-events: none;
+            color: #26A17B;
+        }
+        .receipt-currency-box .verified-stamp {
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            font-size: 10px;
+            color: #22C55E;
+            font-weight: 700;
+            opacity: 0.2;
+            transform: rotate(-12deg);
+        }
+        .receipt-qr-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .receipt-qr-box canvas {
+            max-width: 100px;
+            height: auto;
+        }
+        .staking-history-item {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            padding: 10px 12px;
+            transition: all 0.3s;
+        }
+        .staking-history-item:hover {
+            border-color: rgba(212, 175, 55, 0.25);
+        }
+        .staking-history-item .locked {
+            color: #d4af37;
+        }
+        .staking-history-item .unlocked {
+            color: #0b7e4a;
+        }
+        .copy-btn-admin {
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .copy-btn-admin:hover {
+            background: rgba(212, 175, 55, 0.25);
+        }
+        @keyframes starPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+            }
+            50% {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.9));
+            }
+        }
+        .animate-star {
+            animation: starPulse 2.5s infinite ease-in-out;
+        }
+        .btn-animate {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-animate:active {
+            transform: scale(0.95);
+        }
+        .admin-search-input {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #1a1a2e;
+        }
+        .admin-search-input:focus {
+            border-color: #d4af37;
+            outline: none;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+        .staking-plan-btn {
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .staking-plan-btn.active {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+        .staking-plan-btn:hover:not(.active) {
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        @media (max-width: 440px) {
+            .bottom-nav button i {
+                font-size: 17px;
+            }
+            .bottom-nav button {
+                font-size: 8px;
+                padding: 2px 4px;
+            }
+            .slider-container {
+                height: 180px;
+            }
+            .slide-text .quote-line {
+                font-size: 12px;
+            }
+            .slide-text .quote-line2 {
+                font-size: 11px;
+            }
+            .receipt-modal .receipt-card {
+                padding: 18px 14px;
+            }
+            .receipt-modal .receipt-row {
+                font-size: 10px;
+                padding: 4px 0;
+            }
+            .receipt-modal .receipt-footer button {
+                font-size: 10px;
+                padding: 8px 12px;
+                min-width: 70px;
+            }
+            .receipt-currency-box .inr-amount {
+                font-size: 24px;
+            }
+            .receipt-currency-box .usdt-amount {
+                font-size: 16px;
+            }
+        }
+        .logo-img {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.2));
+        }
+        input,
+        select,
+        textarea {
+            color: #1a1a2e;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        input::placeholder {
+            color: #a090a0;
+        }
+        .text-amber-300\/50 {
+            color: #6b4a7a;
+        }
+        .text-amber-300\/40 {
+            color: #7c6a8a;
+        }
+        .text-amber-300\/30 {
+            color: #8a7a9a;
+        }
+        .text-amber-300\/70 {
+            color: #4a3a5a;
+        }
+        .text-amber-400 {
+            color: #c9a030;
+        }
+        .text-amber-500 {
+            color: #d4af37;
+        }
+        .text-amber-300 {
+            color: #d4af37;
+        }
+        .border-amber-500\/30 {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        .border-amber-500\/40 {
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        .bg-green-500\/20 {
+            background: rgba(34, 197, 94, 0.12);
+        }
+        .text-green-400 {
+            color: #22C55E;
+        }
+        .border-green-500\/40 {
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+        .bg-red-500\/20 {
+            background: rgba(185, 28, 28, 0.1);
+        }
+        .text-red-400 {
+            color: #b91c1c;
+        }
+        .border-red-500\/30 {
+            border-color: rgba(185, 28, 28, 0.2);
+        }
+        .currency-inr {
+            color: #22C55E !important;
+        }
+        .currency-usdt {
+            color: #26A17B !important;
+        }
+        .border-gold-strong {
+            border: 3px solid #d4af37 !important;
+        }
+        .bg-inr-light {
+            background: rgba(34, 197, 94, 0.06);
+        }
+        .partial-hide {
+            filter: blur(4px);
+            -webkit-filter: blur(4px);
+            transition: filter 0.3s;
+            cursor: default;
+        }
+        .partial-hide:hover {
+            filter: blur(0);
+            -webkit-filter: blur(0);
+        }
+        .partial-hide-email {
+            filter: blur(3px);
+            -webkit-filter: blur(3px);
+            transition: filter 0.3s;
+            cursor: default;
+        }
+        .partial-hide-email:hover {
+            filter: blur(0);
+            -webkit-filter: blur(0);
+        }
+        .referral-qr-container {
+            display: flex;
+            justify-content: center;
+            padding: 8px 0;
+        }
+        .referral-qr-container canvas {
+            border-radius: 12px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 6px;
+            background: #fff;
+            max-width: 120px;
+            height: auto;
+        }
+        .globe-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            opacity: 0.04;
+            pointer-events: none;
+            color: #26A17B;
+            z-index: 0;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .copy-email-btn {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 9px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .copy-email-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+        }
+        .spx-id-display {
+            font-size: 16px;
+            font-weight: 800;
+            color: #d4af37;
+            letter-spacing: 1px;
+            font-family: monospace;
+            background: rgba(212, 175, 55, 0.08);
+            padding: 4px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: inline-block;
+        }
+        .voice-toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 400px;
+            width: 92%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            padding: 16px 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            z-index: 998;
+            text-align: center;
+            animation: fadeIn 0.4s ease;
+            display: none;
+        }
+        .voice-toast.show {
+            display: block;
+        }
+        .voice-toast .voice-icon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 6px;
+            color: #d4af37;
+        }
+        .voice-toast .voice-msg {
+            font-size: 13px;
+            font-weight: 500;
+            color: #1a1a2e;
+        }
+        .voice-toast .voice-close {
+            margin-top: 8px;
+            background: rgba(212, 175, 55, 0.15);
+            border: none;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 10px;
+            color: #6b4a7a;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .voice-toast .voice-close:hover {
+            background: rgba(212, 175, 55, 0.25);
+        }
+        #loadingOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #loadingOverlay.show {
+            display: flex;
+        }
+        #loadingOverlay .spinner {
+            width: 48px;
+            height: 48px;
+            border: 5px solid rgba(212, 175, 55, 0.2);
+            border-top-color: #d4af37;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        #loadingOverlay p {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #6b4a7a;
+            font-weight: 500;
+        }
+        .app-download-btn {
+            background: linear-gradient(135deg, #26A17B, #1a7a5a);
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(38, 161, 123, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            justify-content: center;
+        }
+        .app-download-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(38, 161, 123, 0.4);
+        }
 
-        .gold-glow { box-shadow:0 0 30px rgba(212,175,55,0.45),0 0 60px rgba(212,175,55,0.15); }
-        .gold-glow-sm { box-shadow:0 0 20px rgba(212,175,55,0.3); }
-        .gold-border { border:1px solid rgba(212,175,55,0.35); }
-        .gold-border-glow { border:1px solid rgba(212,175,55,0.5); box-shadow:0 0 25px rgba(212,175,55,0.2); }
-        .gold-bg-gradient { background:linear-gradient(145deg,#d4af37,#c9a030,#b8962a); }
-        .gold-text-gradient { background:linear-gradient(135deg,#f5d97e,#d4af37,#c9a030); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .ex-rate-badge {
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 30px;
+            padding: 2px 12px;
+            font-size: 9px;
+            color: #d4af37;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .ex-rate-badge i {
+            font-size: 10px;
+        }
 
-        .glass-gold { background:rgba(255,255,255,0.85); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(212,175,55,0.3); box-shadow:0 8px 32px rgba(0,0,0,0.06); }
-        .glass-gold-dark { background:rgba(255,255,255,0.92); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(212,175,55,0.25); box-shadow:0 8px 40px rgba(0,0,0,0.05); }
-
-        .card-3d { transform:perspective(1000px) rotateX(0deg) rotateY(0deg); transition:transform 0.3s ease,box-shadow 0.3s ease; }
-        .card-3d:hover { transform:perspective(1000px) rotateX(1.5deg) rotateY(2deg) translateY(-4px); box-shadow:0 20px 50px rgba(212,175,55,0.15); }
-
-        .btn-gold { background:linear-gradient(145deg,#d4af37,#c9a030,#b8962a); color:#1a1a2e; font-weight:700; border:none; transition:all 0.25s ease; box-shadow:0 4px 20px rgba(212,175,55,0.35); }
-        .btn-gold:hover { transform:scale(1.03) translateY(-2px); box-shadow:0 8px 35px rgba(212,175,55,0.5); }
-        .btn-gold:active { transform:scale(0.97); }
-        .btn-gold-outline { background:transparent; color:#d4af37; border:1.5px solid rgba(212,175,55,0.5); font-weight:600; transition:all 0.25s ease; }
-        .btn-gold-outline:hover { background:rgba(212,175,55,0.12); border-color:#d4af37; box-shadow:0 0 25px rgba(212,175,55,0.15); }
-
-        ::-webkit-scrollbar { width:5px; }
-        ::-webkit-scrollbar-track { background:#ede8e0; }
-        ::-webkit-scrollbar-thumb { background:#d4af37; border-radius:20px; }
-
-        .butterfly-bg { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
-        .butterfly-bg .bfly { position:absolute; font-size:22px; opacity:0.2; animation:floatButterfly linear infinite; filter:drop-shadow(0 0 8px rgba(212,175,55,0.2)); will-change:transform; }
-        @keyframes floatButterfly { 0% { transform:translate(0,0) rotate(0deg) scale(0.8); opacity:0.08; } 25% { transform:translate(80px,-120px) rotate(12deg) scale(1.1); opacity:0.3; } 50% { transform:translate(-60px,-220px) rotate(-8deg) scale(0.9); opacity:0.4; } 75% { transform:translate(100px,-340px) rotate(15deg) scale(1.2); opacity:0.25; } 100% { transform:translate(-20px,-480px) rotate(-5deg) scale(0.7); opacity:0.06; } }
-
-        @keyframes confetti-fall { 0% { transform:translateY(-100px) rotate(0deg); opacity:1; } 100% { transform:translateY(100vh) rotate(720deg); opacity:0; } }
-        .confetti { position:fixed; width:10px; height:10px; top:-10px; z-index:999; animation:confetti-fall linear forwards; }
-
-        .admin-badge { background:linear-gradient(135deg,#d4af37,#c9a030); color:#1a1a2e; padding:4px 14px; border-radius:30px; font-size:10px; font-weight:700; letter-spacing:0.5px; box-shadow:0 0 20px rgba(212,175,55,0.3); }
-
-        .credential-box { background:rgba(255,255,255,0.7); border:1px solid rgba(212,175,55,0.25); border-radius:14px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; backdrop-filter:blur(6px); }
-        .credential-box .label { font-size:10px; color:#6b4a7a; }
-        .credential-box .value { font-size:14px; font-weight:700; color:#d4af37; font-family:monospace; word-break:break-all; }
-
-        .success-card { background:linear-gradient(145deg,rgba(255,255,255,0.9),rgba(245,240,235,0.9)); border:1px solid rgba(212,175,55,0.3); border-radius:18px; padding:24px; backdrop-filter:blur(8px); }
-
-        .id-box { background:rgba(255,255,255,0.7); border-radius:14px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; backdrop-filter:blur(6px); border:1px solid rgba(212,175,55,0.15); }
-        .id-box .id-label { font-size:9px; color:#6b4a7a; display:block; }
-        .id-box .id-value { font-size:13px; font-weight:700; font-family:monospace; word-break:break-all; }
-        .id-box .id-usage { font-size:8px; color:#d4af37; display:block; margin-top:2px; }
-        .id-box-gold { border:1px solid rgba(212,175,55,0.4); }
-        .id-box-gold .id-value { color:#d4af37; }
-
-        .bottom-nav { position:fixed; bottom:0; left:0; right:0; max-width:440px; margin:0 auto; background:rgba(255,255,255,0.94); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-top:1px solid rgba(212,175,55,0.25); padding:8px 0 12px; display:flex; justify-content:space-around; z-index:50; border-radius:24px 24px 0 0; box-shadow:0 -8px 40px rgba(0,0,0,0.04); }
-        .bottom-nav button { display:flex; flex-direction:column; align-items:center; color:#a090a0; font-size:9px; transition:all 0.3s; background:none; border:none; cursor:pointer; padding:4px 8px; border-radius:12px; position:relative; }
-        .bottom-nav button i { font-size:20px; margin-bottom:1px; transition:all 0.3s; }
-        .bottom-nav button.active { color:#d4af37; }
-        .bottom-nav button.active i { text-shadow:0 0 25px rgba(212,175,55,0.5); }
-
-        .app-page { display:block; }
-        .app-page.hidden { display:none !important; }
-        .admin-page { display:block; }
-        .admin-page.hidden { display:none !important; }
-        .admin-sec { display:block; }
-        .admin-sec.hidden { display:none !important; }
-
-        .history-item { background:rgba(255,255,255,0.6); border:1px solid rgba(212,175,55,0.12); border-radius:12px; padding:12px 14px; transition:all 0.3s; backdrop-filter:blur(4px); }
-        .history-item:hover { border-color:rgba(212,175,55,0.3); box-shadow:0 0 20px rgba(212,175,55,0.05); }
-
-        .slider-container { position:relative; width:100%; height:220px; overflow:hidden; border-radius:18px; box-shadow:0 8px 40px rgba(0,0,0,0.06); border:1px solid rgba(212,175,55,0.15); }
-        .slider-track { display:flex; width:3000%; height:100%; animation:slide 120s infinite ease-in-out; }
-        .slider-track .slide-item { width:3.33%; height:100%; position:relative; flex-shrink:0; }
-        .slider-track .slide-item img { width:100%; height:100%; object-fit:cover; }
-        .slider-track .slide-item .slide-text { position:absolute; bottom:0; left:0; right:0; padding:18px 16px 14px; background:linear-gradient(transparent,rgba(0,0,0,0.75)); color:#fff; text-align:center; }
-        .slide-text .quote-icon { font-size:18px; color:#d4af37; display:block; margin-bottom:2px; }
-        .slide-text .quote-line { font-size:14px; font-weight:700; color:#f5d97e; text-shadow:0 0 30px rgba(212,175,55,0.3),0 2px 12px rgba(0,0,0,0.9); letter-spacing:0.3px; line-height:1.5; display:block; }
-        .slide-text .quote-line2 { font-size:13px; font-weight:400; color:#e2d0ed; text-shadow:0 2px 12px rgba(0,0,0,0.9); line-height:1.4; display:block; margin-top:2px; }
-        .slide-text .quote-badge { display:inline-block; background:rgba(212,175,55,0.25); color:#f5d97e; padding:2px 14px; border-radius:30px; font-size:8px; font-weight:700; border:1px solid rgba(212,175,55,0.3); margin-top:4px; letter-spacing:1px; backdrop-filter:blur(4px); }
-        @keyframes slide { 0%,1% { transform:translateX(0); } 2%,3% { transform:translateX(-3.33%); } 4%,5% { transform:translateX(-6.66%); } 6%,7% { transform:translateX(-10%); } 8%,9% { transform:translateX(-13.33%); } 10%,11% { transform:translateX(-16.66%); } 12%,13% { transform:translateX(-20%); } 14%,15% { transform:translateX(-23.33%); } 16%,17% { transform:translateX(-26.66%); } 18%,19% { transform:translateX(-30%); } 20%,21% { transform:translateX(-33.33%); } 22%,23% { transform:translateX(-36.66%); } 24%,25% { transform:translateX(-40%); } 26%,27% { transform:translateX(-43.33%); } 28%,29% { transform:translateX(-46.66%); } 30%,31% { transform:translateX(-50%); } 32%,33% { transform:translateX(-53.33%); } 34%,35% { transform:translateX(-56.66%); } 36%,37% { transform:translateX(-60%); } 38%,39% { transform:translateX(-63.33%); } 40%,41% { transform:translateX(-66.66%); } 42%,43% { transform:translateX(-70%); } 44%,45% { transform:translateX(-73.33%); } 46%,47% { transform:translateX(-76.66%); } 48%,49% { transform:translateX(-80%); } 50%,51% { transform:translateX(-83.33%); } 52%,53% { transform:translateX(-86.66%); } 54%,55% { transform:translateX(-90%); } 56%,57% { transform:translateX(-93.33%); } 58%,59% { transform:translateX(-96.66%); } 60%,61% { transform:translateX(-100%); } 62%,63% { transform:translateX(-103.33%); } 64%,65% { transform:translateX(-106.66%); } 66%,67% { transform:translateX(-110%); } 68%,69% { transform:translateX(-113.33%); } 70%,71% { transform:translateX(-116.66%); } 72%,73% { transform:translateX(-120%); } 74%,75% { transform:translateX(-123.33%); } 76%,77% { transform:translateX(-126.66%); } 78%,79% { transform:translateX(-130%); } 80%,81% { transform:translateX(-133.33%); } 82%,83% { transform:translateX(-136.66%); } 84%,85% { transform:translateX(-140%); } 86%,87% { transform:translateX(-143.33%); } 88%,89% { transform:translateX(-146.66%); } 90%,91% { transform:translateX(-150%); } 92%,93% { transform:translateX(-153.33%); } 94%,95% { transform:translateX(-156.66%); } 96%,97% { transform:translateX(-160%); } 98%,99% { transform:translateX(-163.33%); } 100% { transform:translateX(-166.66%); } }
-        .slider-dots { position:absolute; bottom:6px; left:0; right:0; text-align:center; z-index:10; }
-        .slider-dots span { display:inline-block; width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.2); margin:0 3px; transition:all 0.5s; }
-        .slider-dots span.active { background:#d4af37; width:22px; border-radius:10px; box-shadow:0 0 16px rgba(212,175,55,0.4); }
-
-        .filter-tabs { display:flex; gap:3px; background:rgba(255,255,255,0.6); padding:3px; border-radius:12px; border:1px solid rgba(212,175,55,0.15); flex-wrap:wrap; }
-        .filter-tabs button { flex:1; padding:4px 6px; border-radius:8px; font-size:9px; font-weight:600; color:#8a6b9a; background:transparent; border:none; cursor:pointer; transition:all 0.3s; min-width:40px; }
-        .filter-tabs button.active { background:#d4af37; color:#1a1a2e; box-shadow:0 0 20px rgba(212,175,55,0.25); }
-
-        #toastNotification { position:fixed; top:20px; left:50%; transform:translateX(-50%) translateY(-20px); max-width:400px; width:92%; background:rgba(255,255,255,0.94); backdrop-filter:blur(20px); border:1px solid rgba(212,175,55,0.3); color:#1a1a2e; border-radius:16px; padding:14px 20px; box-shadow:0 12px 60px rgba(0,0,0,0.08),0 0 40px rgba(212,175,55,0.06); z-index:999; font-size:13px; display:flex; align-items:center; justify-content:space-between; transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1); opacity:0; pointer-events:none; }
-        #toastNotification.show { opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0); }
-        #toastNotification button { background:none; border:none; color:#6b4a7a; cursor:pointer; font-size:14px; }
-
-        .receipt-modal { position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(12px); z-index:100; display:flex; align-items:center; justify-content:center; padding:20px; animation:fadeIn 0.3s ease; }
-        .receipt-modal .receipt-card { background:linear-gradient(145deg,#ffffff,#f5f0eb); border:3px solid #d4af37; border-radius:24px; max-width:480px; width:100%; max-height:90vh; overflow-y:auto; padding:28px 24px; box-shadow:0 30px 80px rgba(0,0,0,0.12),0 0 60px rgba(212,175,55,0.15); position:relative; }
-        .receipt-modal .receipt-card::-webkit-scrollbar { width:3px; }
-        .receipt-modal .receipt-card::-webkit-scrollbar-thumb { background:#d4af37; border-radius:10px; }
-        .receipt-modal .receipt-header { display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(212,175,55,0.2); padding-bottom:14px; margin-bottom:16px; }
-        .receipt-modal .receipt-header h3 { font-size:16px; font-weight:700; color:#d4af37; }
-        .receipt-modal .receipt-close { background:rgba(212,175,55,0.12); border:none; color:#6b4a7a; width:34px; height:34px; border-radius:50%; cursor:pointer; font-size:16px; transition:all 0.3s; display:flex; align-items:center; justify-content:center; }
-        .receipt-modal .receipt-close:hover { background:rgba(212,175,55,0.25); }
-        .receipt-modal .receipt-row { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(0,0,0,0.04); font-size:12px; }
-        .receipt-modal .receipt-row .label { color:#6b4a7a; font-weight:400; }
-        .receipt-modal .receipt-row .value { color:#1a1a2e; font-weight:500; text-align:right; word-break:break-all; max-width:60%; font-family:monospace; }
-        .receipt-modal .receipt-row .value.highlight { color:#d4af37; font-weight:600; }
-        .receipt-modal .receipt-row .value.green { color:#22C55E; font-weight:700; font-size:14px; }
-        .receipt-modal .receipt-row .value.usdt { color:#26A17B; font-weight:700; font-size:14px; }
-        .receipt-modal .receipt-row .value.red { color:#b91c1c; }
-        .receipt-modal .receipt-footer { margin-top:18px; padding-top:14px; border-top:1px solid rgba(212,175,55,0.15); display:flex; gap:10px; flex-wrap:wrap; }
-        .receipt-modal .receipt-footer button { flex:1; min-width:100px; padding:10px 16px; border-radius:12px; font-size:11px; font-weight:600; border:none; cursor:pointer; transition:all 0.3s; display:flex; align-items:center; justify-content:center; gap:6px; }
-        .receipt-modal .receipt-footer .btn-download { background:linear-gradient(145deg,#d4af37,#c9a030); color:#1a1a2e; box-shadow:0 4px 20px rgba(212,175,55,0.3); }
-        .receipt-modal .receipt-footer .btn-download:hover { transform:scale(1.02); box-shadow:0 6px 30px rgba(212,175,55,0.4); }
-        .receipt-modal .receipt-footer .btn-print { background:rgba(0,0,0,0.04); color:#4a3a4a; border:1px solid rgba(0,0,0,0.06); }
-        .receipt-modal .receipt-footer .btn-print:hover { background:rgba(0,0,0,0.08); }
-        .receipt-modal .receipt-badge { display:inline-block; padding:2px 14px; border-radius:20px; font-size:9px; font-weight:700; letter-spacing:0.5px; }
-        .receipt-modal .receipt-badge.approved { background:rgba(34,197,94,0.12); color:#22C55E; border:1px solid rgba(34,197,94,0.2); }
-        .receipt-modal .receipt-badge.pending { background:rgba(212,175,55,0.12); color:#b8962a; border:1px solid rgba(212,175,55,0.2); }
-        .receipt-modal .receipt-badge.completed { background:rgba(34,197,94,0.12); color:#22C55E; border:1px solid rgba(34,197,94,0.2); }
-        .receipt-modal .receipt-badge.rejected { background:rgba(185,28,28,0.12); color:#b91c1c; border:1px solid rgba(185,28,28,0.2); }
-        .receipt-modal .receipt-logo { text-align:center; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid rgba(212,175,55,0.1); }
-        .receipt-modal .receipt-logo img { height:32px; object-fit:contain; }
-        .receipt-modal .receipt-logo small { display:block; font-size:9px; color:#6b4a7a; letter-spacing:2px; }
-
-        .receipt-currency-box { border:3px solid #d4af37; border-radius:16px; padding:16px 18px; margin:10px 0 16px 0; background:rgba(34,197,94,0.06); text-align:center; position:relative; overflow:hidden; }
-        .receipt-currency-box .inr-amount { font-size:32px; font-weight:800; color:#22C55E; letter-spacing:1px; }
-        .receipt-currency-box .inr-label { font-size:14px; font-weight:600; color:#22C55E; display:block; margin-top:2px; }
-        .receipt-currency-box .usdt-amount { font-size:20px; font-weight:700; color:#26A17B; margin-top:6px; display:block; border-top:1px solid rgba(38,161,123,0.2); padding-top:6px; }
-        .receipt-currency-box .usdt-label { font-size:12px; font-weight:500; color:#26A17B; }
-        .receipt-currency-box .globe-bg { position:absolute; top:-20px; right:-20px; font-size:80px; opacity:0.06; pointer-events:none; color:#26A17B; }
-        .receipt-currency-box .verified-stamp { position:absolute; bottom:6px; left:6px; font-size:10px; color:#22C55E; font-weight:700; opacity:0.2; transform:rotate(-12deg); }
-
-        .receipt-qr-box { display:flex; justify-content:center; align-items:center; margin:10px 0; padding:8px; background:#fff; border-radius:12px; border:1px solid rgba(212,175,55,0.2); }
-        .receipt-qr-box canvas { max-width:100px; height:auto; }
-
-        .staking-history-item { background:rgba(255,255,255,0.5); border:1px solid rgba(212,175,55,0.1); border-radius:10px; padding:10px 12px; transition:all 0.3s; }
-        .staking-history-item:hover { border-color:rgba(212,175,55,0.25); }
-        .staking-history-item .locked { color:#d4af37; }
-        .staking-history-item .unlocked { color:#0b7e4a; }
-
-        .copy-btn-admin { background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.2); color:#d4af37; padding:2px 8px; border-radius:4px; font-size:8px; cursor:pointer; transition:all 0.3s; }
-        .copy-btn-admin:hover { background:rgba(212,175,55,0.25); }
-
-        @keyframes starPulse { 0%,100% { transform:scale(1); filter:drop-shadow(0 0 10px rgba(212,175,55,0.5)); } 50% { transform:scale(1.08); filter:drop-shadow(0 0 35px rgba(212,175,55,0.9)); } }
-        .animate-star { animation:starPulse 2.5s infinite ease-in-out; }
-        .btn-animate { transition:all 0.2s cubic-bezier(0.4,0,0.2,1); }
-        .btn-animate:active { transform:scale(0.95); }
-
-        .admin-search-input { background:rgba(255,255,255,0.8); border:1px solid rgba(212,175,55,0.3); color:#1a1a2e; }
-        .admin-search-input:focus { border-color:#d4af37; outline:none; box-shadow:0 0 20px rgba(212,175,55,0.1); }
-
-        .staking-plan-btn { transition:all 0.3s; cursor:pointer; }
-        .staking-plan-btn.active { background:rgba(212,175,55,0.2); border-color:#d4af37; color:#d4af37; }
-        .staking-plan-btn:hover:not(.active) { border-color:rgba(212,175,55,0.4); }
-
-        @media (max-width:440px) { .bottom-nav button i { font-size:17px; } .bottom-nav button { font-size:8px; padding:2px 4px; } .slider-container { height:180px; } .slide-text .quote-line { font-size:12px; } .slide-text .quote-line2 { font-size:11px; } .receipt-modal .receipt-card { padding:18px 14px; } .receipt-modal .receipt-row { font-size:10px; padding:4px 0; } .receipt-modal .receipt-footer button { font-size:10px; padding:8px 12px; min-width:70px; } .receipt-currency-box .inr-amount { font-size:24px; } .receipt-currency-box .usdt-amount { font-size:16px; } }
-
-        .logo-img { height:38px; width:auto; object-fit:contain; filter:drop-shadow(0 2px 8px rgba(212,175,55,0.2)); }
-        input,select,textarea { color:#1a1a2e; background:rgba(255,255,255,0.8); }
-        input::placeholder { color:#a090a0; }
-        .text-amber-300\/50 { color:#6b4a7a; }
-        .text-amber-300\/40 { color:#7c6a8a; }
-        .text-amber-300\/30 { color:#8a7a9a; }
-        .text-amber-300\/70 { color:#4a3a5a; }
-        .text-amber-400 { color:#c9a030; }
-        .text-amber-500 { color:#d4af37; }
-        .text-amber-300 { color:#d4af37; }
-        .border-amber-500\/30 { border-color:rgba(212,175,55,0.3); }
-        .border-amber-500\/40 { border-color:rgba(212,175,55,0.4); }
-        .bg-green-500\/20 { background:rgba(34,197,94,0.12); }
-        .text-green-400 { color:#22C55E; }
-        .border-green-500\/40 { border-color:rgba(34,197,94,0.3); }
-        .bg-red-500\/20 { background:rgba(185,28,28,0.1); }
-        .text-red-400 { color:#b91c1c; }
-        .border-red-500\/30 { border-color:rgba(185,28,28,0.2); }
-        .currency-inr { color:#22C55E !important; }
-        .currency-usdt { color:#26A17B !important; }
-        .border-gold-strong { border:3px solid #d4af37 !important; }
-        .bg-inr-light { background:rgba(34,197,94,0.06); }
-        .partial-hide { filter:blur(4px); -webkit-filter:blur(4px); transition:filter 0.3s; cursor:default; }
-        .partial-hide:hover { filter:blur(0); -webkit-filter:blur(0); }
-        .partial-hide-email { filter:blur(3px); -webkit-filter:blur(3px); transition:filter 0.3s; cursor:default; }
-        .partial-hide-email:hover { filter:blur(0); -webkit-filter:blur(0); }
-        .referral-qr-container { display:flex; justify-content:center; padding:8px 0; }
-        .referral-qr-container canvas { border-radius:12px; border:2px solid rgba(212,175,55,0.3); padding:6px; background:#fff; max-width:120px; height:auto; }
-        .globe-watermark { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:120px; opacity:0.04; pointer-events:none; color:#26A17B; z-index:0; }
-        @keyframes fadeIn { from { opacity:0; transform:scale(0.95) translateY(10px); } to { opacity:1; transform:scale(1) translateY(0); } }
-        .copy-email-btn { background:rgba(212,175,55,0.1); border:1px solid rgba(212,175,55,0.2); color:#d4af37; padding:2px 10px; border-radius:6px; font-size:9px; cursor:pointer; transition:all 0.3s; }
-        .copy-email-btn:hover { background:rgba(212,175,55,0.2); }
-        .spx-id-display { font-size:16px; font-weight:800; color:#d4af37; letter-spacing:1px; font-family:monospace; background:rgba(212,175,55,0.08); padding:4px 12px; border-radius:8px; border:1px solid rgba(212,175,55,0.2); display:inline-block; }
-        .voice-toast { position:fixed; bottom:90px; left:50%; transform:translateX(-50%); max-width:400px; width:92%; background:rgba(255,255,255,0.95); backdrop-filter:blur(20px); border:2px solid #d4af37; border-radius:20px; padding:16px 20px; box-shadow:0 20px 60px rgba(0,0,0,0.15); z-index:998; text-align:center; animation:fadeIn 0.4s ease; display:none; }
-        .voice-toast.show { display:block; }
-        .voice-toast .voice-icon { font-size:32px; display:block; margin-bottom:6px; color:#d4af37; }
-        .voice-toast .voice-msg { font-size:13px; font-weight:500; color:#1a1a2e; }
-        .voice-toast .voice-close { margin-top:8px; background:rgba(212,175,55,0.15); border:none; padding:4px 16px; border-radius:20px; font-size:10px; color:#6b4a7a; cursor:pointer; transition:all 0.3s; }
-        .voice-toast .voice-close:hover { background:rgba(212,175,55,0.25); }
-
-        /* loading overlay */
-        #loadingOverlay { position:fixed; inset:0; background:rgba(255,255,255,0.85); backdrop-filter:blur(8px); z-index:9999; display:none; align-items:center; justify-content:center; flex-direction:column; }
-        #loadingOverlay.show { display:flex; }
-        #loadingOverlay .spinner { width:48px; height:48px; border:5px solid rgba(212,175,55,0.2); border-top-color:#d4af37; border-radius:50%; animation:spin 0.8s linear infinite; }
-        @keyframes spin { to { transform:rotate(360deg); } }
-        #loadingOverlay p { margin-top:12px; font-size:13px; color:#6b4a7a; font-weight:500; }
-
-        /* App Download Button */
-        .app-download-btn { background:linear-gradient(135deg,#26A17B,#1a7a5a); color:#fff; border:none; padding:10px 16px; border-radius:12px; font-weight:600; font-size:12px; cursor:pointer; transition:all 0.3s; box-shadow:0 4px 15px rgba(38,161,123,0.3); display:inline-flex; align-items:center; gap:8px; width:100%; justify-content:center; }
-        .app-download-btn:hover { transform:scale(1.02); box-shadow:0 6px 25px rgba(38,161,123,0.4); }
+        .stake-range-label {
+            font-size: 10px;
+            color: #6b4a7a;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 4px;
+            margin-top: 2px;
+        }
     </style>
 </head>
 <body>
@@ -237,6 +1330,7 @@
                 </div>
             </div>
             <div class="flex items-center gap-2">
+                <span class="ex-rate-badge"><i class="fa-solid fa-indian-rupee-sign"></i> $1 = ₹100</span>
                 <button onclick="toggleAdminSearch()" class="text-amber-600/50 hover:text-amber-700 transition-all text-sm">
                     <i class="fa-solid fa-search"></i>
                 </button>
@@ -382,12 +1476,15 @@
                                 <p id="userWelcomeEmail" class="text-[10px] text-amber-600/40">user@example.com</p>
                             </div>
                         </div>
-                        <div class="text-right"><span class="text-[9px] bg-amber-500/15 text-amber-700 border border-amber-500/25 px-2 py-0.5 rounded-full font-medium">सक्रिय</span></div>
+                        <div class="text-right flex flex-col items-end gap-1">
+                            <span class="text-[9px] bg-amber-500/15 text-amber-700 border border-amber-500/25 px-2 py-0.5 rounded-full font-medium">सक्रिय</span>
+                            <span class="text-[8px] text-amber-600/30"><i class="fa-solid fa-indian-rupee-sign mr-0.5"></i> $1 = ₹100</span>
+                        </div>
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <div class="glass-gold-dark p-3.5 rounded-2xl border-amber-500/15 card-3d"><span class="text-[10px] text-amber-600/50 block mb-1"><i class="fa-solid fa-dollar-sign mr-1 text-green-600"></i> Total Investment</span><span id="statInvestment" class="text-md font-bold text-[#1a1a2e]">$0.00</span></div>
                         <div class="glass-gold-dark p-3.5 rounded-2xl border-amber-500/15 card-3d"><span class="text-[10px] text-amber-600/50 block mb-1"><i class="fa-solid fa-lock mr-1 currency-usdt"></i> Locked Staking</span><span id="statLocked" class="text-md font-bold currency-usdt">0.00 USDT</span></div>
-                        <div class="glass-gold-dark p-3.5 rounded-2xl border-amber-500/15 card-3d"><span class="text-[10px] text-amber-600/50 block mb-1"><i class="fa-solid fa-gift mr-1 currency-inr"></i> Daily Release (0.5%)</span><span id="statDailyRelease" class="text-md font-bold currency-inr">₹0.00</span></div>
+                        <div class="glass-gold-dark p-3.5 rounded-2xl border-amber-500/15 card-3d"><span class="text-[10px] text-amber-600/50 block mb-1"><i class="fa-solid fa-gift mr-1 currency-inr"></i> Daily Release (0.5%)</span><span id="statDailyRelease" class="text-md font-bold currency-inr">₹0.00</span><span id="statDailyUsdt" class="text-[9px] text-amber-600/30 block">0.00 USDT</span></div>
                         <div class="glass-gold-dark p-3.5 rounded-2xl border-amber-500/15 card-3d"><span class="text-[10px] text-amber-600/50 block mb-1"><i class="fa-solid fa-wallet mr-1 currency-usdt"></i> Available Balance</span><span id="statAvailable" class="text-md font-bold currency-usdt">0.00 USDT</span></div>
                     </div>
                     <div class="glass-gold p-6 rounded-2xl border-amber-500/30 flex flex-col items-center justify-center text-center py-8 space-y-5">
@@ -454,7 +1551,11 @@
                     <div class="glass-gold p-4 rounded-2xl border-amber-500/30"><h3 class="text-sm font-bold text-amber-600"><i class="fa-solid fa-vault mr-1.5"></i> USDT स्टेकिंग</h3><p class="text-[11px] text-amber-600/40">अपने उपलब्ध USDT को लॉक करके शानदार दैनिक रिवॉर्ड प्राप्त करें।</p></div>
                     <div class="glass-gold p-5 rounded-2xl border-amber-500/30 space-y-4">
                         <div class="flex justify-between items-center text-xs"><span class="text-amber-600/50">अवेलेबल बैलेंस:</span><span id="stakingAvailableCoins" class="font-bold currency-usdt">0.00 USDT</span></div>
-                        <div><label class="block text-[10px] text-amber-600/50 mb-1">कितने USDT स्टेकिंग में लगाने हैं?</label><input type="number" id="stakeInputCoins" placeholder="न्यूनतम 50 USDT" class="w-full bg-white/80 border border-amber-500/20 rounded-xl py-2.5 px-3 text-xs focus:outline-none focus:border-amber-400 text-[#1a1a2e] backdrop-blur-sm"></div>
+                        <div>
+                            <label class="block text-[10px] text-amber-600/50 mb-1">कितने USDT स्टेकिंग में लगाने हैं?</label>
+                            <input type="number" id="stakeInputCoins" placeholder="न्यूनतम 10 USDT" class="w-full bg-white/80 border border-amber-500/20 rounded-xl py-2.5 px-3 text-xs focus:outline-none focus:border-amber-400 text-[#1a1a2e] backdrop-blur-sm" min="10" max="100000">
+                            <div class="stake-range-label"><span>न्यूनतम 10 USDT</span><span>अधिकतम 100,000 USDT</span></div>
+                        </div>
                         <div><label class="block text-[10px] text-amber-600/50 mb-1.5">लॉकिंग अवधि चुनें</label><div id="stakingPlansContainer" class="grid grid-cols-3 gap-2"></div></div>
                         <button id="btn-submit-stake" onclick="submitStake(this)" class="w-full btn-gold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-xl"><span>अभी स्टेकिंग पर लगाएं</span> <i class="fa-solid fa-lock"></i></button>
                     </div>
@@ -719,6 +1820,9 @@
         const ADMIN_TEAM_ID = "6a4a84580012aed57e61";
         const SECRET_ADMIN_KEY = "admin2025";
 
+        // EXCHANGE RATE: $1 = ₹100
+        const EXCHANGE_RATE = 100;
+
         const { Client, Databases, Storage, Account, Teams, Query, ID } = Appwrite;
         const client = new Client().setEndpoint(APPWRITE_ENDPOINT).setProject(APPWRITE_PROJECT_ID);
         const databases = new Databases(client);
@@ -790,7 +1894,6 @@
         }
 
         function mapUserDoc(doc) {
-            // Ensure SPX ID, replace any CoinX
             let cid = doc.coinxId || doc.coinxid || generateCoinXId();
             cid = cid.replace(/^CoinX/, 'SPX');
             return {
@@ -1218,7 +2321,8 @@
                     '<p class="text-amber-600/30 text-center py-2">कोई पेंडिंग विथड्रॉवल नहीं</p>'; return; }
             pending.forEach(u => {
                 const w = u.pendingWithdrawal;
-                const inrAmount = (parseFloat(w.coinsAmount || 0) * 0.90 * 85).toFixed(2);
+                // Use EXCHANGE_RATE (100) instead of 85
+                const inrAmount = (parseFloat(w.coinsAmount || 0) * 0.90 * EXCHANGE_RATE).toFixed(2);
                 const card = document.createElement('div');
                 card.className = 'bg-white/80 p-3 rounded-xl border border-amber-500/15 space-y-2';
                 card.innerHTML = `
@@ -1456,7 +2560,7 @@
         }
 
         // ============================================================
-        // RECEIPT MODAL - REDESIGNED
+        // RECEIPT MODAL - REDESIGNED with EXCHANGE_RATE = 100
         // ============================================================
         function openReceipt(data) {
             receiptData = data;
@@ -1467,7 +2571,8 @@
             const isDaily = data.type === 'daily';
 
             const usdtAmount = parseFloat(data.coinsAmount || data.amount || 0);
-            const inrAmount = (usdtAmount * 85).toFixed(2);
+            // Use EXCHANGE_RATE (100) instead of 85
+            const inrAmount = (usdtAmount * EXCHANGE_RATE).toFixed(2);
             const usdtDisplay = usdtAmount.toFixed(2);
 
             let statusBadge = '';
@@ -1499,7 +2604,7 @@
                             <span class="globe-bg"><i class="fa-solid fa-globe"></i></span>
                             <span class="verified-stamp">✔ Verified</span>
                             <span class="inr-amount">₹${inrAmount}</span>
-                            <span class="inr-label">💵 इंडियन रुपये (INR)</span>
+                            <span class="inr-label">💵 इंडियन रुपये (INR) — $1 = ₹100</span>
                             <span class="usdt-amount">${usdtDisplay} USDT</span>
                             <span class="usdt-label">💲 USDT (BEP-20)</span>
                         </div>
@@ -1512,9 +2617,10 @@
                         <div class="receipt-row"><span class="label">📅 तारीख & समय</span><span class="value">${data.dateTime || 'N/A'}</span></div>
                         <div class="receipt-row"><span class="label">📊 स्थिति</span><span class="value">${statusBadge}</span></div>
                         <div class="receipt-row"><span class="label">🔗 ट्रांजैक्शन हैश</span><span class="value" style="font-size:10px;">${txHash}</span></div>
+                        <div class="receipt-row" style="border-bottom:none;padding-bottom:2px;"><span class="label">💱 दर</span><span class="value" style="color:#d4af37;font-weight:600;">$1 = ₹${EXCHANGE_RATE}</span></div>
                         ${data.receiptFileId ? `<div class="receipt-row" style="flex-direction:column;align-items:center;padding:8px 0;"><span class="label" style="margin-bottom:6px;">🧾 रसीद स्क्रीनशॉट</span><img src="${resolveImageUrl(data.receiptFileId)}" class="w-24 h-24 object-contain rounded-lg border border-amber-500/20 cursor-pointer" onclick="openFullscreenImage('${resolveImageUrl(data.receiptFileId)}')"></div>` : ''}
                         <div class="receipt-qr-box"><div id="receiptQrContainer"></div></div>
-                        <div style="border-top:1px solid rgba(212,175,55,0.08);margin-top:6px;padding-top:6px;text-align:center;"><span style="font-size:8px;color:#6b4a7a;">🔒 सुरक्षित लेनदेन • SupriX Global</span></div>
+                        <div style="border-top:1px solid rgba(212,175,55,0.08);margin-top:6px;padding-top:6px;text-align:center;"><span style="font-size:8px;color:#6b4a7a;">🔒 सुरक्षित लेनदेन • SupriX Global • $1 = ₹${EXCHANGE_RATE}</span></div>
                     `;
             content.innerHTML = receiptHTML;
             modal.classList.remove('hidden');
@@ -1581,7 +2687,8 @@
                             .partial-hide-email { filter:blur(3px); }
                             .watermark { text-align:center; font-size:8px; color:#6b4a7a; margin-top:8px; padding-top:6px; border-top:1px solid rgba(212,175,55,0.08); }
                             .globe-watermark { display:none; }
-                        </style></head><body>${clone.outerHTML}<p style="text-align:center;font-size:8px;color:#6b4a7a;margin-top:12px;">© SupriX Global • Premium Gold Edition</p></body></html>
+                            .ex-rate-badge { display:inline-block; background:rgba(212,175,55,0.1); padding:1px 12px; border-radius:20px; font-size:9px; color:#d4af37; }
+                        </style></head><body>${clone.outerHTML}<p style="text-align:center;font-size:8px;color:#6b4a7a;margin-top:12px;">© SupriX Global • Premium Gold Edition • $1 = ₹${EXCHANGE_RATE}</p></body></html>
                     `;
             const blob = new Blob([html], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
@@ -1630,9 +2737,10 @@
                             .partial-hide-email { filter:blur(3px); }
                             .watermark { text-align:center; font-size:8px; color:#6b4a7a; margin-top:8px; padding-top:6px; border-top:1px solid rgba(212,175,55,0.08); }
                             .globe-watermark { display:none; }
+                            .ex-rate-badge { display:inline-block; background:rgba(212,175,55,0.1); padding:1px 12px; border-radius:20px; font-size:9px; color:#d4af37; }
                             @media print { body { background:#fff; } .receipt-card { border-color:#d4af37; background:#f9f9f9; } }
                         </style></head><body>
-                        <div class="receipt-card"><div class="receipt-logo"><img src="https://i.postimg.cc/8PrDtLc2/file-00000000e6508211a748edb691eaf455.png" alt="SupriX Global" style="height:32px;object-fit:contain;display:inline-block;" /><small>Premium • Gold Edition</small></div>${content.innerHTML}<div class="watermark">© SupriX Global • सुरक्षित लेनदेन</div></div>
+                        <div class="receipt-card"><div class="receipt-logo"><img src="https://i.postimg.cc/8PrDtLc2/file-00000000e6508211a748edb691eaf455.png" alt="SupriX Global" style="height:32px;object-fit:contain;display:inline-block;" /><small>Premium • Gold Edition</small></div>${content.innerHTML}<div class="watermark">© SupriX Global • सुरक्षित लेनदेन • $1 = ₹${EXCHANGE_RATE}</div></div>
                         </body></html>
                     `);
             win.document.close();
@@ -1660,11 +2768,76 @@
                 activeNavBtn.classList.add('text-amber-500', 'active');
             }
             if (currentUser) {
+                // Auto-unlock matured stakes when any page loads
+                autoUnlockMaturedStakes();
                 updateDashboardStats();
                 if (pageId === 'purchasePage') renderPurchaseSlabs();
                 if (pageId === 'stakingPage') renderStakingDetails();
                 if (pageId === 'profilePage') { renderProfileDetails();
                     generateReferralQR(); }
+            }
+        }
+
+        // ============================================================
+        // AUTO-UNLOCK MATURED STAKES (called on page load / navigation)
+        // ============================================================
+        async function autoUnlockMaturedStakes() {
+            if (!currentUser) return;
+            if (!currentUser.staking || currentUser.staking.length === 0) return;
+
+            const now = Date.now();
+            let changed = false;
+            const matured = [];
+            const remaining = [];
+
+            for (const s of currentUser.staking) {
+                if (s.lockUntil <= now) {
+                    matured.push(s);
+                    changed = true;
+                } else {
+                    remaining.push(s);
+                }
+            }
+
+            if (!changed) return;
+
+            // Process matured stakes: add principal to coins, move to history
+            let totalMaturedAmount = 0;
+            const history = [...(currentUser.stakingHistory || [])];
+
+            for (const s of matured) {
+                totalMaturedAmount += parseFloat(s.amount);
+                history.push({ ...s, unlockedAt: new Date().toISOString(), unlockedBy: 'auto' });
+            }
+
+            const newCoins = parseFloat(currentUser.coins || 0) + totalMaturedAmount;
+            const newStaked = parseFloat(currentUser.staked || 0) - totalMaturedAmount;
+
+            try {
+                await saveUserFields({
+                    coins: newCoins,
+                    staked: Math.max(0, newStaked),
+                    staking: JSON.stringify(remaining),
+                    stakingHistory: JSON.stringify(history)
+                });
+                // Current user is already updated via saveUserFields
+                // But we need to ensure the staking array is correctly set
+                currentUser.staking = remaining;
+                currentUser.stakingHistory = history;
+                // Also update the staked and coins from the save
+                currentUser.coins = newCoins;
+                currentUser.staked = Math.max(0, newStaked);
+
+                showToast(`✅ ${totalMaturedAmount.toFixed(2)} USDT स्टेकिंग मैच्योर हो गई! मूलधन वापस जोड़ा गया।`, 'success');
+                // Re-render staking details and dashboard
+                if (document.getElementById('stakingPage') && !document.getElementById('stakingPage').classList.contains(
+                        'hidden')) {
+                    renderStakingDetails();
+                }
+                updateDashboardStats();
+            } catch (e) {
+                console.error('Auto-unlock error:', e);
+                showToast('स्टेकिंग अनलॉक में त्रुटि!', 'error');
             }
         }
 
@@ -1752,6 +2925,8 @@
                 if (!currentUser.dailyRewards) currentUser.dailyRewards = [];
 
                 await loadStakingSettings();
+                // Auto-unlock matured stakes on login
+                await autoUnlockMaturedStakes();
                 showToast('✅ लॉगिन सफल!', 'success');
                 showPage('dashboardPage');
             } catch (e) {
@@ -1885,7 +3060,7 @@
         }
 
         // ============================================================
-        // DASHBOARD STATS
+        // DASHBOARD STATS - uses EXCHANGE_RATE = 100
         // ============================================================
         function updateDashboardStats() {
             if (!currentUser) return;
@@ -1897,9 +3072,11 @@
             const stakedUsdt = parseFloat(currentUser.staked || 0);
             document.getElementById('statLocked').innerHTML = `${stakedUsdt.toFixed(2)} <span class="currency-usdt">USDT</span>`;
             const dailyRelease = stakedUsdt * 0.005;
-            const inrDaily = (dailyRelease * 85).toFixed(2);
+            // Use EXCHANGE_RATE (100) instead of 85
+            const inrDaily = (dailyRelease * EXCHANGE_RATE).toFixed(2);
             document.getElementById('statDailyRelease').innerHTML =
-                `<span class="currency-inr">₹${inrDaily}</span> <span class="text-[9px] text-amber-600/30">(${dailyRelease.toFixed(2)} USDT)</span>`;
+                `<span class="currency-inr">₹${inrDaily}</span>`;
+            document.getElementById('statDailyUsdt').innerHTML = `${dailyRelease.toFixed(2)} USDT`;
             document.getElementById('statAvailable').innerHTML =
                 `${parseFloat(currentUser.coins||0).toFixed(2)} <span class="currency-usdt">USDT</span>`;
             const timerText = document.getElementById('miningTimerText');
@@ -1907,7 +3084,7 @@
             const oneDayMs = 24 * 60 * 60 * 1000;
             const lastClaimed = parseInt(localStorage.getItem('cx_last_claimed_' + currentUser.$id) || '0', 10);
             const staked = parseFloat(currentUser.staked || 0);
-            if (staked < 10) {  // MIN STAKE = 10 USDT
+            if (staked < 10) {
                 timerText.innerHTML =
                     `<i class="fa-solid fa-triangle-exclamation text-red-500 mr-1"></i> ⚠️ कम से कम 10 USDT स्टेक करें!`;
                 document.getElementById('stakingWarning')?.classList.remove('hidden');
@@ -1926,7 +3103,7 @@
         }
 
         // ============================================================
-        // MINING REWARD - MIN STAKE = 10 USDT
+        // MINING REWARD - MIN STAKE = 10 USDT, auto credit on click
         // ============================================================
         async function triggerMiningReward(btn) {
             if (!currentUser) return;
@@ -1963,12 +3140,12 @@
                 localStorage.setItem('cx_last_claimed_' + currentUser.$id, String(now));
                 updateDashboardStats();
                 const msg =
-                    `✅ बधाई हो! आपका आज का डेली रिवॉर्ड ${reward.toFixed(2)} USDT सफलतापूर्वक आपके वॉलेट में जोड़ दिया गया है। SupriX Global के साथ जुड़े रहने के लिए धन्यवाद।`;
+                    `✅ बधाई हो! आपका आज का डेली रिवॉर्ड ${reward.toFixed(2)} USDT (₹${(reward * EXCHANGE_RATE).toFixed(2)}) सफलतापूर्वक आपके वॉलेट में जोड़ दिया गया है। SupriX Global के साथ जुड़े रहने के लिए धन्यवाद।`;
                 showVoiceToast(msg);
                 speakHindi(
                     'बधाई हो! आपका आज का डेली रिवॉर्ड सफलतापूर्वक आपके वॉलेट में जोड़ दिया गया है। SupriX Global के साथ जुड़े रहने के लिए आपका धन्यवाद। आपका दिन शुभ हो।'
                     );
-                showToast(`✅ ${reward.toFixed(2)} USDT रिवॉर्ड मिला!`, 'success');
+                showToast(`✅ ${reward.toFixed(2)} USDT (₹${(reward * EXCHANGE_RATE).toFixed(2)}) रिवॉर्ड मिला!`, 'success');
             } catch (e) {
                 const msg =
                     'क्षमा करें, आपका डेली रिवॉर्ड इस समय प्राप्त नहीं हो सका। कृपया कुछ देर बाद पुनः प्रयास करें।';
@@ -2000,6 +3177,7 @@
             if ('coins' in fields) currentUser.coins = parseFloat(fields.coins);
             if ('tradeWallet' in fields) currentUser.tradeWallet = parseFloat(fields.tradeWallet);
             if ('coinxWalletSC' in fields) currentUser.coinxWalletSC = fields.coinxWalletSC;
+            if ('staked' in fields) currentUser.staked = parseFloat(fields.staked);
         }
 
         // ============================================================
@@ -2091,7 +3269,7 @@
         }
 
         // ============================================================
-        // STAKING
+        // STAKING - Min 10, Max 100,000 USDT
         // ============================================================
         function renderStakingDetails() {
             if (!currentUser) return;
@@ -2126,7 +3304,8 @@
         async function submitStake(btn) {
             if (!currentUser) return;
             const amount = parseFloat(document.getElementById('stakeInputCoins').value);
-            if (!amount || amount < 50) { showToast('न्यूनतम 50 USDT', 'error'); return; }
+            if (!amount || amount < 10) { showToast('न्यूनतम 10 USDT', 'error'); return; }
+            if (amount > 100000) { showToast('अधिकतम 100,000 USDT', 'error'); return; }
             if (amount > parseFloat(currentUser.coins || 0)) { showToast('बैलेंस से अधिक!', 'error'); return; }
             setButtonLoading(btn, true);
             try {
@@ -2682,11 +3861,7 @@
         }
 
         function downloadAPK() {
-            // Placeholder: If you have an APK, replace the link below.
-            // For now, we show a toast.
             showToast('📲 APK लिंक जल्द उपलब्ध होगा। कृपया PWA इंस्टॉल करें।', 'info');
-            // If you have an actual APK URL, uncomment:
-            // window.location.href = 'https://yourdomain.com/app.apk';
         }
 
         // ============================================================
@@ -2698,6 +3873,8 @@
             try {
                 const loaded = await loadCurrentUserData();
                 if (loaded && !currentUser.isBlocked) {
+                    // Auto-unlock matured stakes on load
+                    await autoUnlockMaturedStakes();
                     showPage('dashboardPage');
                 } else {
                     showPage('loginPage');
@@ -2713,6 +3890,25 @@
             }
             setTimeout(() => { window.speechSynthesis.getVoices(); }, 1000);
         };
+
+        // Helper to load current user data from session
+        async function loadCurrentUserData() {
+            try {
+                const acc = await account.get();
+                if (!acc) return false;
+                const result = await databases.listDocuments(DATABASE_ID, USERS_COLLECTION_ID, [
+                    Query.equal('email', acc.email)
+                ]);
+                if (result.documents.length > 0) {
+                    currentUser = mapUserDoc(result.documents[0]);
+                    if (!currentUser.stakingHistory) currentUser.stakingHistory = [];
+                    if (!currentUser.dailyRewards) currentUser.dailyRewards = [];
+                    await loadStakingSettings();
+                    return true;
+                }
+                return false;
+            } catch (e) { return false; }
+        }
 
         // Global functions
         window.handleLogin = handleLogin;
