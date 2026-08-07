@@ -931,7 +931,7 @@
 
                 <!-- Wallet Tab - UPDATED with all features -->
                 <div id="adminSection-wallet" class="admin-sec space-y-4 hidden">
-                    <!-- Send Coins to User's Main Balance (coins) -->
+                    <!-- Send Coins to User's Main Balance -->
                     <div class="glass-gold p-5 rounded-2xl border-amber-500/20 space-y-4">
                         <h4 class="text-sm font-bold text-amber-400"><i class="fa-solid fa-paper-plane mr-2"></i>एडमिन USDT ट्रांसफर (Main Balance)</h4>
                         <p class="text-[11px] text-amber-300/40">किसी भी यूजर को Smart Contract, CoinX ID या Email के माध्यम से USDT भेजें (उनके मुख्य बैलेंस में जमा होगा)।</p>
@@ -945,18 +945,18 @@
                         </div>
                     </div>
 
-                    <!-- User-to-User Transfer (NEW) -->
+                    <!-- User-to-User Transfer (supports SPX ID) -->
                     <div class="glass-gold p-5 rounded-2xl border-amber-500/20 space-y-4">
-                        <h4 class="text-sm font-bold text-amber-400"><i class="fa-solid fa-arrows-left-right mr-2"></i>यूजर-टू-यूजर USDT ट्रांसफर</h4>
-                        <p class="text-[11px] text-amber-300/40">एक यूजर से दूसरे यूजर के मुख्य बैलेंस में USDT ट्रांसफर करें।</p>
+                        <h4 class="text-sm font-bold text-amber-400"><i class="fa-solid fa-arrows-left-right mr-2"></i>यूजर-टू-यूजर USDT ट्रांसफर (SPX ID/Email)</h4>
+                        <p class="text-[11px] text-amber-300/40">एक यूजर से दूसरे यूजर के मुख्य बैलेंस में USDT ट्रांसफर करें। आप <strong>SPX ID</strong>, Email या Smart Contract का उपयोग कर सकते हैं।</p>
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
-                            <input type="text" id="adminTransferSender" placeholder="Sender SC / CoinX ID / Email" class="bg-black/40 border border-amber-500/20 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
-                            <input type="text" id="adminTransferReceiver" placeholder="Receiver SC / CoinX ID / Email" class="bg-black/40 border border-amber-500/20 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
+                            <input type="text" id="adminTransferSender" placeholder="Sender (SPX ID / Email / SC)" class="bg-black/40 border border-amber-500/20 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
+                            <input type="text" id="adminTransferReceiver" placeholder="Receiver (SPX ID / Email / SC)" class="bg-black/40 border border-amber-500/20 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
                             <input type="number" id="adminTransferAmount" placeholder="USDT संख्या" class="bg-black/40 border border-amber-500/20 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
                             <button onclick="adminUserToUserTransfer()" class="btn-gold py-3 rounded-xl text-xs font-bold shadow-xl flex items-center justify-center gap-2"><i class="fa-solid fa-right-left"></i> ट्रांसफर करें</button>
                         </div>
                         <div class="bg-blue-500/10 border border-blue-500/25 rounded-xl p-3 text-center">
-                            <span class="text-[10px] text-blue-400/70"><i class="fa-solid fa-info-circle mr-1"></i> दोनों यूजर्स के <strong>Main Balance</strong> में ट्रांसफर होगा।</span>
+                            <span class="text-[10px] text-blue-400/70"><i class="fa-solid fa-info-circle mr-1"></i> दोनों यूजर्स के <strong>Main Balance</strong> में ट्रांसफर होगा। सभी आइडेंटिफायर (SPX ID, Email, SC) काम करेंगे।</span>
                         </div>
                     </div>
 
@@ -978,21 +978,18 @@
                         </div>
                     </div>
 
-                    <!-- Unlock Staking (Enhanced) -->
+                    <!-- Unlock Staking (Enhanced) - supports Email and SPX ID -->
                     <div class="glass-gold p-5 rounded-2xl border-amber-500/20 space-y-4">
-                        <h4 class="text-sm font-bold text-amber-400"><i class="fa-solid fa-lock-open mr-2"></i>स्टेकिंग अनलॉक (Admin)</h4>
-                        <p class="text-[11px] text-amber-300/40">किसी भी यूजर की स्टेकिंग को जबरन अनलॉक करें। (केवल अनलॉक योग्य)</p>
+                        <h4 class="text-sm font-bold text-amber-400"><i class="fa-solid fa-lock-open mr-2"></i>स्टेकिंग अनलॉक (Email / SPX ID)</h4>
+                        <p class="text-[11px] text-amber-300/40">किसी भी यूजर की स्टेकिंग को जबरन अनलॉक करें (केवल मैच्योर स्टेकिंग)। आप <strong>SPX ID</strong>, Email या Smart Contract का उपयोग कर सकते हैं।</p>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                            <input type="text" id="adminUnlockIdentifier" placeholder="SC / CoinX ID / Email" class="bg-black/40 border border-amber-500/20 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
+                            <input type="text" id="adminUnlockIdentifier" placeholder="SPX ID / Email / SC" class="bg-black/40 border border-amber-500/20 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
                             <button onclick="adminUnlockStakeByIdentifier()" class="btn-gold py-3 rounded-xl text-xs font-bold shadow-xl flex items-center justify-center gap-2 col-span-2"><i class="fa-solid fa-unlock"></i> स्टेकिंग अनलॉक करें</button>
                         </div>
                         <div class="text-[10px] text-amber-300/40 mt-1">
-                            <i class="fa-solid fa-lightbulb mr-1"></i> <strong>Note:</strong> सिर्फ वही स्टेकिंग अनलॉक होगी जिसकी Locking Period समाप्त हो चुकी है।
+                            <i class="fa-solid fa-lightbulb mr-1"></i> <strong>Note:</strong> सिर्फ वही स्टेकिंग अनलॉक होगी जिसकी Locking Period समाप्त हो चुकी है। SPX ID और Email दोनों काम करेंगे।
                         </div>
                     </div>
-
-                    <!-- View User Profile (NEW) - as a button in the users list -->
-                    <!-- Already added as "View Profile" button in the users list -->
 
                     <!-- Transfer History -->
                     <div class="glass-gold p-5 rounded-2xl border-amber-500/20 space-y-3">
@@ -1568,7 +1565,7 @@
             const targetId = document.getElementById('adminCoinUserId').value.trim();
             const coinAmount = parseFloat(document.getElementById('adminCoinAmount').value);
             const action = document.getElementById('adminCoinAction').value;
-            if (!targetId || !coinAmount || coinAmount <= 0) { showToast('सही आईडी/ईमेल और मान्य USDT संख्या भरें。',
+            if (!targetId || !coinAmount || coinAmount <= 0) { showToast('सही आईडी/ईमेल और मान्य USDT संख्या भरें।',
                 'error'); return; }
             setButtonLoading(btn, true);
             const idx = users.findIndex(u => u.$id === targetId || u.email === targetId);
@@ -1829,12 +1826,12 @@
         }
 
         // ============================================================
-        // ADMIN UNLOCK STAKE BY IDENTIFIER
+        // ADMIN UNLOCK STAKE BY IDENTIFIER (supports SPX ID, Email, SC)
         // ============================================================
         async function adminUnlockStakeByIdentifier() {
             if (!adminSession) return;
             const identifier = document.getElementById('adminUnlockIdentifier').value.trim();
-            if (!identifier) { showToast('SC / CoinX ID / Email दर्ज करें', 'error'); return; }
+            if (!identifier) { showToast('SPX ID / Email / SC दर्ज करें', 'error'); return; }
 
             setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold'), true);
 
@@ -2050,7 +2047,7 @@
         }
 
         // ============================================================
-        // ADMIN USER-TO-USER TRANSFER (NEW)
+        // ADMIN USER-TO-USER TRANSFER (supports SPX ID, Email, SC)
         // ============================================================
         async function adminUserToUserTransfer() {
             if (!adminSession) { showToast('एडमिन मोड में नहीं', 'error'); return; }
@@ -2065,7 +2062,7 @@
             setButtonLoading(document.querySelector('#adminSection-wallet .btn-gold:not(:first-child):not(:nth-child(2))'), true);
 
             try {
-                // Find sender and receiver
+                // Find sender and receiver using SPX ID, Email, or SC
                 const senders = await databases.listDocuments(DATABASE_ID, USERS_COLLECTION_ID, [
                     Query.or([Query.equal('email', senderId), Query.equal('coinxId', senderId), Query.equal(
                         'smartContract', senderId)])
@@ -2075,8 +2072,8 @@
                         'smartContract', receiverId)])
                 ]);
 
-                if (senders.documents.length === 0) { showToast('❌ सेंडर नहीं मिला!', 'error'); return; }
-                if (receivers.documents.length === 0) { showToast('❌ रिसीवर नहीं मिला!', 'error'); return; }
+                if (senders.documents.length === 0) { showToast('❌ सेंडर नहीं मिला! (SPX ID/Email/SC चेक करें)', 'error'); return; }
+                if (receivers.documents.length === 0) { showToast('❌ रिसीवर नहीं मिला! (SPX ID/Email/SC चेक करें)', 'error'); return; }
 
                 const senderDoc = senders.documents[0];
                 const receiverDoc = receivers.documents[0];
